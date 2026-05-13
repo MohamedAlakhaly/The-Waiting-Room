@@ -1,0 +1,160 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+/* Light Theme - Based on bgLight: #F5F4F4 */
+:root {
+  --background: #F5F4F4;
+  --foreground: #1a1a1a;
+  --card: #ffffff;
+  --card-foreground: #1a1a1a;
+  --popover: #ffffff;
+  --popover-foreground: #1a1a1a;
+  --primary: #c9f14e;
+  --primary-foreground: #0f0f0f;
+  --secondary: #1e3a5f;
+  --secondary-foreground: #ffffff;
+  --muted: #e0e0e0;
+  --muted-foreground: #6b7280;
+  --accent: #c9f14e;
+  --accent-foreground: #0f0f0f;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: #d1d5db;
+  --input: #e5e7eb;
+  --ring: #c9f14e;
+  --chart-1: #c9f14e;
+  --chart-2: #1e3a5f;
+  --chart-3: #d9f87e;
+  --chart-4: #2d4a6f;
+  --chart-5: #b8e03e;
+  --radius: 0.625rem;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #1a1a1a;
+  --sidebar-primary: #c9f14e;
+  --sidebar-primary-foreground: #0f0f0f;
+  --sidebar-accent: #f3f4f6;
+  --sidebar-accent-foreground: #1a1a1a;
+  --sidebar-border: #e5e7eb;
+  --sidebar-ring: #c9f14e;
+  
+  /* Custom colors */
+  --surface: #f9fafb;
+  --navy: #1e3a5f;
+  --navy-light: #2d4a6f;
+}
+
+/* Dark Theme - Based on bgDark: #0f0f0f */
+.dark {
+  --background: #0f0f0f;
+  --foreground: #f5f5f5;
+  --card: #202020;
+  --card-foreground: #f5f5f5;
+  --popover: #161616;
+  --popover-foreground: #f5f5f5;
+  --primary: #c9f14e;
+  --primary-foreground: #0f0f0f;
+  --secondary: #1e3a5f;
+  --secondary-foreground: #ffffff;
+  --muted: #2a2a2a;
+  --muted-foreground: #a1a1a1;
+  --accent: #c9f14e;
+  --accent-foreground: #0f0f0f;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: #2a2a2a;
+  --input: #202020;
+  --ring: #c9f14e;
+  --chart-1: #c9f14e;
+  --chart-2: #3b82f6;
+  --chart-3: #d9f87e;
+  --chart-4: #60a5fa;
+  --chart-5: #b8e03e;
+  --sidebar: #161616;
+  --sidebar-foreground: #f5f5f5;
+  --sidebar-primary: #c9f14e;
+  --sidebar-primary-foreground: #0f0f0f;
+  --sidebar-accent: #202020;
+  --sidebar-accent-foreground: #f5f5f5;
+  --sidebar-border: #2a2a2a;
+  --sidebar-ring: #c9f14e;
+  
+  /* Custom colors */
+  --surface: #161616;
+  --navy: #3b82f6;
+  --navy-light: #60a5fa;
+}
+
+@theme inline {
+  --font-sans: 'Inter', 'Inter Fallback', system-ui, sans-serif;
+  --font-serif: 'Playfair Display', 'Georgia', serif;
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback', monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-surface: var(--surface);
+  --color-navy: var(--navy);
+  --color-navy-light: var(--navy-light);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom scrollbar for dark mode */
+.dark ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #161616;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #2a2a2a;
+  border-radius: 4px;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #3a3a3a;
+}
