@@ -1,12 +1,15 @@
+import { useTranslations } from "next-intl"
 import { Share2, Copy } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 
 export function SharePetition() {
+  const t = useTranslations('petition')
+
   return (
     <Card className="bg-muted/50">
       <CardHeader className="pb-3">
-        <p className="text-sm text-muted-foreground">Share this petition with your network:</p>
+        <p className="text-sm text-muted-foreground">{t('shareTitle')}</p>
       </CardHeader>
       <CardContent>
         <div className="flex flex-wrap gap-3">
@@ -20,7 +23,7 @@ export function SharePetition() {
           </Button>
           <Button variant="outline">
             <Copy className="mr-2 h-4 w-4" />
-            Copy Link
+            {t('copyLink')}
           </Button>
         </div>
       </CardContent>

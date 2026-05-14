@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { useTranslations } from "next-intl"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 
@@ -30,6 +31,8 @@ const articles = [
 ]
 
 export function NewsGrid() {
+  const t = useTranslations('news')
+
   return (
     <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {articles.map((article) => (
@@ -54,11 +57,11 @@ export function NewsGrid() {
                 </Badge>
               ))}
             </div>
-            <Link 
+            <Link
               href={`/news/${article.id}`}
               className="text-sm font-medium text-primary hover:underline"
             >
-              Read Full Report
+              {t('readReport')}
             </Link>
           </CardFooter>
         </Card>

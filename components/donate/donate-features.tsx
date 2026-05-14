@@ -1,25 +1,28 @@
-import { Shield, Heart, Eye } from "lucide-react"
+import { useTranslations } from "next-intl"
+import { Shield, Heart, Eye, LucideIcon } from "lucide-react"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 
-const features = [
-  {
-    icon: Shield,
-    title: "Secure Payment",
-    description: "Industry standard encryption protecting your financial data.",
-  },
-  {
-    icon: Heart,
-    title: "Direct Impact",
-    description: "Every Euro supports the tools that empower citizens' voices.",
-  },
-  {
-    icon: Eye,
-    title: "Open Reports",
-    description: "Monthly summaries of how funds are used to maintain the site.",
-  },
-]
-
 export function DonateFeatures() {
+  const t = useTranslations('donate')
+
+  const features: { icon: LucideIcon; title: string; description: string }[] = [
+    {
+      icon: Shield,
+      title: t('securePayment'),
+      description: t('secureDesc'),
+    },
+    {
+      icon: Heart,
+      title: t('directImpact'),
+      description: t('directDesc'),
+    },
+    {
+      icon: Eye,
+      title: t('openReports'),
+      description: t('openDesc'),
+    },
+  ]
+
   return (
     <section className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {features.map((feature) => {

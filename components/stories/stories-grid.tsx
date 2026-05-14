@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { useTranslations } from "next-intl"
 import { ArrowRight, Calendar, UserX } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
@@ -46,6 +47,8 @@ const stories = [
 ]
 
 export function StoriesGrid() {
+  const t = useTranslations('stories')
+
   return (
     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-2">
       {stories.map((story) => (
@@ -81,13 +84,13 @@ export function StoriesGrid() {
           <CardFooter className="flex items-center justify-between pt-2">
             <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
               <Calendar className="h-3.5 w-3.5" />
-              {story.yearsInBelgium} years in BE
+              {story.yearsInBelgium} {t('yearsInBE')}
             </div>
-            <Link 
+            <Link
               href={`/stories/${story.id}`}
               className="flex items-center gap-1 text-sm font-medium text-foreground hover:text-primary"
             >
-              Read Story
+              {t('readStory')}
               <ArrowRight className="h-4 w-4" />
             </Link>
           </CardFooter>

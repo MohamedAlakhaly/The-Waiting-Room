@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { useTranslations } from "next-intl"
 import { ArrowRight, ExternalLink } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
@@ -28,6 +29,8 @@ const stories = [
 ]
 
 export function LatestVoices() {
+  const t = useTranslations('stories')
+
   return (
     <section className="px-4 py-12 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
@@ -35,17 +38,17 @@ export function LatestVoices() {
         <div className="flex items-end justify-between mb-8">
           <div>
             <h2 className="font-serif text-3xl font-bold text-foreground sm:text-4xl">
-              Latest Voices
+              {t('latestTitle')}
             </h2>
             <p className="mt-2 text-muted-foreground">
-              Real stories from individuals in our community.
+              {t('latestDescription')}
             </p>
           </div>
-          <Link 
-            href="/stories" 
+          <Link
+            href="/stories"
             className="hidden items-center gap-1 text-sm font-medium text-primary hover:text-primary/80 sm:flex"
           >
-            View all stories
+            {t('viewAll')}
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
@@ -54,7 +57,7 @@ export function LatestVoices() {
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {stories.map((story) => (
             <Card key={story.id} className="overflow-hidden bg-card">
-              <div className="aspect-[3/2] overflow-hidden">
+              <div className="aspect-3/2 overflow-hidden">
                 <img
                   src={story.image}
                   alt={story.title}
@@ -75,11 +78,11 @@ export function LatestVoices() {
                 </p>
               </CardContent>
               <CardFooter>
-                <Link 
+                <Link
                   href={`/stories/${story.id}`}
                   className="flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-foreground"
                 >
-                  Read Full Story
+                  {t('readStory')}
                   <ExternalLink className="h-3.5 w-3.5" />
                 </Link>
               </CardFooter>
@@ -89,11 +92,11 @@ export function LatestVoices() {
 
         {/* Mobile View All Link */}
         <div className="mt-6 text-center sm:hidden">
-          <Link 
-            href="/stories" 
+          <Link
+            href="/stories"
             className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:text-primary/80"
           >
-            View all stories
+            {t('viewAll')}
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>

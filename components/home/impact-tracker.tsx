@@ -1,10 +1,12 @@
 "use client"
 
 import Link from "next/link"
+import { useTranslations } from "next-intl"
 import { Plus } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export function ImpactTracker() {
+  const t = useTranslations('impact')
   const currentCount = 1248
   const goalCount = 2000
   const progress = (currentCount / goalCount) * 100
@@ -17,7 +19,7 @@ export function ImpactTracker() {
             {/* Content */}
             <div className="flex flex-col gap-4">
               <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                Real-Time Impact Tracker
+                {t('label')}
               </span>
 
               <div className="flex items-baseline gap-4">
@@ -25,9 +27,9 @@ export function ImpactTracker() {
                   {currentCount.toLocaleString()}
                 </span>
                 <div className="flex flex-col">
-                  <span className="text-lg font-medium">people affected in</span>
-                  <span className="text-lg font-medium">Belgium currently</span>
-                  <span className="text-lg font-medium">seeking justice.</span>
+                  <span className="text-lg font-medium">{t('people')}</span>
+                  <span className="text-lg font-medium">{t('belgium')}</span>
+                  <span className="text-lg font-medium">{t('seeking')}</span>
                 </div>
               </div>
 
@@ -40,7 +42,7 @@ export function ImpactTracker() {
                   />
                 </div>
                 <p className="mt-2 text-sm text-muted-foreground">
-                  Goal: Reach {goalCount.toLocaleString()} voices for parliamentary review
+                  {t('goal', { count: goalCount.toLocaleString() })}
                 </p>
               </div>
             </div>
@@ -49,7 +51,7 @@ export function ImpactTracker() {
             <Link href="/petitions/new">
               <Button>
                 <Plus className="mr-2 h-4 w-4" />
-                Start a Campaign
+                {t('startCampaign')}
               </Button>
             </Link>
           </div>

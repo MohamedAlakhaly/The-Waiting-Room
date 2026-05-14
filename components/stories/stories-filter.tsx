@@ -1,23 +1,25 @@
 "use client"
 
 import { useState } from "react"
+import { useTranslations } from "next-intl"
 import { cn } from "@/lib/utils"
 
-const filters = [
-  { id: "all", label: "All" },
-  { id: "anonymous", label: "Anonymous" },
-  { id: "named", label: "Named" },
-  { id: "greece", label: "Greece" },
-  { id: "bulgaria", label: "Bulgaria" },
-]
-
 export function StoriesFilter() {
+  const t = useTranslations('stories')
   const [activeFilter, setActiveFilter] = useState("all")
+
+  const filters = [
+    { id: "all", label: t('filterAll') },
+    { id: "anonymous", label: t('filterAnon') },
+    { id: "named", label: t('filterNamed') },
+    { id: "greece", label: t('filterGreece') },
+    { id: "bulgaria", label: t('filterBulgaria') },
+  ]
 
   return (
     <div className="mt-8 rounded-lg border border-border bg-card p-4">
       <div className="flex flex-wrap items-center gap-2">
-        <span className="text-sm font-medium text-muted-foreground">Filter by:</span>
+        <span className="text-sm font-medium text-muted-foreground">{t('filterBy')}</span>
         <div className="flex flex-wrap gap-2">
           {filters.map((filter) => (
             <button

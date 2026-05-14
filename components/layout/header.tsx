@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { useTranslations } from "next-intl"
 import { User, Menu, X } from "lucide-react"
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
@@ -12,17 +13,9 @@ const LANG_FLAGS: Record<string, string> = {
   ar: '🇸🇦', fr: '🇫🇷', en: '🇬🇧', fa: '🇮🇷', ti: '🇹🇬',
 }
 
-const navigation = [
-  { name: "Home", href: "/" },
-  { name: "Stories", href: "/stories" },
-  { name: "Petitions", href: "/petitions" },
-  { name: "News", href: "/news" },
-  { name: "Donate", href: "/donate" },
-  { name: "About", href: "/about" },
-]
-
 export function Header() {
   const pathname = usePathname()
+  const t = useTranslations('nav')
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [langFlag, setLangFlag] = useState('🌐')
 
@@ -30,6 +23,15 @@ export function Header() {
     const code = localStorage.getItem('language') || 'en'
     setLangFlag(LANG_FLAGS[code] || '🌐')
   }, [])
+
+  const navigation = [
+    { name: t('home'), href: "/" },
+    { name: t('stories'), href: "/stories" },
+    { name: t('petitions'), href: "/petitions" },
+    { name: t('news'), href: "/news" },
+    { name: t('donate'), href: "/donate" },
+    { name: t('about'), href: "/about" },
+  ]
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/90">
@@ -45,7 +47,7 @@ export function Header() {
         <div className="hidden items-center gap-1 md:flex">
           {navigation.map((item) => (
             <Link
-              key={item.name}
+              key={item.href}
               href={item.href}
               className={cn(
                 "px-3 py-2 text-sm font-medium transition-colors rounded-md",
@@ -62,27 +64,16 @@ export function Header() {
         {/* Right side actions */}
         <div className="flex items-center gap-1.5">
           <ThemeToggle />
-
-          {/* Language selector — shows current flag */}
           <Link href="/language">
-            <Button
-              variant="ghost"
-              size="icon"
-              className="h-9 w-9 text-base"
-              aria-label="Change language"
-            >
+            <Button variant="ghost" size="icon" className="h-9 w-9 text-base" aria-label="Change language">
               {langFlag}
             </Button>
           </Link>
-
-          {/* Login / Account */}
           <Link href="/login">
             <Button variant="ghost" size="icon" className="h-9 w-9" aria-label="Account">
               <User className="h-5 w-5" />
             </Button>
           </Link>
-
-          {/* Mobile hamburger */}
           <Button
             variant="ghost"
             size="icon"
@@ -101,7 +92,7 @@ export function Header() {
           <div className="space-y-1 px-4 py-3">
             {navigation.map((item) => (
               <Link
-                key={item.name}
+                key={item.href}
                 href={item.href}
                 onClick={() => setMobileMenuOpen(false)}
                 className={cn(

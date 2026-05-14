@@ -1,7 +1,10 @@
+import { useTranslations } from "next-intl"
 import { Scale, Users } from "lucide-react"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 
 export function MissionBento() {
+  const t = useTranslations('about')
+
   return (
     <section className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {/* Legal Advocacy - Large card */}
@@ -10,10 +13,9 @@ export function MissionBento() {
           <Scale className="h-8 w-8" />
         </CardHeader>
         <CardContent>
-          <h3 className="mt-4 font-serif text-2xl font-bold">Legal Advocacy</h3>
+          <h3 className="mt-4 font-serif text-2xl font-bold">{t('legalAdvocacy')}</h3>
           <p className="mt-2 text-secondary-foreground/90 leading-relaxed">
-            We work with pro-bono lawyers to simplify complex legislation into actionable 
-            citizen insights for those in transition.
+            {t('legalDesc')}
           </p>
         </CardContent>
       </Card>
@@ -24,9 +26,9 @@ export function MissionBento() {
           <Users className="h-6 w-6 text-primary" />
         </CardHeader>
         <CardContent>
-          <h3 className="font-semibold text-primary">Inclusion</h3>
+          <h3 className="font-semibold text-primary">{t('inclusion')}</h3>
           <p className="mt-1 text-sm text-muted-foreground">
-            Empowering migrants to co-create policy regardless of their current documentation status.
+            {t('inclusionDesc')}
           </p>
         </CardContent>
       </Card>
@@ -34,18 +36,18 @@ export function MissionBento() {
       {/* Impact stats card */}
       <Card className="bg-primary/5 border-primary/10">
         <CardContent className="pt-6">
-          <h3 className="font-serif text-xl font-bold text-foreground">Our Impact</h3>
+          <h3 className="font-serif text-xl font-bold text-foreground">{t('ourImpact')}</h3>
           <div className="mt-4 space-y-2">
             <div className="flex justify-between">
-              <span className="text-muted-foreground">Petitions Won</span>
+              <span className="text-muted-foreground">{t('petitionsWon')}</span>
               <span className="font-semibold text-primary">142</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-muted-foreground">Voices Active</span>
+              <span className="text-muted-foreground">{t('voicesActive')}</span>
               <span className="font-semibold text-primary">50k+</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-muted-foreground">Cities Reached</span>
+              <span className="text-muted-foreground">{t('citiesReached')}</span>
               <span className="font-semibold text-primary">28</span>
             </div>
           </div>
@@ -60,11 +62,11 @@ export function MissionBento() {
             alt="Community gathering"
             className="h-full w-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/80 to-primary/40" />
+          <div className="absolute inset-0 bg-linear-to-r from-primary/80 to-primary/40" />
         </div>
         <CardContent className="relative pt-12 pb-6">
           <h3 className="font-serif text-xl font-bold text-primary-foreground">
-            United by shared futures, not just papers.
+            {t('united')}
           </h3>
         </CardContent>
       </Card>

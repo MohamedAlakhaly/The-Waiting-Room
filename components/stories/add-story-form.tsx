@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { useTranslations } from "next-intl"
 import { EyeOff, Send } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
@@ -17,6 +18,7 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 export function AddStoryForm() {
+  const t = useTranslations('stories')
   const [isAnonymous, setIsAnonymous] = useState(true)
   const [story, setStory] = useState("")
   const maxWords = 500
@@ -31,46 +33,46 @@ export function AddStoryForm() {
           <div className="flex items-center gap-3">
             <EyeOff className="h-5 w-5 text-muted-foreground" />
             <div>
-              <p className="font-medium text-foreground">Post Anonymously</p>
+              <p className="font-medium text-foreground">{t('postAnonymously')}</p>
               <p className="text-sm text-muted-foreground">
-                Hide your name and profile photo from this story
+                {t('hideIdentity')}
               </p>
             </div>
           </div>
           <Switch checked={isAnonymous} onCheckedChange={setIsAnonymous} />
         </div>
       </CardHeader>
-      
+
       <CardContent className="space-y-6">
         {/* Dropdowns */}
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="space-y-2">
-            <Label htmlFor="country">Previous Country</Label>
+            <Label htmlFor="country">{t('previousCountry')}</Label>
             <Select>
               <SelectTrigger id="country">
-                <SelectValue placeholder="Select your origin" />
+                <SelectValue placeholder={t('selectOrigin')} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="greece">Greece</SelectItem>
-                <SelectItem value="bulgaria">Bulgaria</SelectItem>
-                <SelectItem value="other">Other</SelectItem>
+                <SelectItem value="greece">{t('filterGreece')}</SelectItem>
+                <SelectItem value="bulgaria">{t('filterBulgaria')}</SelectItem>
+                <SelectItem value="other">{t('other')}</SelectItem>
               </SelectContent>
             </Select>
           </div>
-          
+
           <div className="space-y-2">
-            <Label htmlFor="years">Years in Belgium</Label>
+            <Label htmlFor="years">{t('yearsInBelgium')}</Label>
             <Select>
               <SelectTrigger id="years">
-                <SelectValue placeholder="Select duration" />
+                <SelectValue placeholder={t('selectDuration')} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="1">Less than 1 year</SelectItem>
-                <SelectItem value="1-2">1-2 years</SelectItem>
-                <SelectItem value="2-3">2-3 years</SelectItem>
-                <SelectItem value="3-4">3-4 years</SelectItem>
-                <SelectItem value="4-5">4-5 years</SelectItem>
-                <SelectItem value="5+">5+ years</SelectItem>
+                <SelectItem value="1">{t('lessThan1Year')}</SelectItem>
+                <SelectItem value="1-2">{t('year1to2')}</SelectItem>
+                <SelectItem value="2-3">{t('year2to3')}</SelectItem>
+                <SelectItem value="3-4">{t('year3to4')}</SelectItem>
+                <SelectItem value="4-5">{t('year4to5')}</SelectItem>
+                <SelectItem value="5+">{t('year5plus')}</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -79,14 +81,14 @@ export function AddStoryForm() {
         {/* Story textarea */}
         <div className="space-y-2">
           <div className="flex items-center justify-between">
-            <Label htmlFor="story">Your Story</Label>
+            <Label htmlFor="story">{t('yourStory')}</Label>
             <span className="text-sm text-muted-foreground">
-              {wordCount} / {maxWords} words
+              {wordCount} / {maxWords} {t('words')}
             </span>
           </div>
           <Textarea
             id="story"
-            placeholder="Tell us about your experience with civic advocacy, local integration, or community support..."
+            placeholder={t('storyPlaceholder')}
             value={story}
             onChange={(e) => setStory(e.target.value)}
             className="min-h-[200px] resize-none"
@@ -97,9 +99,9 @@ export function AddStoryForm() {
         <div className="flex items-start gap-3">
           <Checkbox id="guidelines" />
           <Label htmlFor="guidelines" className="text-sm leading-relaxed text-muted-foreground">
-            I agree to the{" "}
+            {t('agreeGuidelines')}{" "}
             <a href="/community-guidelines" className="font-medium text-foreground underline">
-              Community Guidelines
+              {t('communityGuidelines')}
             </a>
           </Label>
         </div>
@@ -107,7 +109,7 @@ export function AddStoryForm() {
         {/* Submit button */}
         <div className="flex justify-end">
           <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
-            Submit Story
+            {t('submitStory')}
             <Send className="ml-2 h-4 w-4" />
           </Button>
         </div>

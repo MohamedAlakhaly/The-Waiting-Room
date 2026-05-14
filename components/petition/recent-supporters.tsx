@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 const supporters = [
@@ -6,11 +7,13 @@ const supporters = [
 ]
 
 export function RecentSupporters() {
+  const t = useTranslations('petition')
+
   return (
     <Card>
       <CardHeader className="pb-3">
         <CardTitle className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
-          Recent Supporters
+          {t('recentSupporters')}
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-3">
@@ -22,7 +25,7 @@ export function RecentSupporters() {
             <div>
               <p className="text-sm">
                 <strong className="font-medium text-foreground">{supporter.name}</strong>
-                {" "}signed {supporter.time}
+                {" "}{t('signed')} {supporter.time}
               </p>
             </div>
           </div>

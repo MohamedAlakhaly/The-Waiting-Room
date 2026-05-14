@@ -1,12 +1,15 @@
+import { useTranslations } from "next-intl"
+
 export function NewsHeader() {
+  const t = useTranslations('news')
+
   return (
     <div>
       <h1 className="font-serif text-4xl font-bold text-foreground sm:text-5xl">
-        News & Reports
+        {t('title')}
       </h1>
       <p className="mt-3 max-w-2xl text-lg text-muted-foreground">
-        Stay informed with the latest investigative reports and field updates from our 
-        global advocacy partners. Reliable data fuels effective change.
+        {t('description')}
       </p>
     </div>
   )
