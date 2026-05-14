@@ -3,6 +3,7 @@
 
 @custom-variant dark (&:is(.dark *));
 
+<<<<<<< HEAD
 /* ─── Design tokens (constants) ─────────────────────────── */
 :root {
   --bg-dark:    #0F0F0F;
@@ -84,6 +85,89 @@
   --sidebar-accent-foreground: #F5F4F4;
   --sidebar-border: #2A2A2A;
   --sidebar-ring: #C9F14E;
+=======
+/* Light Theme - Based on bgLight: #F5F4F4 */
+:root {
+  --background: #F5F4F4;
+  --foreground: #1a1a1a;
+  --card: #ffffff;
+  --card-foreground: #1a1a1a;
+  --popover: #ffffff;
+  --popover-foreground: #1a1a1a;
+  --primary: #c9f14e;
+  --primary-foreground: #0f0f0f;
+  --secondary: #1e3a5f;
+  --secondary-foreground: #ffffff;
+  --muted: #e0e0e0;
+  --muted-foreground: #6b7280;
+  --accent: #c9f14e;
+  --accent-foreground: #0f0f0f;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: #d1d5db;
+  --input: #e5e7eb;
+  --ring: #c9f14e;
+  --chart-1: #c9f14e;
+  --chart-2: #1e3a5f;
+  --chart-3: #d9f87e;
+  --chart-4: #2d4a6f;
+  --chart-5: #b8e03e;
+  --radius: 0.625rem;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #1a1a1a;
+  --sidebar-primary: #c9f14e;
+  --sidebar-primary-foreground: #0f0f0f;
+  --sidebar-accent: #f3f4f6;
+  --sidebar-accent-foreground: #1a1a1a;
+  --sidebar-border: #e5e7eb;
+  --sidebar-ring: #c9f14e;
+  
+  /* Custom colors */
+  --surface: #f9fafb;
+  --navy: #1e3a5f;
+  --navy-light: #2d4a6f;
+}
+
+/* Dark Theme - Based on bgDark: #0f0f0f */
+.dark {
+  --background: #0f0f0f;
+  --foreground: #f5f5f5;
+  --card: #202020;
+  --card-foreground: #f5f5f5;
+  --popover: #161616;
+  --popover-foreground: #f5f5f5;
+  --primary: #c9f14e;
+  --primary-foreground: #0f0f0f;
+  --secondary: #1e3a5f;
+  --secondary-foreground: #ffffff;
+  --muted: #2a2a2a;
+  --muted-foreground: #a1a1a1;
+  --accent: #c9f14e;
+  --accent-foreground: #0f0f0f;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: #2a2a2a;
+  --input: #202020;
+  --ring: #c9f14e;
+  --chart-1: #c9f14e;
+  --chart-2: #3b82f6;
+  --chart-3: #d9f87e;
+  --chart-4: #60a5fa;
+  --chart-5: #b8e03e;
+  --sidebar: #161616;
+  --sidebar-foreground: #f5f5f5;
+  --sidebar-primary: #c9f14e;
+  --sidebar-primary-foreground: #0f0f0f;
+  --sidebar-accent: #202020;
+  --sidebar-accent-foreground: #f5f5f5;
+  --sidebar-border: #2a2a2a;
+  --sidebar-ring: #c9f14e;
+  
+  /* Custom colors */
+  --surface: #161616;
+  --navy: #3b82f6;
+  --navy-light: #60a5fa;
+>>>>>>> b0129a175497610d1597a85fd3ca5baedeead14d
 }
 
 @theme inline {
@@ -126,6 +210,7 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+<<<<<<< HEAD
   /* Design token utilities */
   --color-bg-dark: var(--bg-dark);
   --color-bg-light: var(--bg-light);
@@ -133,6 +218,11 @@
   --color-bg-surface: var(--bg-surface);
   --color-bg-card: var(--bg-card);
   --color-primary-light: var(--primary-light);
+=======
+  --color-surface: var(--surface);
+  --color-navy: var(--navy);
+  --color-navy-light: var(--navy-light);
+>>>>>>> b0129a175497610d1597a85fd3ca5baedeead14d
 }
 
 @layer base {
@@ -142,6 +232,7 @@
   body {
     @apply bg-background text-foreground;
   }
+<<<<<<< HEAD
   /* Offset content above the sticky mobile nav on small screens */
   @media (max-width: 767px) {
     main {
@@ -155,3 +246,25 @@
 .dark ::-webkit-scrollbar-track { background: #161616; }
 .dark ::-webkit-scrollbar-thumb { background: #2A2A2A; border-radius: 4px; }
 .dark ::-webkit-scrollbar-thumb:hover { background: #3A3A3A; }
+=======
+}
+
+/* Custom scrollbar for dark mode */
+.dark ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #161616;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #2a2a2a;
+  border-radius: 4px;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #3a3a3a;
+}
+>>>>>>> b0129a175497610d1597a85fd3ca5baedeead14d
