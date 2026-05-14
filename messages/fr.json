@@ -1,0 +1,131 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "stories": "Témoignages",
+    "petitions": "Pétitions",
+    "news": "Actualités",
+    "donate": "Faire un don",
+    "about": "À propos"
+  },
+  "hero": {
+    "badge": "Pour les migrants en Belgique avec protection grecque ou bulgare",
+    "title": "Coincés entre deux pays.",
+    "titleHighlight": "Vous n'êtes pas seuls.",
+    "description": "Si vous détenez un statut de protection de Grèce ou de Bulgarie et vivez en Belgique sans droit de séjour — cette plateforme existe pour vous. Partagez votre histoire, rejoignez la pétition au CGVS.",
+    "signPetition": "Signer la pétition CGVS",
+    "shareStory": "Partager votre histoire",
+    "supportWork": "Soutenir ce travail",
+    "affected": "personnes concernées en Belgique"
+  },
+  "impact": {
+    "label": "Suivi d'impact en temps réel",
+    "people": "personnes concernées en",
+    "belgium": "Belgique actuellement",
+    "seeking": "cherchant justice.",
+    "goal": "Objectif : Atteindre {count} voix pour un examen parlementaire",
+    "startCampaign": "Lancer une campagne"
+  },
+  "stories": {
+    "title": "Voyages partagés",
+    "description": "Chaque voix ajoute du poids à l'appel à la justice. Ce sont les expériences vécues de ceux qui naviguent dans le paysage de plaidoyer belge.",
+    "shareStory": "Partager votre histoire",
+    "readStory": "Lire le témoignage",
+    "yearsInBE": "ans en Belgique",
+    "anonymous": "Anonyme",
+    "filterAll": "Tous",
+    "filterAnon": "Anonyme",
+    "filterNamed": "Nommé",
+    "filterBy": "Filtrer par :"
+  },
+  "petition": {
+    "active": "Pétition active",
+    "title": "Exiger un traitement équitable pour tous les demandeurs d'asile vulnérables",
+    "signaturesOf": "signatures sur",
+    "goal": "objectif",
+    "nextMilestone": "Prochaine étape :",
+    "sign": "Signer la pétition",
+    "yourName": "Votre nom (ou rester anonyme)",
+    "privateEmail": "Email privé",
+    "emailNote": "Votre email reste strictement privé et n'est utilisé que pour vérification.",
+    "displayName": "Afficher mon nom publiquement sur la page de pétition.",
+    "signButton": "Signer cette pétition",
+    "shareTitle": "Partagez cette pétition avec votre réseau :",
+    "copyLink": "Copier le lien",
+    "recentSupporters": "Signataires récents",
+    "signed": "a signé"
+  },
+  "donate": {
+    "title": "Soutenir ce travail indépendant",
+    "description": "Votre contribution aide à maintenir et développer cette plateforme.",
+    "enterAmount": "Entrez le montant en €",
+    "placeholder": "ex. 1, 5, 20...",
+    "minError": "Le don minimum est de €1",
+    "everyEuro": "Chaque euro aide à maintenir cette plateforme en fonctionnement",
+    "payPal": "Payer avec PayPal",
+    "payCard": "Payer par carte",
+    "transparencyTitle": "Transparence",
+    "transparencyNote": "100% des dons vont à la maintenance de la plateforme. C'est un projet personnel indépendant — construit par une seule personne, pour les migrants qui méritent d'être entendus."
+  },
+  "news": {
+    "title": "Actualités et rapports",
+    "description": "Restez informé des derniers rapports d'investigation et mises à jour terrain de nos partenaires de plaidoyer.",
+    "readReport": "Lire le rapport complet",
+    "tags": {
+      "legal": "Juridique",
+      "global": "Mondial",
+      "belgium": "Belgique",
+      "greece": "Grèce",
+      "bulgaria": "Bulgarie"
+    }
+  },
+  "about": {
+    "title": "À propos",
+    "mission": "Notre mission",
+    "founderTitle": "Histoire du fondateur",
+    "contact": "Nous contacter"
+  },
+  "language": {
+    "choose": "Choisissez votre langue",
+    "subtitle": "Choose your language / Choisissez votre langue / اختر لغتك"
+  },
+  "login": {
+    "title": "Bienvenue",
+    "subtitle": "Connectez-vous pour continuer",
+    "email": "Email",
+    "password": "Mot de passe",
+    "signIn": "Se connecter",
+    "or": "ou",
+    "googleSignIn": "Continuer avec Google",
+    "noAccount": "Pas encore de compte ?",
+    "register": "Créer un compte",
+    "continueGuest": "Continuer sans compte",
+    "continueGuestNote": "Vous pouvez signer la pétition et partager votre histoire sans vous inscrire"
+  },
+  "register": {
+    "title": "Créer un compte",
+    "subtitle": "Rejoignez notre communauté",
+    "name": "Nom complet",
+    "email": "Email",
+    "password": "Mot de passe",
+    "confirmPassword": "Confirmer le mot de passe",
+    "anonymous": "Garder mon identité privée",
+    "anonymousNote": "Votre nom n'apparaîtra sur aucun contenu public",
+    "submit": "Créer le compte",
+    "hasAccount": "Vous avez déjà un compte ?",
+    "login": "Se connecter"
+  },
+  "footer": {
+    "tagline": "Donner aux migrants en situation juridique précaire les moyens de participer au parcours civique grâce au témoignage et à la plaidoyer.",
+    "privacy": "Politique de confidentialité",
+    "contact": "Support",
+    "terms": "Conditions d'utilisation",
+    "rights": "Toutes les voix comptent."
+  },
+  "common": {
+    "loading": "Chargement...",
+    "error": "Une erreur s'est produite",
+    "back": "Retour",
+    "save": "Enregistrer",
+    "cancel": "Annuler"
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "nav": {
+    "home": "Home",
+    "stories": "Stories",
+    "petitions": "Petitions",
+    "news": "News",
+    "donate": "Donate",
+    "about": "About"
+  },
+  "hero": {
+    "badge": "For migrants in Belgium with Greek or Bulgarian protection",
+    "title": "Stuck in the gap between two countries.",
+    "titleHighlight": "You are not alone.",
+    "description": "If you hold protection status from Greece or Bulgaria and are living in Belgium without the right to stay — this platform exists for you. Share your story, join the petition to CGVS, and help make the invisible visible.",
+    "signPetition": "Sign the CGVS Petition",
+    "shareStory": "Share Your Story",
+    "supportWork": "Support This Work",
+    "affected": "people affected in Belgium"
+  },
+  "impact": {
+    "label": "Real-Time Impact Tracker",
+    "people": "people affected in",
+    "belgium": "Belgium currently",
+    "seeking": "seeking justice.",
+    "goal": "Goal: Reach {count} voices for parliamentary review",
+    "startCampaign": "Start a Campaign"
+  },
+  "stories": {
+    "title": "Shared Journeys",
+    "description": "Every voice adds weight to the call for justice. These are the lived experiences of those navigating the Belgian advocacy landscape.",
+    "shareStory": "Share Your Story",
+    "readStory": "Read Story",
+    "yearsInBE": "years in BE",
+    "anonymous": "Anonymous",
+    "filterAll": "All",
+    "filterAnon": "Anonymous",
+    "filterNamed": "Named",
+    "filterBy": "Filter by:"
+  },
+  "petition": {
+    "active": "Active Petition",
+    "title": "Demand Fair Processing for All Vulnerable Asylum Seekers",
+    "signaturesOf": "signatures of",
+    "goal": "goal",
+    "nextMilestone": "Next Milestone:",
+    "sign": "Sign the Petition",
+    "yourName": "Your Name (or keep anonymous)",
+    "privateEmail": "Private Email",
+    "emailNote": "Your email is kept strictly private and used only for verification.",
+    "displayName": "Display my name publicly on the petition page.",
+    "signButton": "Sign This Petition",
+    "shareTitle": "Share this petition with your network:",
+    "copyLink": "Copy Link",
+    "recentSupporters": "Recent Supporters",
+    "signed": "signed"
+  },
+  "donate": {
+    "title": "Support This Independent Work",
+    "description": "Your contribution helps maintain and develop this platform.",
+    "enterAmount": "Enter amount in €",
+    "placeholder": "e.g. 1, 5, 20...",
+    "minError": "Minimum donation is €1",
+    "everyEuro": "Every euro helps keep this platform running",
+    "payPal": "Pay with PayPal",
+    "payCard": "Pay with Card",
+    "transparencyTitle": "Transparency",
+    "transparencyNote": "100% of donations go to platform maintenance. This is an independent personal project — built by one person, for migrants who deserve to be heard. No organization. No overhead."
+  },
+  "news": {
+    "title": "News & Reports",
+    "description": "Stay informed with the latest investigative reports and field updates from our global advocacy partners.",
+    "readReport": "Read Full Report",
+    "tags": {
+      "legal": "Legal",
+      "global": "Global",
+      "belgium": "Belgium",
+      "greece": "Greece",
+      "bulgaria": "Bulgaria"
+    }
+  },
+  "about": {
+    "title": "About Us",
+    "mission": "Our Mission",
+    "founderTitle": "Founder's Story",
+    "contact": "Contact Us"
+  },
+  "language": {
+    "choose": "Choose your language",
+    "subtitle": "Choose your language / Choisissez votre langue / اختر لغتك"
+  },
+  "login": {
+    "title": "Welcome Back",
+    "subtitle": "Sign in to continue",
+    "email": "Email",
+    "password": "Password",
+    "signIn": "Sign In",
+    "or": "or",
+    "googleSignIn": "Continue with Google",
+    "noAccount": "Don't have an account?",
+    "register": "Create account",
+    "continueGuest": "Continue without account",
+    "continueGuestNote": "You can sign the petition and share your story without registering"
+  },
+  "register": {
+    "title": "Create Account",
+    "subtitle": "Join our community",
+    "name": "Full Name",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "anonymous": "Keep my identity private",
+    "anonymousNote": "Your name will not appear on any public content",
+    "submit": "Create Account",
+    "hasAccount": "Already have an account?",
+    "login": "Sign in"
+  },
+  "footer": {
+    "tagline": "Empowering migrants in legal limbo to participate in the civic journey through storytelling and advocacy.",
+    "privacy": "Privacy Policy",
+    "contact": "Contact Support",
+    "terms": "Terms of Service",
+    "rights": "All voices matter."
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "back": "Back",
+    "save": "Save",
+    "cancel": "Cancel"
+  }
+}
