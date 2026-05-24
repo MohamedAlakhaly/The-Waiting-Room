@@ -1,105 +1,175 @@
+"use client"
+
 import Link from "next/link"
 import { useTranslations } from "next-intl"
-import { ArrowRight, ExternalLink } from "lucide-react"
-import { Badge } from "@/components/ui/badge"
-import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
+import { ArrowRight, Clock, User } from "lucide-react"
+import { motion } from "framer-motion"
 
 const stories = [
   {
     id: 1,
-    title: '"The struggle for a stable home in Ghent"',
-    excerpt: "How the local housing crisis shifted my perspective on civic engagement and what we can do to change the policy...",
-    category: "Housing Rights",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=200&fit=crop",
+    name: "anonymous",
+    isAnonymous: true,
+    initials: null,
+    route: "Greece",
+    years: 3,
+    quote: "After 2 years in Greece with no future, I came to Belgium. Now I face the same wall — but at least here, people listen.",
+    color: "bg-blue-500/10 text-blue-400",
   },
   {
     id: 2,
-    title: "Navigating the digital divide in local services",
-    excerpt: "For the elderly in our community, the shift to 100% digital service centers has created a barrier that we must...",
-    category: "Public Services",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&h=200&fit=crop",
+    name: "Fatima A.",
+    isAnonymous: false,
+    initials: "FA",
+    route: "Bulgaria",
+    years: 1.5,
+    quote: "In Sofia I had papers but no rights. Here in Antwerp I have people who fight with me. That is everything.",
+    color: "bg-emerald-500/10 text-emerald-400",
   },
   {
     id: 3,
-    title: "Reclaiming green spaces in our neighborhood",
-    excerpt: "The story of how three neighbors turned a vacant lot into a community garden and changed local zoning law...",
-    category: "Sustainability",
-    image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=300&h=200&fit=crop",
+    name: "anonymous",
+    isAnonymous: true,
+    initials: null,
+    route: "Greece",
+    years: 4,
+    quote: "Five languages, zero rights on paper. The system sees a file number, not a human being who has been waiting 4 years.",
+    color: "bg-muted text-muted-foreground",
   },
 ]
 
+const container = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.2,
+    },
+  },
+}
+
+const cardVariant = {
+  hidden: { opacity: 0, y: 40, scale: 0.97 },
+  show: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.5, ease: "easeOut" as const},
+  },
+}
+
 export function LatestVoices() {
-  const t = useTranslations('stories')
+  const t = useTranslations('latestVoices')
 
   return (
     <section className="px-4 py-12 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
+
         {/* Header */}
-        <div className="flex items-end justify-between mb-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="flex items-end justify-between mb-8"
+        >
           <div>
-            <h2 className="font-serif text-3xl font-bold text-foreground sm:text-4xl">
-              {t('latestTitle')}
-            </h2>
-            <p className="mt-2 text-muted-foreground">
-              {t('latestDescription')}
+            <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-1">
+              {t('label')}
             </p>
+            <h2 className="font-serif text-3xl font-bold text-foreground sm:text-4xl">
+              {t('title')}
+            </h2>
           </div>
           <Link
             href="/stories"
-            className="hidden items-center gap-1 text-sm font-medium text-primary hover:text-primary/80 sm:flex"
+            className="hidden sm:flex items-center gap-1 text-sm font-medium text-primary hover:text-primary/80"
           >
             {t('viewAll')}
             <ArrowRight className="h-4 w-4" />
           </Link>
-        </div>
+        </motion.div>
 
-        {/* Stories Grid */}
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {/* Cards */}
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+        >
           {stories.map((story) => (
-            <Card key={story.id} className="overflow-hidden bg-card">
-              <div className="aspect-3/2 overflow-hidden">
-                <img
-                  src={story.image}
-                  alt={story.title}
-                  className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
-                />
-              </div>
-              <CardHeader className="pb-2">
-                <Badge variant="secondary" className="w-fit bg-primary/10 text-primary hover:bg-primary/20">
-                  {story.category}
-                </Badge>
-              </CardHeader>
-              <CardContent className="pb-2">
-                <h3 className="font-semibold text-foreground line-clamp-2">
-                  {story.title}
-                </h3>
-                <p className="mt-2 text-sm text-muted-foreground line-clamp-3">
-                  {story.excerpt}
-                </p>
-              </CardContent>
-              <CardFooter>
-                <Link
-                  href={`/stories/${story.id}`}
-                  className="flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-foreground"
+            <motion.div
+              key={story.id}
+              variants={cardVariant}
+              whileHover={{
+                y: -6,
+                boxShadow: "0 20px 40px rgba(201, 241, 78, 0.08)",
+                borderColor: "rgba(201, 241, 78, 0.3)",
+              }}
+              transition={{ duration: 0.25 }}
+              className="rounded-2xl border border-border bg-card p-5 flex flex-col gap-4 cursor-default"
+            >
+              {/* Top */}
+              <div className="flex items-center justify-between">
+                <motion.div
+                  className={`h-10 w-10 rounded-full flex items-center justify-center ${story.color}`}
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 300 }}
                 >
-                  {t('readStory')}
-                  <ExternalLink className="h-3.5 w-3.5" />
-                </Link>
-              </CardFooter>
-            </Card>
-          ))}
-        </div>
+                  {story.isAnonymous
+                    ? <User className="h-5 w-5" />
+                    : <span className="text-sm font-medium">{story.initials}</span>
+                  }
+                </motion.div>
+                <span className="text-xs bg-muted text-muted-foreground px-3 py-1 rounded-full border border-border">
+                  {story.route} → BE
+                </span>
+              </div>
 
-        {/* Mobile View All Link */}
-        <div className="mt-6 text-center sm:hidden">
-          <Link
-            href="/stories"
-            className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:text-primary/80"
-          >
-            {t('viewAll')}
-            <ArrowRight className="h-4 w-4" />
+              {/* Content */}
+              <div className="flex flex-col gap-2 flex-1">
+                <p className="text-sm font-medium text-foreground">
+                  {story.isAnonymous ? t('anonymous') : story.name}
+                </p>
+                <p className="text-sm text-muted-foreground leading-relaxed italic">
+                  "{story.quote}"
+                </p>
+              </div>
+
+              {/* Footer */}
+              <div className="flex items-center justify-between pt-3 border-t border-border">
+                <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                  <Clock className="h-3.5 w-3.5" />
+                  {story.years} {t('yearsInBE')}
+                </span>
+                <motion.div whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
+                  <Link
+                    href={`/stories/${story.id}`}
+                    className="flex items-center gap-1 text-xs font-medium text-primary hover:text-primary/80"
+                  >
+                    {t('readStory')}
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </Link>
+                </motion.div>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Mobile link */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          viewport={{ once: true }}
+          className="mt-6 text-center sm:hidden"
+        >
+          <Link href="/stories" className="inline-flex items-center gap-1 text-sm font-medium text-primary">
+            {t('viewAll')} <ArrowRight className="h-4 w-4" />
           </Link>
-        </div>
+        </motion.div>
+
       </div>
     </section>
   )

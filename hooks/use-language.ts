@@ -11,6 +11,14 @@ export const LANGUAGES = [
   { code: 'en' as Locale, label: 'English', flag: '🇬🇧', dir: 'ltr' },
 ]
 
+function saveLocale(locale: Locale) {
+  localStorage.setItem('language', locale)
+  document.cookie = `language=${locale}; path=/; max-age=${60 * 60 * 24 * 365}; SameSite=Lax`
+  const rtl = ['ar', 'fa'].includes(locale)
+  document.documentElement.setAttribute('dir', rtl ? 'rtl' : 'ltr')
+  document.documentElement.setAttribute('lang', locale)
+}
+
 export function useLanguage() {
   const router = useRouter()
 
@@ -19,19 +27,17 @@ export function useLanguage() {
     return (localStorage.getItem('language') as Locale) || 'en'
   }
 
-  const setLanguage = useCallback(
-    (locale: Locale) => {
-      localStorage.setItem('language', locale)
-      // Set cookie for middleware
-      document.cookie = `language=${locale}; path=/; max-age=${60 * 60 * 24 * 365}`
-      // Set dir on html
-      const rtl = ['ar', 'fa'].includes(locale)
-      document.documentElement.setAttribute('dir', rtl ? 'rtl' : 'ltr')
-      document.documentElement.setAttribute('lang', locale)
-      router.push('/login')
-    },
-    [router]
-  )
+  // للصفحة الأولى — ينقل للـ login
+  const setLanguage = useCallback((locale: Locale) => {
+    saveLocale(locale)
+    router.push('/login')
+  }, [router])
 
-  return { getLanguage, setLanguage }
+  // للهيدر — يبقى بنفس الصفحة
+  const changeLanguage = useCallback((locale: Locale) => {
+    saveLocale(locale)
+    router.refresh()
+  }, [router])
+
+  return { getLanguage, setLanguage, changeLanguage }
 }

@@ -1,75 +1,125 @@
+// components/about/mission-bento.tsx
+"use client"
+
 import { useTranslations } from "next-intl"
 import { Scale, Users } from "lucide-react"
-import { Card, CardContent, CardHeader } from "@/components/ui/card"
+import { motion } from "framer-motion"
+
+const container = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.1, delayChildren: 0.1 } },
+}
+
+const cardVariant = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } },
+}
 
 export function MissionBento() {
   const t = useTranslations('about')
 
   return (
-    <section className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      {/* Legal Advocacy - Large card */}
-      <Card className="bg-secondary text-secondary-foreground sm:col-span-2 lg:col-span-2 lg:row-span-2">
-        <CardHeader className="pb-2">
-          <Scale className="h-8 w-8" />
-        </CardHeader>
-        <CardContent>
-          <h3 className="mt-4 font-serif text-2xl font-bold">{t('legalAdvocacy')}</h3>
-          <p className="mt-2 text-secondary-foreground/90 leading-relaxed">
+    <motion.section
+      variants={container}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true }}
+      className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+    >
+      {/* Legal Advocacy */}
+      <motion.div
+        variants={cardVariant}
+        whileHover={{ y: -4 }}
+        transition={{ duration: 0.2 }}
+        className="rounded-2xl bg-secondary border border-border p-6 sm:col-span-2 lg:col-span-2 flex flex-col gap-4"
+      >
+        <motion.div
+          whileHover={{ rotate: 10, scale: 1.1 }}
+          transition={{ type: "spring", stiffness: 300 }}
+          className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center"
+        >
+          <Scale className="h-6 w-6 text-primary" />
+        </motion.div>
+        <div>
+          <h3 className="font-serif text-2xl font-bold text-foreground">
+            {t('legalAdvocacy')}
+          </h3>
+          <p className="mt-2 text-muted-foreground leading-relaxed">
             {t('legalDesc')}
           </p>
-        </CardContent>
-      </Card>
+        </div>
+      </motion.div>
 
-      {/* Inclusion card */}
-      <Card className="bg-primary/10 border-primary/20">
-        <CardHeader className="pb-2">
+      {/* Inclusion */}
+      <motion.div
+        variants={cardVariant}
+        whileHover={{ y: -4, borderColor: "rgba(201,241,78,0.4)" }}
+        transition={{ duration: 0.2 }}
+        className="rounded-2xl border border-primary/20 bg-primary/5 p-6 flex flex-col gap-4"
+      >
+        <motion.div
+          whileHover={{ rotate: -10, scale: 1.1 }}
+          transition={{ type: "spring", stiffness: 300 }}
+          className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center"
+        >
           <Users className="h-6 w-6 text-primary" />
-        </CardHeader>
-        <CardContent>
+        </motion.div>
+        <div>
           <h3 className="font-semibold text-primary">{t('inclusion')}</h3>
-          <p className="mt-1 text-sm text-muted-foreground">
+          <p className="mt-1 text-sm text-muted-foreground leading-relaxed">
             {t('inclusionDesc')}
           </p>
-        </CardContent>
-      </Card>
-
-      {/* Impact stats card */}
-      <Card className="bg-primary/5 border-primary/10">
-        <CardContent className="pt-6">
-          <h3 className="font-serif text-xl font-bold text-foreground">{t('ourImpact')}</h3>
-          <div className="mt-4 space-y-2">
-            <div className="flex justify-between">
-              <span className="text-muted-foreground">{t('petitionsWon')}</span>
-              <span className="font-semibold text-primary">142</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-muted-foreground">{t('voicesActive')}</span>
-              <span className="font-semibold text-primary">50k+</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-muted-foreground">{t('citiesReached')}</span>
-              <span className="font-semibold text-primary">28</span>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Community card with image */}
-      <Card className="relative overflow-hidden sm:col-span-2 lg:col-span-2">
-        <div className="absolute inset-0">
-          <img
-            src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&h=300&fit=crop"
-            alt="Community gathering"
-            className="h-full w-full object-cover"
-          />
-          <div className="absolute inset-0 bg-linear-to-r from-primary/80 to-primary/40" />
         </div>
-        <CardContent className="relative pt-12 pb-6">
-          <h3 className="font-serif text-xl font-bold text-primary-foreground">
-            {t('united')}
-          </h3>
-        </CardContent>
-      </Card>
-    </section>
+      </motion.div>
+
+      {/* Impact stats */}
+      <motion.div
+        variants={cardVariant}
+        whileHover={{ y: -4 }}
+        transition={{ duration: 0.2 }}
+        className="rounded-2xl border border-border bg-card p-6"
+      >
+        <h3 className="font-serif text-xl font-bold text-foreground mb-4">
+          {t('ourImpact')}
+        </h3>
+        <div className="space-y-3">
+          {[
+            { label: t('petitionsWon'), value: "8,432+" },
+            { label: t('voicesActive'), value: "1,248+" },
+            { label: t('citiesReached'), value: "12" },
+          ].map((stat, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, x: -10 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 + i * 0.1 }}
+              className="flex justify-between items-center"
+            >
+              <span className="text-sm text-muted-foreground">{stat.label}</span>
+              <span className="font-semibold text-primary">{stat.value}</span>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+
+      {/* United banner */}
+      <motion.div
+        variants={cardVariant}
+        whileHover={{ y: -4 }}
+        transition={{ duration: 0.2 }}
+        className="rounded-2xl border border-primary/20 bg-primary/5 p-6 sm:col-span-2 flex items-center justify-center"
+      >
+        <motion.h3
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3, type: "spring" }}
+          className="font-serif text-xl font-bold text-primary text-center"
+        >
+          {t('united')}
+        </motion.h3>
+      </motion.div>
+    </motion.section>
   )
 }

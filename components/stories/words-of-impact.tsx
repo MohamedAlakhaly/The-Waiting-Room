@@ -1,25 +1,30 @@
-import { Card, CardContent, CardHeader } from "@/components/ui/card"
+// components/stories/words-of-impact.tsx
+"use client"
+
+import { useTranslations } from "next-intl"
+import { motion } from "framer-motion"
 
 export function WordsOfImpact() {
+  const t = useTranslations('addStoryPage')
+
   return (
-    <Card className="bg-secondary text-secondary-foreground">
-      <CardHeader className="pb-2">
-        <div className="flex flex-col">
-          <span className="font-serif text-4xl font-bold">500</span>
-          <span className="text-sm font-semibold uppercase tracking-wider text-secondary-foreground/70">
-            Words of Impact
-          </span>
-        </div>
-      </CardHeader>
-      <CardContent>
-        <p className="text-sm leading-relaxed text-secondary-foreground/90">
-          Brief stories often carry the strongest emotional resonance. Aim for clarity 
-          and focus on a specific moment of civic engagement.
-        </p>
-        <div className="mt-4 text-6xl font-serif text-secondary-foreground/20">
-          &ldquo;&rdquo;
-        </div>
-      </CardContent>
-    </Card>
+    <motion.div
+      whileHover={{ scale: 1.02 }}
+      transition={{ duration: 0.2 }}
+      className="rounded-2xl bg-secondary p-6 text-secondary-foreground"
+    >
+      <div className="flex flex-col gap-1 mb-3">
+        <span className="font-serif text-5xl font-bold text-primary">500</span>
+        <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+          {t('wordsTitle')}
+        </span>
+      </div>
+      <p className="text-sm leading-relaxed text-secondary-foreground/80">
+        {t('wordsDescription')}
+      </p>
+      <div className="mt-4 font-serif text-7xl text-secondary-foreground/10 leading-none">
+        &ldquo;&rdquo;
+      </div>
+    </motion.div>
   )
 }

@@ -1,49 +1,69 @@
-import Link from "next/link"
-import { ArrowRight } from "lucide-react"
+// components/news/featured-news.tsx
+"use client"
+
+import { useTranslations } from "next-intl"
+import { ArrowRight, ExternalLink } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
+import { motion } from "framer-motion"
 
 export function FeaturedNews() {
+  const t = useTranslations('news')
+
   return (
-    <article className="group">
-      <div className="overflow-hidden rounded-xl">
-        <img
-          src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&h=400&fit=crop"
-          alt="Border realities report"
-          className="aspect-[16/9] w-full object-cover transition-transform duration-300 group-hover:scale-105"
-        />
-      </div>
-      
-      <div className="mt-4">
+    <motion.article
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: 0.15 }}
+      className="group h-full flex flex-col"
+    >
+      {/* Banner بدل الصورة */}
+      <motion.div
+        whileHover={{ scale: 1.01 }}
+        transition={{ duration: 0.3 }}
+        className="overflow-hidden rounded-2xl bg-secondary border border-border"
+      >
+        <div className="px-8 py-14 flex flex-col items-center justify-center text-center gap-3">
+          <span className="text-xs font-semibold uppercase tracking-widest text-primary">
+            {t('featuredOrg')}
+          </span>
+          <div className="h-px w-16 bg-primary/30" />
+          <p className="text-sm text-muted-foreground">{t('featuredDate')}</p>
+        </div>
+      </motion.div>
+
+      <div className="mt-5 flex flex-col gap-3 flex-1">
         <div className="flex items-center justify-between">
           <span className="text-xs font-semibold uppercase tracking-wider text-primary">
-            Amnesty International
+            {t('featuredOrg')}
           </span>
-          <span className="text-sm text-muted-foreground">May 15, 2024</span>
+          <span className="text-sm text-muted-foreground">{t('featuredDate')}</span>
         </div>
-        
-        <h2 className="mt-2 font-serif text-2xl font-bold text-foreground sm:text-3xl">
-          Border Realities: Human Rights Assessment on the Greece-Turkey Frontier
+
+        <h2 className="font-serif text-2xl font-bold text-foreground sm:text-3xl leading-tight">
+          {t('featuredTitle')}
         </h2>
-        
-        <p className="mt-3 text-muted-foreground leading-relaxed">
-          A comprehensive study examining the procedural challenges and legal protections for 
-          displaced individuals at the border regions of Greece. The report highlights critical gaps 
-          in immediate medical care and legal representation.
+
+        <p className="text-muted-foreground leading-relaxed flex-1">
+          {t('featuredDesc')}
         </p>
 
-        <div className="mt-4 flex flex-wrap gap-2">
-          <Badge variant="outline">Greece</Badge>
-          <Badge variant="outline">Legal</Badge>
+        <div className="flex flex-wrap gap-2">
+          <Badge variant="outline">{t('filterGreece')}</Badge>
+          <Badge variant="outline">{t('filterLegal')}</Badge>
         </div>
 
-        <Link 
-          href="/news/border-realities" 
-          className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline"
+        <motion.a
+          href="https://www.amnesty.org"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:text-primary/80"
+          whileHover={{ x: 4 }}
+          transition={{ duration: 0.2 }}
         >
-          Read Full Report
-          <ArrowRight className="h-4 w-4" />
-        </Link>
+          {t('readReport')}
+          <ExternalLink className="h-4 w-4" />
+        </motion.a>
       </div>
-    </article>
+    </motion.article>
   )
 }
