@@ -116,7 +116,7 @@
   "signButton": "Sign This Petition",
   "shareTitle": "Share this petition with your network:",
   "copyLink": "Copy Link",
-  "recentSupporters": "Recent Supporters",
+  "newSignatories": "New signatories",
   "signed": "Signed",
   "minutesAgo": "minutes ago",
   "successTitle": "Thank you for your signature",
@@ -140,6 +140,52 @@
   "directDesc": "Your donation goes directly to maintaining and developing this platform — no middlemen.",
   "openReports": "Full Transparency",
   "openDesc": "We believe in accountability. How donations are used will always be shared openly."
+},
+"donateSuccess": {
+  "title": "Thank you for your support!",
+  "message": "Your donation helps keep this platform running for those who need it most.",
+  "amount": "Your contribution",
+  "backHome": "Back to Home",
+  "shareTitle": "Spread the word",
+  "shareMessage": "Help us reach more people by sharing this platform."
+},
+"whyTheyLeft": {
+  "label": "Global Context",
+  "title": "Why they left everything behind",
+  "description": "Behind every asylum file is a human being who had no choice. These numbers represent real lives — people who fled war, hunger, and persecution seeking nothing but safety.",
+  "bottomNote": "These people are not statistics. They are doctors, teachers, parents, and children who lost everything. When Belgium closes its doors, it sends them back to these realities.",
+  "countries": {
+    "palestine": {
+      "name": "Palestine",
+      "region": "Middle East",
+      "statLabel": "killed since Oct 2023",
+      "reason": "Ongoing genocide, total destruction of infrastructure, no safe zone. Fleeing is not a choice — it is survival."
+    },
+    "yemen": {
+      "name": "Yemen",
+      "region": "Middle East",
+      "statLabel": "people need humanitarian aid",
+      "reason": "10 years of war. The world's worst humanitarian crisis. Famine, disease, and daily airstrikes."
+    },
+    "afghanistan": {
+      "name": "Afghanistan",
+      "region": "Central Asia",
+      "statLabel": "refugees outside the country",
+      "reason": "Under Taliban rule, women cannot work or study. Minorities face execution. There is no future to stay for."
+    },
+    "sudan": {
+      "name": "Sudan",
+      "region": "East Africa",
+      "statLabel": "internally displaced in 2024",
+      "reason": "The world's largest displacement crisis in 2024. Civil war, ethnic cleansing, and mass starvation."
+    },
+    "syria": {
+      "name": "Syria",
+      "region": "Middle East",
+      "statLabel": "displaced since 2011",
+      "reason": "13 years of civil war. Over half the population has been forced to flee their homes."
+    }
+  }
 },
   "news": {
   "title": "News & Reports",

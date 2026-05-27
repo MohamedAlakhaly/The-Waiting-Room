@@ -1,4 +1,3 @@
-// app/news/page.tsx
 "use client"
 
 import { Header } from "@/components/layout/header"
@@ -7,6 +6,7 @@ import { NewsHeader } from "@/components/news/news-header"
 import { NewsFilter } from "@/components/news/news-filter"
 import { FeaturedNews } from "@/components/news/featured-news"
 import { NewsGrid } from "@/components/news/news-grid"
+import { WhyTheyLeft } from "@/components/home/why-they-left"
 import { useTranslations } from "next-intl"
 import { motion } from "framer-motion"
 
@@ -18,6 +18,14 @@ export default function NewsPage() {
       <Header />
       <main className="flex-1 px-4 py-8 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
+
+          {/* Section 1 — Why They Left */}
+          <WhyTheyLeft />
+
+          {/* Divider */}
+          <div className="my-12 h-px bg-border" />
+
+          {/* Section 2 — Reports */}
           <NewsHeader />
           <NewsFilter />
 
@@ -48,6 +56,7 @@ export default function NewsPage() {
               "{t('footerNote')}"
             </p>
           </motion.div>
+
         </div>
       </main>
       <Footer />
@@ -84,8 +93,12 @@ function SideArticle() {
           {t('filterMentalHealth')}
         </span>
       </div>
-      <a href="https://www.unhcr.org" target="_blank" rel="noopener noreferrer"
-        className="text-sm font-medium text-primary hover:underline">
+        <a
+        href="https://www.unhcr.org"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-sm font-medium text-primary hover:underline"
+      >
         {t('readReport')}
       </a>
     </motion.div>

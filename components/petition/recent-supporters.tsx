@@ -1,14 +1,9 @@
-// components/petition/recent-supporters.tsx
 "use client"
 
 import { useTranslations } from "next-intl"
 import { motion } from "framer-motion"
-
-const supporters = [
-  { initials: "MK", name: "M. K.", time: "4" },
-  { initials: "A", name: "Anonymous", time: "12" },
-  { initials: "SR", name: "S. R.", time: "23" },
-]
+import { useEffect, useState } from "react"
+import { getRecentSupporters } from "@/lib/petition"
 
 const container = {
   hidden: {},
@@ -22,6 +17,28 @@ const item = {
 
 export function RecentSupporters() {
   const t = useTranslations('petition')
+  const [supporters, setSupporters] = useState<any[]>([])
+
+  useEffect(() => {
+    const fetchSupporters = async () => {
+      const data = await getRecentSupporters()
+      setSupporters(data)
+    }
+    fetchSupporters()
+  }, [])
+
+  const getTimeAgo = (createdAt: string) => {
+    const diff = Math.floor((Date.now() - new Date(createdAt).getTime()) / 60000)
+    if (diff < 1) return 'just now'
+    if (diff < 60) return `${diff} min ago`
+    if (diff < 1440) return `${Math.floor(diff / 60)}h ago`
+    return `${Math.floor(diff / 1440)}d ago`
+  }
+
+  const getInitials = (name: string) => {
+    if (!name) return 'A'
+    return name.trim().split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2)
+  }
 
   return (
     <motion.div
@@ -31,32 +48,42 @@ export function RecentSupporters() {
       className="rounded-2xl border border-border bg-card p-5"
     >
       <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-4">
-        {t('recentSupporters')}
+        {t('newSignatories')}
       </p>
 
-      <motion.div variants={container} initial="hidden" animate="show" className="space-y-3">
-        {supporters.map((supporter, index) => (
-          <motion.div
-            key={index}
-            variants={item}
-            whileHover={{ x: 4 }}
-            className="flex items-center gap-3"
-          >
+      {supporters.length === 0 ? (
+        <p className="text-sm text-muted-foreground text-center py-4">
+          Be the first to sign!
+        </p>
+      ) : (
+        <motion.div variants={container} initial="hidden" animate="show" className="space-y-3">
+          {supporters.map((supporter, index) => (
             <motion.div
-              whileHover={{ scale: 1.1 }}
-              transition={{ type: "spring", stiffness: 300 }}
-              className="h-8 w-8 shrink-0 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center text-xs font-semibold text-primary"
+              key={index}
+              variants={item}
+              whileHover={{ x: 4 }}
+              className="flex items-center gap-3"
             >
-              {supporter.initials}
+              <motion.div
+                whileHover={{ scale: 1.1 }}
+                transition={{ type: "spring", stiffness: 300 }}
+                className="h-8 w-8 shrink-0 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center text-xs font-semibold text-primary"
+              >
+                {supporter.is_anonymous ? 'A' : getInitials(supporter.display_name || '')}
+              </motion.div>
+              <p className="text-sm text-foreground">
+                <span className="font-medium">
+                  {supporter.is_anonymous ? 'Anonymous' : (supporter.display_name || 'Anonymous')}
+                </span>
+                {" "}{t('signed')}{" "}
+                <span className="text-muted-foreground">
+                  {getTimeAgo(supporter.created_at)}
+                </span>
+              </p>
             </motion.div>
-            <p className="text-sm text-foreground">
-              <span className="font-medium">{supporter.name}</span>
-              {" "}{t('signed')}{" "}
-              <span className="text-muted-foreground">{supporter.time} {t('minutesAgo')}</span>
-            </p>
-          </motion.div>
-        ))}
-      </motion.div>
+          ))}
+        </motion.div>
+      )}
     </motion.div>
   )
 }

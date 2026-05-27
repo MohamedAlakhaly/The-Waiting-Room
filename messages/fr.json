@@ -116,7 +116,7 @@
   "signButton": "Signer cette pétition",
   "shareTitle": "Partagez cette pétition avec votre réseau:",
   "copyLink": "Copier le lien",
-  "recentSupporters": "Signataires récents",
+  "newSignatories": "Nouveaux signataires",
   "signed": "a signé",
   "minutesAgo": "minutes",
   "successTitle": "Merci pour votre signature",
@@ -140,6 +140,52 @@
   "directDesc": "Votre don va directement à la maintenance et au développement — sans intermédiaires.",
   "openReports": "Transparence totale",
   "openDesc": "Nous croyons en la responsabilité. L'utilisation des dons sera toujours partagée ouvertement."
+},
+"donateSuccess": {
+  "title": "Merci pour votre soutien!",
+  "message": "Votre don aide à maintenir cette plateforme pour ceux qui en ont le plus besoin.",
+  "amount": "Votre contribution",
+  "backHome": "Retour à l'accueil",
+  "shareTitle": "Faites passer le mot",
+  "shareMessage": "Aidez-nous à atteindre plus de personnes en partageant cette plateforme."
+},
+"whyTheyLeft": {
+  "label": "Contexte mondial",
+  "title": "Pourquoi ils ont tout laissé derrière eux",
+  "description": "Derrière chaque dossier d'asile se trouve un être humain qui n'avait pas le choix. Ces chiffres représentent de vraies vies — des personnes qui ont fui la guerre, la faim et la persécution.",
+  "bottomNote": "Ces personnes ne sont pas des statistiques. Ce sont des médecins, des enseignants, des parents et des enfants qui ont tout perdu. Quand la Belgique ferme ses portes, elle les renvoie à ces réalités.",
+  "countries": {
+    "palestine": {
+      "name": "Palestine",
+      "region": "Moyen-Orient",
+      "statLabel": "tués depuis oct. 2023",
+      "reason": "Génocide en cours, destruction totale des infrastructures, aucune zone sûre. Fuir n'est pas un choix — c'est survivre."
+    },
+    "yemen": {
+      "name": "Yémen",
+      "region": "Moyen-Orient",
+      "statLabel": "personnes ont besoin d'aide humanitaire",
+      "reason": "10 ans de guerre. La pire crise humanitaire du monde. Famine, maladies et frappes aériennes quotidiennes."
+    },
+    "afghanistan": {
+      "name": "Afghanistan",
+      "region": "Asie centrale",
+      "statLabel": "réfugiés hors du pays",
+      "reason": "Sous le régime taliban, les femmes ne peuvent ni travailler ni étudier. Les minorités font face à l'exécution."
+    },
+    "sudan": {
+      "name": "Soudan",
+      "region": "Afrique de l'Est",
+      "statLabel": "déplacés internes en 2024",
+      "reason": "La plus grande crise de déplacement du monde en 2024. Guerre civile, nettoyage ethnique et famine de masse."
+    },
+    "syria": {
+      "name": "Syrie",
+      "region": "Moyen-Orient",
+      "statLabel": "déplacés depuis 2011",
+      "reason": "13 ans de guerre civile. Plus de la moitié de la population a été forcée de fuir."
+    }
+  }
 },
   "news": {
   "title": "Actualités et rapports",

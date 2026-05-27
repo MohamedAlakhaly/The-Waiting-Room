@@ -86,7 +86,7 @@ export function StoriesGrid({ activeFilter = "all" }: StoriesGridProps) {
       animate="show"
       className="grid gap-4 sm:grid-cols-2"
     >
-      {stories.map((story, index) => {
+      {filteredStories.map((story, index) => {
         const color = COLORS[index % COLORS.length]
         const isAnonymous = story.is_anonymous
         const name = story.display_name || ''
