@@ -4,74 +4,81 @@ import Link from "next/link"
 import { useTranslations } from "next-intl"
 import { ArrowRight, Clock, User } from "lucide-react"
 import { motion } from "framer-motion"
+import { useEffect, useState } from "react"
+import { getStories } from "@/lib/stories"
 
-const stories = [
-  {
-    id: 1,
-    name: "Anonymous",
-    isAnonymous: true,
-    initials: null,
-    country: "Bulgaria",
-    yearsInBelgium: 4,
-    role: "Verified Contributor",
-    color: "bg-amber-500/10 text-amber-400",
-    quote: "The journey didn't end when I crossed the border. In Sofia, I found safety but no path forward. After 2 years there, I came to Belgium seeking a real chance to rebuild...",
-  },
-  {
-    id: 2,
-    name: "Fatima A.",
-    isAnonymous: false,
-    initials: "FA",
-    country: "Greece",
-    yearsInBelgium: 1.5,
-    role: "Antwerp Community",
-    color: "bg-emerald-500/10 text-emerald-400",
-    quote: "In Moria, we felt forgotten. Advocacy groups in Brussels were the first ones to truly listen to our specific legal hurdles regarding Dublin transfers...",
-  },
-  {
-    id: 3,
-    name: "Anonymous",
-    isAnonymous: true,
-    initials: null,
-    country: "Greece",
-    yearsInBelgium: 3,
-    role: "Verified Contributor",
-    color: "bg-blue-500/10 text-blue-400",
-    quote: "The paperwork is a labyrinth. I speak five languages, but none of them helped me understand the circular logic of the previous protection laws...",
-  },
-  {
-    id: 4,
-    name: "Markos V.",
-    isAnonymous: false,
-    initials: "MV",
-    country: "Bulgaria",
-    yearsInBelgium: 5,
-    role: "Brussels Sector",
-    color: "bg-purple-500/10 text-purple-400",
-    quote: "Five years ago, the laws were different. Now, we face retroactive checks that threaten the stability we've built here in Belgium. We need consistency.",
-  },
+// ألوان عشوائية للبطاقات
+const COLORS = [
+  "bg-amber-500/10 text-amber-400",
+  "bg-emerald-500/10 text-emerald-400",
+  "bg-blue-500/10 text-blue-400",
+  "bg-purple-500/10 text-purple-400",
+  "bg-rose-500/10 text-rose-400",
 ]
 
 const container = {
   hidden: {},
-  show: {
-    transition: { staggerChildren: 0.12, delayChildren: 0.15 },
-  },
+  show: { transition: { staggerChildren: 0.12, delayChildren: 0.15 } },
 }
 
 const cardVariant = {
   hidden: { opacity: 0, y: 30, scale: 0.97 },
-  show: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: { duration: 0.5, ease: "easeOut" as const },
-  },
+  show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5, ease: "easeOut" as const } },
 }
 
-export function StoriesGrid() {
-  const t = useTranslations('storiesPage')
+interface StoriesGridProps {
+  activeFilter?: string
+}
 
+export function StoriesGrid({ activeFilter = "all" }: StoriesGridProps) {
+  const t = useTranslations('storiesPage')
+  const [stories, setStories] = useState<any[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchStories = async () => {
+      const { data } = await getStories()
+      setStories(data || [])
+      setLoading(false)
+    }
+    fetchStories()
+  }, [])
+
+  const filteredStories = stories.filter((story) => {
+    if (activeFilter === "all") return true
+    if (activeFilter === "anonymous") return story.is_anonymous === true
+    if (activeFilter === "named") return story.is_anonymous === false
+    if (activeFilter === "greece") return story.previous_country === "greece"
+    if (activeFilter === "bulgaria") return story.previous_country === "bulgaria"
+    return true
+  })
+
+  if (loading) {
+    return (
+      <div className="grid gap-4 sm:grid-cols-2">
+        {[1, 2, 3, 4].map((i) => (
+          <div key={i} className="rounded-2xl border border-border bg-card p-5 h-48 animate-pulse" />
+        ))}
+      </div>
+    )
+  }
+
+  if (filteredStories.length === 0) {
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="rounded-2xl border border-border bg-card p-12 text-center"
+      >
+        <p className="text-4xl mb-4">✍️</p>
+        <h3 className="font-semibold text-foreground mb-2">No stories found</h3>
+        <p className="text-sm text-muted-foreground">
+          {activeFilter === "all" ? "Be the first to share your story." : "No stories match this filter yet."}
+        </p>
+      </motion.div>
+    )
+  }
+  
   return (
     <motion.div
       variants={container}
@@ -79,66 +86,82 @@ export function StoriesGrid() {
       animate="show"
       className="grid gap-4 sm:grid-cols-2"
     >
-      {stories.map((story) => (
-        <motion.div
-          key={story.id}
-          variants={cardVariant}
-          whileHover={{
-            y: -5,
-            boxShadow: "0 16px 32px rgba(201, 241, 78, 0.07)",
-            borderColor: "rgba(201, 241, 78, 0.25)",
-          }}
-          transition={{ duration: 0.2 }}
-          className="rounded-2xl border border-border bg-card p-5 flex flex-col gap-4 cursor-default"
-        >
-          {/* Top row */}
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <motion.div
-                className={`h-10 w-10 rounded-full flex items-center justify-center shrink-0 ${story.color}`}
-                whileHover={{ scale: 1.1 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                {story.isAnonymous
-                  ? <User className="h-5 w-5" />
-                  : <span className="text-sm font-semibold">{story.initials}</span>
-                }
-              </motion.div>
-              <div>
-                <p className="text-sm font-medium text-foreground">
-                  {story.isAnonymous ? t('filterAnon') : story.name}
-                </p>
-                <p className="text-xs text-muted-foreground">{story.role}</p>
+      {stories.map((story, index) => {
+        const color = COLORS[index % COLORS.length]
+        const isAnonymous = story.is_anonymous
+        const name = story.display_name || ''
+        const initials = name
+          ? name.trim().split(' ').map((n: string) => n[0]).join('').toUpperCase().substring(0, 2)
+          : ''
+
+        return (
+          <motion.div
+            key={story.id}
+            variants={cardVariant}
+            whileHover={{
+              y: -5,
+              boxShadow: "0 16px 32px rgba(201, 241, 78, 0.07)",
+              borderColor: "rgba(201, 241, 78, 0.25)",
+            }}
+            transition={{ duration: 0.2 }}
+            className="rounded-2xl border border-border bg-card p-5 flex flex-col gap-4 cursor-default"
+          >
+            {/* Top row */}
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <motion.div
+                  className={`h-10 w-10 rounded-full flex items-center justify-center shrink-0 ${color}`}
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  {isAnonymous
+                    ? <User className="h-5 w-5" />
+                    : <span className="text-sm font-semibold">{initials}</span>
+                  }
+                </motion.div>
+                <div>
+                  <p className="text-sm font-medium text-foreground">
+                    {isAnonymous ? t('filterAnon') : name}
+                  </p>
+                  <p className="text-xs text-muted-foreground">
+                    {story.previous_country ? `${story.previous_country} → BE` : 'Belgium'}
+                  </p>
+                </div>
               </div>
+              {story.previous_country && (
+                <span className="text-xs bg-muted text-muted-foreground px-3 py-1 rounded-full border border-border shrink-0">
+                  {story.previous_country} → BE
+                </span>
+              )}
             </div>
-            <span className="text-xs bg-muted text-muted-foreground px-3 py-1 rounded-full border border-border shrink-0">
-              {story.country} → BE
-            </span>
-          </div>
 
-          {/* Quote */}
-          <p className="text-sm text-muted-foreground leading-relaxed italic flex-1">
-            "{story.quote}"
-          </p>
+            {/* Quote */}
+            <p className="text-sm text-muted-foreground leading-relaxed italic flex-1 line-clamp-4">
+              "{story.content}"
+            </p>
 
-          {/* Footer */}
-          <div className="flex items-center justify-between pt-3 border-t border-border">
-            <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
-              <Clock className="h-3.5 w-3.5" />
-              {story.yearsInBelgium} {t('yearsInBE')}
-            </span>
-            <motion.div whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
-              <Link
-                href={`/stories/${story.id}`}
-                className="flex items-center gap-1 text-xs font-medium text-primary hover:text-primary/80"
-              >
-                {t('readInsight')}
-                <ArrowRight className="h-3.5 w-3.5" />
-              </Link>
-            </motion.div>
-          </div>
-        </motion.div>
-      ))}
+            {/* Footer */}
+            <div className="flex items-center justify-between pt-3 border-t border-border">
+              <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                <Clock className="h-3.5 w-3.5" />
+                {story.years_in_belgium
+                  ? `${story.years_in_belgium} ${t('yearsInBE')}`
+                  : 'Belgium'
+                }
+              </span>
+              <motion.div whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
+                <Link
+                  href={`/stories/${story.id}`}
+                  className="flex items-center gap-1 text-xs font-medium text-primary hover:text-primary/80"
+                >
+                  {t('readInsight')}
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
+              </motion.div>
+            </div>
+          </motion.div>
+        )
+      })}
     </motion.div>
   )
 }

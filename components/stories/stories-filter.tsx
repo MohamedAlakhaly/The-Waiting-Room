@@ -1,14 +1,16 @@
-// components/stories/stories-filter.tsx
 "use client"
 
-import { useState } from "react"
 import { useTranslations } from "next-intl"
 import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 
-export function StoriesFilter() {
+interface StoriesFilterProps {
+  activeFilter: string
+  onFilterChange: (filter: string) => void
+}
+
+export function StoriesFilter({ activeFilter, onFilterChange }: StoriesFilterProps) {
   const t = useTranslations('storiesPage')
-  const [activeFilter, setActiveFilter] = useState("all")
 
   const filters = [
     { id: "all", label: t('filterAll') },
@@ -33,7 +35,7 @@ export function StoriesFilter() {
           {filters.map((filter) => (
             <motion.button
               key={filter.id}
-              onClick={() => setActiveFilter(filter.id)}
+              onClick={() => onFilterChange(filter.id)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className={cn(
