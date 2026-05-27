@@ -17,18 +17,11 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { addStory, getUserStory, updateStory } from '@/lib/stories'
-import { createSupabaseServer } from '@/lib/supabase-server'
-import { redirect } from 'next/navigation'
-
-export default async function AddStoryForm() {
 
 
-  const supabase = await createSupabaseServer()
-  const { data: { user } } = await supabase.auth.getUser()
+export function AddStoryForm() {
 
-  if (!user) {
-    redirect('/login')
-  }
+
 
   const t = useTranslations('addStory')
 
