@@ -216,15 +216,7 @@ export function DonateForm() {
                     </Button>
                   </motion.div>
 
-                  <Button
-                    disabled={!isValid}
-                    variant="outline"
-                    className="w-full h-12 rounded-full disabled:opacity-40"
-                    onClick={() => window.open(`https://paypal.me/thewaitingroom/${amount}`, '_blank')}
-                  >
-                    <Wallet className="mr-2 h-5 w-5" />
-                    {t('payPal')}
-                  </Button>
+                  
                 </div>
               </div>
             </motion.div>

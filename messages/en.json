@@ -152,38 +152,102 @@
 "whyTheyLeft": {
   "label": "Global Context",
   "title": "Why they left everything behind",
-  "description": "Behind every asylum file is a human being who had no choice. These numbers represent real lives — people who fled war, hunger, and persecution seeking nothing but safety.",
+  "description": "Behind every asylum file is a human being who had no choice. Click any country to see the full timeline of what forced them to flee.",
+  "clickToExplore": "Click to explore",
+  "seeTimeline": "See full timeline →",
+  "timelineTitle": "Timeline of Displacement",
+  "backToRoom": "Back to Room",
+  "gdprNote": "All statistics are sourced from UNHCR, OCHA, Human Rights Watch, and Amnesty International. This platform is GDPR compliant. No personal data is collected from this page.",
   "bottomNote": "These people are not statistics. They are doctors, teachers, parents, and children who lost everything. When Belgium closes its doors, it sends them back to these realities.",
+  "source": "Source",
   "countries": {
     "palestine": {
-      "name": "Palestine",
-      "region": "Middle East",
-      "statLabel": "killed since Oct 2023",
-      "reason": "Ongoing genocide, total destruction of infrastructure, no safe zone. Fleeing is not a choice — it is survival."
+      "name": "Palestine", "region": "Middle East",
+      "stat": "45,000+", "statLabel": "killed since Oct 2023",
+      "reason": "Ongoing genocide, total destruction of infrastructure, no safe zone. Fleeing is not a choice — it is survival.",
+      "timeline": [
+        { "year": "1948", "title": "The Nakba", "description": "700,000 Palestinians forcibly displaced from their homes. The beginning of a displacement that never ended.", "stat": "700,000", "statLabel": "displaced in 1948", "org": "UNRWA", "source": "https://www.unrwa.org" },
+        { "year": "2007", "title": "Gaza Blockade", "description": "Israel imposes a total land, air and sea blockade on Gaza. 2 million people imprisoned in the world's largest open-air prison.", "stat": "2M", "statLabel": "people under blockade", "org": "OCHA", "source": "https://www.ochaopt.org" },
+        { "year": "Oct 2023", "title": "Genocide Begins", "description": "The most intense bombing campaign in modern history. Hospitals, schools, and refugee camps targeted. No safe zone exists.", "stat": "45,000+", "statLabel": "killed in 8 months", "org": "OCHA", "source": "https://www.ochaopt.org" },
+        { "year": "2024–2026", "title": "In The Waiting Room", "description": "Palestinians who fled to Europe face rejection after rejection. Belgium's CGVS denies their claims despite the documented genocide. They wait — with nowhere to return.", "stat": "0", "statLabel": "safe zones in Gaza", "org": "ICJ", "source": "https://www.icj-cij.org" }
+      ]
     },
     "yemen": {
-      "name": "Yemen",
-      "region": "Middle East",
-      "statLabel": "people need humanitarian aid",
-      "reason": "10 years of war. The world's worst humanitarian crisis. Famine, disease, and daily airstrikes."
-    },
-    "afghanistan": {
-      "name": "Afghanistan",
-      "region": "Central Asia",
-      "statLabel": "refugees outside the country",
-      "reason": "Under Taliban rule, women cannot work or study. Minorities face execution. There is no future to stay for."
-    },
-    "sudan": {
-      "name": "Sudan",
-      "region": "East Africa",
-      "statLabel": "internally displaced in 2024",
-      "reason": "The world's largest displacement crisis in 2024. Civil war, ethnic cleansing, and mass starvation."
+      "name": "Yemen", "region": "Middle East",
+      "stat": "21M", "statLabel": "people need humanitarian aid",
+      "reason": "10 years of war. The world's worst humanitarian crisis. Famine, disease, and daily airstrikes.",
+      "timeline": [
+        { "year": "2011", "title": "Revolution & Collapse", "description": "The Arab Spring reaches Yemen. President Saleh ousted after mass protests. Political vacuum creates conditions for conflict.", "stat": "24M", "statLabel": "population at the time", "org": "UNHCR", "source": "https://www.unhcr.org" },
+        { "year": "2015", "title": "War Erupts", "description": "Saudi-led coalition begins bombing campaign. Within months, Yemen becomes the world's worst humanitarian crisis.", "stat": "10,000", "statLabel": "airstrikes in first year", "org": "ACLED", "source": "https://acleddata.com" },
+        { "year": "2018–2022", "title": "Famine & Cholera", "description": "UN declares Yemen the world's worst humanitarian crisis. Largest cholera outbreak in history. Children dying of starvation.", "stat": "17M", "statLabel": "facing food insecurity", "org": "WFP", "source": "https://www.wfp.org" },
+        { "year": "2024–2026", "title": "In The Waiting Room", "description": "Yemenis who survived bombs and famine now face Belgian bureaucracy. Their asylum files rejected despite documented devastation. The war continues. The waiting room does not end.", "stat": "4.5M", "statLabel": "internally displaced", "org": "UNHCR", "source": "https://www.unhcr.org" }
+      ]
     },
     "syria": {
-      "name": "Syria",
-      "region": "Middle East",
-      "statLabel": "displaced since 2011",
-      "reason": "13 years of civil war. Over half the population has been forced to flee their homes."
+      "name": "Syria", "region": "Middle East",
+      "stat": "13M+", "statLabel": "displaced since 2011",
+      "reason": "13 years of civil war. Over half the population has been forced to flee their homes.",
+      "timeline": [
+        { "year": "2011", "title": "Peaceful Protests Crushed", "description": "Syrian civilians demand reform. Assad's government responds with live ammunition. The seeds of civil war are planted in blood.", "stat": "1,000+", "statLabel": "protesters killed in weeks", "org": "Amnesty International", "source": "https://www.amnesty.org" },
+        { "year": "2013–2015", "title": "Chemical Weapons & ISIS", "description": "Sarin gas attacks on civilians. ISIS rises and takes control of vast territories. Syria becomes a battlefield for global powers.", "stat": "250,000", "statLabel": "killed by 2015", "org": "UN", "source": "https://www.un.org" },
+        { "year": "2019", "title": "Idlib — The Last Refuge", "description": "3 million civilians trapped in Idlib as the final offensive begins. Hospitals bombed 50+ times. No place left to run inside Syria.", "stat": "3M", "statLabel": "trapped in Idlib", "org": "OCHA", "source": "https://www.ochaopt.org" },
+        { "year": "2024–2026", "title": "In The Waiting Room", "description": "Syrians who fled chemical weapons and barrel bombs now face administrative rejection in Belgium. Many have waited 5–8 years. Their children grew up in uncertainty.", "stat": "6.8M", "statLabel": "Syrian refugees worldwide", "org": "UNHCR", "source": "https://www.unhcr.org" }
+      ]
+    },
+    "sudan": {
+      "name": "Sudan", "region": "East Africa",
+      "stat": "11M+", "statLabel": "displaced in 2024",
+      "reason": "The world's largest displacement crisis in 2024. Civil war, ethnic cleansing, and mass starvation.",
+      "timeline": [
+        { "year": "2003", "title": "Darfur Genocide", "description": "Janjaweed militias backed by Khartoum slaughter hundreds of thousands in Darfur. The world watches. Nothing changes.", "stat": "300,000", "statLabel": "killed in Darfur", "org": "ICC", "source": "https://www.icc-cpi.int" },
+        { "year": "2019", "title": "Revolution & Hope", "description": "Sudanese people overthrow Omar al-Bashir after 30 years. Millions celebrate. A brief window of hope opens.", "stat": "30", "statLabel": "years of dictatorship ended", "org": "HRW", "source": "https://www.hrw.org" },
+        { "year": "April 2023", "title": "War Returns", "description": "SAF and RSF go to war in the streets of Khartoum. Hospitals shelled. Mass rape used as weapon. Ethnic cleansing in Darfur again.", "stat": "150,000", "statLabel": "killed in first year", "org": "ACLED", "source": "https://acleddata.com" },
+        { "year": "2024–2026", "title": "In The Waiting Room", "description": "Sudanese who fled ethnic cleansing are told by Belgian authorities their situation is 'not severe enough.' They wait, while their families disappear.", "stat": "25M", "statLabel": "need humanitarian aid", "org": "OCHA", "source": "https://www.ochaopt.org" }
+      ]
+    },
+    "kurdistan": {
+      "name": "Kurdistan", "region": "Middle East",
+      "stat": "40M+", "statLabel": "Kurds with no state",
+      "reason": "The world's largest stateless nation. Persecuted across Turkey, Syria, Iraq and Iran.",
+      "timeline": [
+        { "year": "1923", "title": "Promised & Betrayed", "description": "The Treaty of Sèvres promised Kurds a homeland. The Treaty of Lausanne erased that promise. 40 million people left stateless.", "stat": "40M", "statLabel": "Kurds with no country", "org": "UN", "source": "https://www.un.org" },
+        { "year": "1988", "title": "Anfal Genocide", "description": "Saddam Hussein's chemical weapons attack on Halabja kills 5,000 Kurds in hours. Over 180,000 killed in the Anfal campaign.", "stat": "180,000", "statLabel": "killed in Anfal", "org": "HRW", "source": "https://www.hrw.org" },
+        { "year": "2014", "title": "ISIS & Kobane", "description": "ISIS surrounds Kobane. Kurdish fighters resist. The world finally watches. But the displacement continues.", "stat": "1.8M", "statLabel": "Kurds displaced by ISIS", "org": "UNHCR", "source": "https://www.unhcr.org" },
+        { "year": "2024–2026", "title": "In The Waiting Room", "description": "Kurdish asylum seekers face a cruel paradox: Belgium questions which country they 'belong to.' The answer is: none. They have no country. Yet their asylum is denied.", "stat": "0", "statLabel": "internationally recognized Kurdish state", "org": "UN", "source": "https://www.un.org" }
+      ]
+    },
+    "afghanistan": {
+      "name": "Afghanistan", "region": "Central Asia",
+      "stat": "6M+", "statLabel": "refugees outside the country",
+      "reason": "Under Taliban rule, women cannot work or study. Minorities face execution. There is no future to stay for.",
+      "timeline": [
+        { "year": "2001", "title": "US Invasion", "description": "NATO invades following 9/11. The Taliban falls. Brief hope for a new Afghanistan. 20 years of conflict begin.", "stat": "20", "statLabel": "years of NATO presence", "org": "NATO", "source": "https://www.nato.int" },
+        { "year": "2021", "title": "Taliban Returns", "description": "US withdraws. Taliban takes Kabul in days. Girls banned from school. Women erased from public life. Minorities hunted.", "stat": "48hrs", "statLabel": "for Taliban to take Kabul", "org": "BBC", "source": "https://www.bbc.com" },
+        { "year": "2022–2023", "title": "Gender Apartheid", "description": "UN declares Taliban's treatment of women 'gender apartheid.' Girls above grade 6 banned from education. Women banned from universities.", "stat": "14M", "statLabel": "girls denied education", "org": "UNICEF", "source": "https://www.unicef.org" },
+        { "year": "2024–2026", "title": "In The Waiting Room", "description": "Afghan women, journalists, and former NATO translators now wait in Belgium. Rejected. Told to 'return home.' To a home where they would be executed.", "stat": "0", "statLabel": "women in Afghan government", "org": "UN Women", "source": "https://www.unwomen.org" }
+      ]
+    },
+    "eritrea": {
+      "name": "Eritrea", "region": "East Africa",
+      "stat": "500,000+", "statLabel": "refugees abroad",
+      "reason": "Africa's North Korea. Indefinite military conscription. No freedom of press or religion.",
+      "timeline": [
+        { "year": "1993", "title": "Independence & Betrayal", "description": "Eritrea gains independence after 30-year war. Hopes for democracy crushed within years. One of Africa's most brutal dictatorships begins.", "stat": "30", "statLabel": "years of liberation war", "org": "UN", "source": "https://www.un.org" },
+        { "year": "2001", "title": "Darkness Falls", "description": "11 reformers arrested. Independent press shut down overnight. Eritrea becomes a prison state. No elections. No free speech.", "stat": "0", "statLabel": "free press outlets remain", "org": "RSF", "source": "https://rsf.org" },
+        { "year": "2004–Present", "title": "Conscription Without End", "description": "Military service becomes indefinite. Men and women conscripted for decades. Thousands risk death crossing the Sahara to escape.", "stat": "Indefinite", "statLabel": "military service", "org": "HRW", "source": "https://www.hrw.org" },
+        { "year": "2024–2026", "title": "In The Waiting Room", "description": "Eritreans in Belgium face a system that doubts their persecution. 'Why did you really leave?' they are asked. The answer: to survive. To be free. To exist.", "stat": "9%", "statLabel": "of population fled abroad", "org": "UNHCR", "source": "https://www.unhcr.org" }
+      ]
+    },
+    "somalia": {
+      "name": "Somalia", "region": "East Africa",
+      "stat": "3M+", "statLabel": "internally displaced",
+      "reason": "30+ years of civil war, Al-Shabaab terror, and climate disaster.",
+      "timeline": [
+        { "year": "1991", "title": "State Collapse", "description": "President Barre ousted. Somalia enters permanent civil war. For 30+ years, there is no functioning central government.", "stat": "30+", "statLabel": "years without stable government", "org": "UN", "source": "https://www.un.org" },
+        { "year": "2006–2011", "title": "Al-Shabaab Terror", "description": "Al-Shabaab controls large territories. Public executions. Women forced into marriages. Men recruited by force. Fleeing is the only option.", "stat": "1M", "statLabel": "fled during 2011 famine", "org": "UNHCR", "source": "https://www.unhcr.org" },
+        { "year": "2022–2023", "title": "Climate & Conflict", "description": "The worst drought in 40 years. Al-Shabaab attacks continue. Triple crisis: conflict, famine, and climate collapse simultaneously.", "stat": "43,000", "statLabel": "excess deaths in 2022", "org": "WHO", "source": "https://www.who.int" },
+        { "year": "2024–2026", "title": "In The Waiting Room", "description": "Somalis in Belgium are told Somalia has 'some safe areas.' Which areas? The ones Al-Shabaab controls? They wait. There is no safe area.", "stat": "0", "statLabel": "fully safe regions in Somalia", "org": "ACLED", "source": "https://acleddata.com" }
+      ]
     }
   }
 },
