@@ -2,19 +2,32 @@ import { createServerClient } from '@supabase/ssr'
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
-const OPEN_PATHS = ['/language', '/login', '/register', '/auth', '/']
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
 
-  if (OPEN_PATHS.some(p => pathname.startsWith(p))) {
+  // مسارات مفتوحة دائماً
+  if (
+    pathname.startsWith('/language') ||
+    pathname.startsWith('/auth')
+  ) {
     return NextResponse.next()
   }
 
-  const language = request.cookies.get('language')?.value
-  if (!language) {
+  // تحقق من اللغة أولاً
+  const lang = request.cookies.get('language')?.value
+  if (!lang) {
     return NextResponse.redirect(new URL('/language', request.url))
   }
 
+  // login و register مفتوحة بعد اختيار اللغة
+  if (
+    pathname.startsWith('/login') ||
+    pathname.startsWith('/register')
+  ) {
+    return NextResponse.next()
+  }
+
+  // تحقق من الجلسة
   let response = NextResponse.next({
     request: { headers: request.headers },
   })
