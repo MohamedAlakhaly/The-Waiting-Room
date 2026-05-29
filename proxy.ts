@@ -6,12 +6,13 @@ export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
 
   // مسارات مفتوحة دائماً
-  if (
-    pathname.startsWith('/language') ||
-    pathname.startsWith('/auth')
-  ) {
-    return NextResponse.next()
-  }
+if (
+  pathname.startsWith('/language') ||
+  pathname.startsWith('/auth') ||
+  pathname.startsWith('/api')
+) {
+  return NextResponse.next()
+}
 
   // تحقق من اللغة أولاً
   const lang = request.cookies.get('language')?.value

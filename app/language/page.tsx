@@ -3,9 +3,11 @@
 import { LANGUAGES, useLanguage } from '@/hooks/use-language'
 import type { Locale } from '@/hooks/use-language'
 import { motion } from 'framer-motion'
+import { useEffect } from 'react'
 
 export default function LanguagePage() {
   const { setLanguage } = useLanguage()
+  
 
   const container = {
     hidden: {},
@@ -16,6 +18,18 @@ export default function LanguagePage() {
     hidden: { opacity: 0, y: 20, scale: 0.97 },
     show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.4, ease: 'easeOut' as const } },
   }
+
+  useEffect(() => {
+  const params = new URLSearchParams(window.location.search)
+  const redirect = params.get('redirect')
+  if (redirect) {
+    // في لغة محفوظة وفي redirect — انتقل مباشرة
+    const savedLang = localStorage.getItem('language')
+    if (savedLang) {
+      window.location.href = redirect
+    }
+  }
+}, [])
 
   return (
     <div className="min-h-screen bg-[#0F0F0F] flex flex-col items-center justify-center px-4">

@@ -29,15 +29,17 @@ export function useLanguage() {
 
   // للصفحة الأولى — ينقل للـ login
   const setLanguage = useCallback((locale: Locale) => {
-    saveLocale(locale)
-    router.push('/login')
-  }, [router])
+  localStorage.setItem('language', locale)
+  document.cookie = `language=${locale}; path=/; max-age=31536000; SameSite=Lax`
+  window.location.href = '/login'
+}, [])
 
-  // للهيدر — يبقى بنفس الصفحة
-  const changeLanguage = useCallback((locale: Locale) => {
-    saveLocale(locale)
-    router.refresh()
-  }, [router])
+
+const changeLanguage = useCallback((locale: Locale) => {
+  localStorage.setItem('language', locale)
+  document.cookie = `language=${locale}; path=/; max-age=31536000; SameSite=Lax`
+  window.location.reload()
+}, [])
 
   return { getLanguage, setLanguage, changeLanguage }
 }
