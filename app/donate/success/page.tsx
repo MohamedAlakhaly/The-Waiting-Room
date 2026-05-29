@@ -18,7 +18,7 @@ function SuccessContent() {
   // Stripe يرجع payment_intent في الـ URL
   const paymentIntent = searchParams.get('payment_intent')
 
-  const shareUrl = "https://v0-the-waiting-room.vercel.app"
+  const shareUrl = "https://waitroom.be"
   const shareText = "I just supported The Waiting Room — a platform for migrants and refugees in Belgium. Join me!"
 
   return (

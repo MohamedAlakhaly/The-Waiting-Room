@@ -37,19 +37,41 @@
   },
   "storiesPage": {
     "title": "Shared Journeys",
-  "description": "Every voice adds weight to the call for justice. These are the lived experiences of those navigating the Belgian advocacy landscape.",
-  "shareStory": "Share Your Story",
-  "featuredLabel": "Featured Story",
-  "featuredTitle": "The Bridge Between Laws: A Syrian Scholar's View from Ghent",
-  "featuredQuote": "The transition from Bulgaria's temporary system to Belgium's permanent residency track is fraught with administrative obstacles. We are advocating for a period that respects our previous years of residency...",
-  "readInsight": "Read Full Story",
-  "filterBy": "Filter by:",
-  "filterAll": "All",
-  "filterAnon": "Anonymous",
-  "filterNamed": "Named",
-  "filterGreece": "Greece",
-  "filterBulgaria": "Bulgaria",
-  "yearsInBE": "years in BE"
+    "description": "Every voice adds weight to the call for justice. These are the lived experiences of those navigating the Belgian advocacy landscape.",
+    "shareStory": "Share Your Story",
+    "featuredLabel": "Featured Story",
+    "featuredTitle": "The Bridge Between Laws: A Syrian Scholar's View from Ghent",
+    "featuredQuote": "The transition from Bulgaria's temporary system to Belgium's permanent residency track is fraught with administrative obstacles. We are advocating for a period that respects our previous years of residency...",
+    "readInsight": "Read Full Story",
+    "filterBy": "Filter by:",
+    "filterAll": "All",
+    "filterAnon": "Anonymous",
+    "filterNamed": "Named",
+    "filterGreece": "Greece",
+    "filterBulgaria": "Bulgaria",
+    "yearsInBE": "years in BE",
+    "statsLabel": "Platform Impact",
+    "statsStories": "Stories shared",
+    "statsSignatures": "Petition signatures",
+    "statsMembers": "Community members",
+    "ctaTitle": "Your voice matters here",
+    "ctaDesc": "Share your story or sign the petition. Every voice makes the invisible visible.",
+    "signPetition": "Sign the Petition"
+  },
+  "storyPage": {
+    "backToStories": "Back to Stories",
+    "notFound": "Story not found",
+    "notFoundDesc": "This story may have been removed or is under review.",
+    "verifiedStory": "Verified Story",
+    "anonymous": "Anonymous",
+    "identityProtected": "Identity protected",
+    "verifiedContributor": "Verified contributor",
+    "yearsInBelgium": "years in Belgium",
+    "protectedAnonymous": "This story was shared on The Waiting Room platform. The identity of the contributor is protected and anonymous.",
+    "sharedConsent": "This story was shared on The Waiting Room platform. The identity of the contributor is shared with their consent.",
+    "similarStory": "Have a similar story?",
+    "similarStoryDesc": "Your voice matters. Share your experience and help make the invisible visible.",
+    "shareYourStory": "Share Your Story"
   },
   "addStory": {
     "postAnonymously": "Post Anonymously",
@@ -80,7 +102,22 @@
     "cityBelgium": "City in Belgium",
     "cityPlaceholder": "e.g. Brussels, Antwerp...",
     "successTitle": "Thank you for sharing",
-    "successMessage": "Your voice matters. Your story will help make the invisible visible."
+    "successMessage": "Your voice matters. Your story will help make the invisible visible.",
+    "published": "Published",
+    "underReview": "Under Review",
+    "storyLabel": "Your Story",
+    "yearsLabel": "years",
+    "anonymousLabel": "Anonymous",
+    "editMyStory": "Edit My Story",
+    "editingStory": "Editing your story",
+    "cancelEdit": "Cancel",
+    "updateStory": "Update Story",
+    "deleteStory": "Delete My Story",
+    "deleteConfirmTitle": "Are you sure?",
+    "deleteConfirmDesc": "This will permanently delete your story. This action cannot be undone.",
+    "deleteConfirm": "Yes, Delete",
+    "deleteCancel": "Keep My Story",
+    "deleteSuccess": "Your story has been deleted."
   },
   "reports": {
     "label": "International Reports",
@@ -89,244 +126,532 @@
     "readReport": "Read report"
   },
   "addStoryPage": {
-  "title": "Share Your Story",
-  "description": "Your experiences shape the path for others. By sharing your journey, you help build a more inclusive community in Belgium.",
-  "wordsTitle": "Words of Impact",
-  "wordsDescription": "Brief stories often carry the strongest emotional resonance. Aim for clarity and focus on a specific moment of your journey.",
-  "privacyTitle": "Privacy & Safety",
-  "privacyDescription": "Your story can be shared entirely anonymously. We never share your personal data with third-party institutions.",
-  "encrypted": "End-to-end encrypted submission"
-},
-"petition": {
-  "active": "Active Petition",
-  "title": "Demanding Fair Treatment for All Asylum Seekers",
-  "addressee": "To: CGVS / Commissioner General for Refugees and Stateless Persons",
-  "p1": "We, the undersigned, call upon the Belgian asylum authority (CGVS) to ensure a transparent, humane, and individualized assessment for all applicants. Every story deserves to be heard with the necessary seriousness and dignity.",
-  "p2": "The current systemic delays and rigid procedural obstacles leave thousands of vulnerable individuals in a legal and emotional limbo. We call for a reform that prioritizes safety and the fundamental right to seek protection without bias.",
-  "p3": "Our community stands united in the belief that this platform is not just a slogan — it is a requirement for a just society. We request that you review current protocols and reaffirm Belgium's commitment to human rights and international protection standards.",
-  "signaturesOf": "signatures of",
-  "goal": "goal",
-  "nextMilestone": "Next Milestone:",
-  "sign": "Sign the Petition",
-  "yourName": "Your Name (or remain anonymous)",
-  "namePlaceholder": "Full name or 'Anonymous'",
-  "privateEmail": "Private Email",
-  "emailNote": "Your email remains completely private and is used for verification purposes only.",
-  "displayName": "Display my name publicly on the petition page.",
-  "signButton": "Sign This Petition",
-  "shareTitle": "Share this petition with your network:",
-  "copyLink": "Copy Link",
-  "newSignatories": "New signatories",
-  "signed": "Signed",
-  "minutesAgo": "minutes ago",
-  "successTitle": "Thank you for your signature",
-  "successMessage": "Your voice makes a real difference."
-},
+    "title": "Share Your Story",
+    "description": "Your experiences shape the path for others. By sharing your journey, you help build a more inclusive community in Belgium.",
+    "wordsTitle": "Words of Impact",
+    "wordsDescription": "Brief stories often carry the strongest emotional resonance. Aim for clarity and focus on a specific moment of your journey.",
+    "privacyTitle": "Privacy & Safety",
+    "privacyDescription": "Your story can be shared entirely anonymously. We never share your personal data with third-party institutions.",
+    "encrypted": "End-to-end encrypted submission"
+  },
+  "petition": {
+    "active": "Active Petition",
+    "title": "Demanding Fair Treatment for All Asylum Seekers",
+    "addressee": "To: CGVS / Commissioner General for Refugees and Stateless Persons",
+    "p1": "We, the undersigned, call upon the Belgian asylum authority (CGVS) to ensure a transparent, humane, and individualized assessment for all applicants. Every story deserves to be heard with the necessary seriousness and dignity.",
+    "p2": "The current systemic delays and rigid procedural obstacles leave thousands of vulnerable individuals in a legal and emotional limbo. We call for a reform that prioritizes safety and the fundamental right to seek protection without bias.",
+    "p3": "Our community stands united in the belief that this platform is not just a slogan — it is a requirement for a just society. We request that you review current protocols and reaffirm Belgium's commitment to human rights and international protection standards.",
+    "signaturesOf": "signatures of",
+    "goal": "goal",
+    "nextMilestone": "Next Milestone:",
+    "sign": "Sign the Petition",
+    "yourName": "Your Name (or remain anonymous)",
+    "namePlaceholder": "Full name or 'Anonymous'",
+    "privateEmail": "Private Email",
+    "emailNote": "Your email remains completely private and is used for verification purposes only.",
+    "displayName": "Hide my name from the petition page.",
+    "signButton": "Sign This Petition",
+    "shareTitle": "Share this petition with your network:",
+    "copyLink": "Copy Link",
+    "newSignatories": "New signatories",
+    "signed": "Signed",
+    "successTitle": "Thank you for your signature",
+    "successMessage": "Your voice makes a real difference.",
+    "recentSupporters": "Recent Supporters",
+    "alreadySigned": "Already Signed!",
+    "alreadySignedDesc": "You have already signed this petition. Thank you for your support!",
+    "justNow": "just now",
+    "minutesAgo": "min ago",
+    "hoursAgo": "h ago",
+    "daysAgo": "d ago",
+    "beFirstToSign": "Be the first to sign!",
+    "anonymous": "Anonymous"
+  },
   "donate": {
-  "badge": "Support This Work",
-  "heroTitle": "Every euro keeps this platform alive",
-  "heroDescription": "This is an independent platform built by one person for thousands of migrants in legal limbo. Your contribution — however small — helps maintain, improve, and grow this space for those who need it most.",
-  "enterAmount": "Enter amount in €",
-  "placeholder": "e.g. 1, 5, 20...",
-  "minError": "Minimum donation is €1",
-  "everyEuro": "Every euro helps keep this platform running",
-  "payPal": "Pay with PayPal",
-  "payCard": "Pay with Card (Stripe)",
-  "transparencyTitle": "Transparency",
-  "transparencyNote": "100% of donations go to platform maintenance. This is an independent personal project — built by one person, for migrants who deserve to be heard. No organization. No overhead.",
-  "securePayment": "Secure Payment",
-  "secureDesc": "All transactions are encrypted and processed securely via Stripe and PayPal.",
-  "directImpact": "Direct Impact",
-  "directDesc": "Your donation goes directly to maintaining and developing this platform — no middlemen.",
-  "openReports": "Full Transparency",
-  "openDesc": "We believe in accountability. How donations are used will always be shared openly."
-},
-"donateSuccess": {
-  "title": "Thank you for your support!",
-  "message": "Your donation helps keep this platform running for those who need it most.",
-  "amount": "Your contribution",
-  "backHome": "Back to Home",
-  "shareTitle": "Spread the word",
-  "shareMessage": "Help us reach more people by sharing this platform."
-},
-"whyTheyLeft": {
-  "label": "Global Context",
-  "title": "Why they left everything behind",
-  "description": "Behind every asylum file is a human being who had no choice. Click any country to see the full timeline of what forced them to flee.",
-  "clickToExplore": "Click to explore",
-  "seeTimeline": "See full timeline →",
-  "timelineTitle": "Timeline of Displacement",
-  "backToRoom": "Back to Room",
-  "gdprNote": "All statistics are sourced from UNHCR, OCHA, Human Rights Watch, and Amnesty International. This platform is GDPR compliant. No personal data is collected from this page.",
-  "bottomNote": "These people are not statistics. They are doctors, teachers, parents, and children who lost everything. When Belgium closes its doors, it sends them back to these realities.",
-  "source": "Source",
-  "countries": {
-    "palestine": {
-      "name": "Palestine", "region": "Middle East",
-      "stat": "45,000+", "statLabel": "killed since Oct 2023",
-      "reason": "Ongoing genocide, total destruction of infrastructure, no safe zone. Fleeing is not a choice — it is survival.",
-      "timeline": [
-        { "year": "1948", "title": "The Nakba", "description": "700,000 Palestinians forcibly displaced from their homes. The beginning of a displacement that never ended.", "stat": "700,000", "statLabel": "displaced in 1948", "org": "UNRWA", "source": "https://www.unrwa.org" },
-        { "year": "2007", "title": "Gaza Blockade", "description": "Israel imposes a total land, air and sea blockade on Gaza. 2 million people imprisoned in the world's largest open-air prison.", "stat": "2M", "statLabel": "people under blockade", "org": "OCHA", "source": "https://www.ochaopt.org" },
-        { "year": "Oct 2023", "title": "Genocide Begins", "description": "The most intense bombing campaign in modern history. Hospitals, schools, and refugee camps targeted. No safe zone exists.", "stat": "45,000+", "statLabel": "killed in 8 months", "org": "OCHA", "source": "https://www.ochaopt.org" },
-        { "year": "2024–2026", "title": "In The Waiting Room", "description": "Palestinians who fled to Europe face rejection after rejection. Belgium's CGVS denies their claims despite the documented genocide. They wait — with nowhere to return.", "stat": "0", "statLabel": "safe zones in Gaza", "org": "ICJ", "source": "https://www.icj-cij.org" }
-      ]
-    },
-    "yemen": {
-      "name": "Yemen", "region": "Middle East",
-      "stat": "21M", "statLabel": "people need humanitarian aid",
-      "reason": "10 years of war. The world's worst humanitarian crisis. Famine, disease, and daily airstrikes.",
-      "timeline": [
-        { "year": "2011", "title": "Revolution & Collapse", "description": "The Arab Spring reaches Yemen. President Saleh ousted after mass protests. Political vacuum creates conditions for conflict.", "stat": "24M", "statLabel": "population at the time", "org": "UNHCR", "source": "https://www.unhcr.org" },
-        { "year": "2015", "title": "War Erupts", "description": "Saudi-led coalition begins bombing campaign. Within months, Yemen becomes the world's worst humanitarian crisis.", "stat": "10,000", "statLabel": "airstrikes in first year", "org": "ACLED", "source": "https://acleddata.com" },
-        { "year": "2018–2022", "title": "Famine & Cholera", "description": "UN declares Yemen the world's worst humanitarian crisis. Largest cholera outbreak in history. Children dying of starvation.", "stat": "17M", "statLabel": "facing food insecurity", "org": "WFP", "source": "https://www.wfp.org" },
-        { "year": "2024–2026", "title": "In The Waiting Room", "description": "Yemenis who survived bombs and famine now face Belgian bureaucracy. Their asylum files rejected despite documented devastation. The war continues. The waiting room does not end.", "stat": "4.5M", "statLabel": "internally displaced", "org": "UNHCR", "source": "https://www.unhcr.org" }
-      ]
-    },
-    "syria": {
-      "name": "Syria", "region": "Middle East",
-      "stat": "13M+", "statLabel": "displaced since 2011",
-      "reason": "13 years of civil war. Over half the population has been forced to flee their homes.",
-      "timeline": [
-        { "year": "2011", "title": "Peaceful Protests Crushed", "description": "Syrian civilians demand reform. Assad's government responds with live ammunition. The seeds of civil war are planted in blood.", "stat": "1,000+", "statLabel": "protesters killed in weeks", "org": "Amnesty International", "source": "https://www.amnesty.org" },
-        { "year": "2013–2015", "title": "Chemical Weapons & ISIS", "description": "Sarin gas attacks on civilians. ISIS rises and takes control of vast territories. Syria becomes a battlefield for global powers.", "stat": "250,000", "statLabel": "killed by 2015", "org": "UN", "source": "https://www.un.org" },
-        { "year": "2019", "title": "Idlib — The Last Refuge", "description": "3 million civilians trapped in Idlib as the final offensive begins. Hospitals bombed 50+ times. No place left to run inside Syria.", "stat": "3M", "statLabel": "trapped in Idlib", "org": "OCHA", "source": "https://www.ochaopt.org" },
-        { "year": "2024–2026", "title": "In The Waiting Room", "description": "Syrians who fled chemical weapons and barrel bombs now face administrative rejection in Belgium. Many have waited 5–8 years. Their children grew up in uncertainty.", "stat": "6.8M", "statLabel": "Syrian refugees worldwide", "org": "UNHCR", "source": "https://www.unhcr.org" }
-      ]
-    },
-    "sudan": {
-      "name": "Sudan", "region": "East Africa",
-      "stat": "11M+", "statLabel": "displaced in 2024",
-      "reason": "The world's largest displacement crisis in 2024. Civil war, ethnic cleansing, and mass starvation.",
-      "timeline": [
-        { "year": "2003", "title": "Darfur Genocide", "description": "Janjaweed militias backed by Khartoum slaughter hundreds of thousands in Darfur. The world watches. Nothing changes.", "stat": "300,000", "statLabel": "killed in Darfur", "org": "ICC", "source": "https://www.icc-cpi.int" },
-        { "year": "2019", "title": "Revolution & Hope", "description": "Sudanese people overthrow Omar al-Bashir after 30 years. Millions celebrate. A brief window of hope opens.", "stat": "30", "statLabel": "years of dictatorship ended", "org": "HRW", "source": "https://www.hrw.org" },
-        { "year": "April 2023", "title": "War Returns", "description": "SAF and RSF go to war in the streets of Khartoum. Hospitals shelled. Mass rape used as weapon. Ethnic cleansing in Darfur again.", "stat": "150,000", "statLabel": "killed in first year", "org": "ACLED", "source": "https://acleddata.com" },
-        { "year": "2024–2026", "title": "In The Waiting Room", "description": "Sudanese who fled ethnic cleansing are told by Belgian authorities their situation is 'not severe enough.' They wait, while their families disappear.", "stat": "25M", "statLabel": "need humanitarian aid", "org": "OCHA", "source": "https://www.ochaopt.org" }
-      ]
-    },
-    "kurdistan": {
-      "name": "Kurdistan", "region": "Middle East",
-      "stat": "40M+", "statLabel": "Kurds with no state",
-      "reason": "The world's largest stateless nation. Persecuted across Turkey, Syria, Iraq and Iran.",
-      "timeline": [
-        { "year": "1923", "title": "Promised & Betrayed", "description": "The Treaty of Sèvres promised Kurds a homeland. The Treaty of Lausanne erased that promise. 40 million people left stateless.", "stat": "40M", "statLabel": "Kurds with no country", "org": "UN", "source": "https://www.un.org" },
-        { "year": "1988", "title": "Anfal Genocide", "description": "Saddam Hussein's chemical weapons attack on Halabja kills 5,000 Kurds in hours. Over 180,000 killed in the Anfal campaign.", "stat": "180,000", "statLabel": "killed in Anfal", "org": "HRW", "source": "https://www.hrw.org" },
-        { "year": "2014", "title": "ISIS & Kobane", "description": "ISIS surrounds Kobane. Kurdish fighters resist. The world finally watches. But the displacement continues.", "stat": "1.8M", "statLabel": "Kurds displaced by ISIS", "org": "UNHCR", "source": "https://www.unhcr.org" },
-        { "year": "2024–2026", "title": "In The Waiting Room", "description": "Kurdish asylum seekers face a cruel paradox: Belgium questions which country they 'belong to.' The answer is: none. They have no country. Yet their asylum is denied.", "stat": "0", "statLabel": "internationally recognized Kurdish state", "org": "UN", "source": "https://www.un.org" }
-      ]
-    },
-    "afghanistan": {
-      "name": "Afghanistan", "region": "Central Asia",
-      "stat": "6M+", "statLabel": "refugees outside the country",
-      "reason": "Under Taliban rule, women cannot work or study. Minorities face execution. There is no future to stay for.",
-      "timeline": [
-        { "year": "2001", "title": "US Invasion", "description": "NATO invades following 9/11. The Taliban falls. Brief hope for a new Afghanistan. 20 years of conflict begin.", "stat": "20", "statLabel": "years of NATO presence", "org": "NATO", "source": "https://www.nato.int" },
-        { "year": "2021", "title": "Taliban Returns", "description": "US withdraws. Taliban takes Kabul in days. Girls banned from school. Women erased from public life. Minorities hunted.", "stat": "48hrs", "statLabel": "for Taliban to take Kabul", "org": "BBC", "source": "https://www.bbc.com" },
-        { "year": "2022–2023", "title": "Gender Apartheid", "description": "UN declares Taliban's treatment of women 'gender apartheid.' Girls above grade 6 banned from education. Women banned from universities.", "stat": "14M", "statLabel": "girls denied education", "org": "UNICEF", "source": "https://www.unicef.org" },
-        { "year": "2024–2026", "title": "In The Waiting Room", "description": "Afghan women, journalists, and former NATO translators now wait in Belgium. Rejected. Told to 'return home.' To a home where they would be executed.", "stat": "0", "statLabel": "women in Afghan government", "org": "UN Women", "source": "https://www.unwomen.org" }
-      ]
-    },
-    "eritrea": {
-      "name": "Eritrea", "region": "East Africa",
-      "stat": "500,000+", "statLabel": "refugees abroad",
-      "reason": "Africa's North Korea. Indefinite military conscription. No freedom of press or religion.",
-      "timeline": [
-        { "year": "1993", "title": "Independence & Betrayal", "description": "Eritrea gains independence after 30-year war. Hopes for democracy crushed within years. One of Africa's most brutal dictatorships begins.", "stat": "30", "statLabel": "years of liberation war", "org": "UN", "source": "https://www.un.org" },
-        { "year": "2001", "title": "Darkness Falls", "description": "11 reformers arrested. Independent press shut down overnight. Eritrea becomes a prison state. No elections. No free speech.", "stat": "0", "statLabel": "free press outlets remain", "org": "RSF", "source": "https://rsf.org" },
-        { "year": "2004–Present", "title": "Conscription Without End", "description": "Military service becomes indefinite. Men and women conscripted for decades. Thousands risk death crossing the Sahara to escape.", "stat": "Indefinite", "statLabel": "military service", "org": "HRW", "source": "https://www.hrw.org" },
-        { "year": "2024–2026", "title": "In The Waiting Room", "description": "Eritreans in Belgium face a system that doubts their persecution. 'Why did you really leave?' they are asked. The answer: to survive. To be free. To exist.", "stat": "9%", "statLabel": "of population fled abroad", "org": "UNHCR", "source": "https://www.unhcr.org" }
-      ]
-    },
-    "somalia": {
-      "name": "Somalia", "region": "East Africa",
-      "stat": "3M+", "statLabel": "internally displaced",
-      "reason": "30+ years of civil war, Al-Shabaab terror, and climate disaster.",
-      "timeline": [
-        { "year": "1991", "title": "State Collapse", "description": "President Barre ousted. Somalia enters permanent civil war. For 30+ years, there is no functioning central government.", "stat": "30+", "statLabel": "years without stable government", "org": "UN", "source": "https://www.un.org" },
-        { "year": "2006–2011", "title": "Al-Shabaab Terror", "description": "Al-Shabaab controls large territories. Public executions. Women forced into marriages. Men recruited by force. Fleeing is the only option.", "stat": "1M", "statLabel": "fled during 2011 famine", "org": "UNHCR", "source": "https://www.unhcr.org" },
-        { "year": "2022–2023", "title": "Climate & Conflict", "description": "The worst drought in 40 years. Al-Shabaab attacks continue. Triple crisis: conflict, famine, and climate collapse simultaneously.", "stat": "43,000", "statLabel": "excess deaths in 2022", "org": "WHO", "source": "https://www.who.int" },
-        { "year": "2024–2026", "title": "In The Waiting Room", "description": "Somalis in Belgium are told Somalia has 'some safe areas.' Which areas? The ones Al-Shabaab controls? They wait. There is no safe area.", "stat": "0", "statLabel": "fully safe regions in Somalia", "org": "ACLED", "source": "https://acleddata.com" }
-      ]
+    "badge": "Support This Work",
+    "heroTitle": "Every euro keeps this platform alive",
+    "heroDescription": "This is an independent platform built by one person for thousands of migrants in legal limbo. Your contribution — however small — helps maintain, improve, and grow this space for those who need it most.",
+    "enterAmount": "Enter amount in €",
+    "placeholder": "e.g. 1, 5, 20...",
+    "minError": "Minimum donation is €1",
+    "everyEuro": "Every euro helps keep this platform running",
+    "payPal": "Pay with PayPal",
+    "payCard": "Pay with Card (Stripe)",
+    "transparencyTitle": "Transparency",
+    "transparencyNote": "100% of donations go to platform maintenance. This is an independent personal project — built by one person, for migrants who deserve to be heard. No organization. No overhead.",
+    "securePayment": "Secure Payment",
+    "secureDesc": "All transactions are encrypted and processed securely via Stripe and PayPal.",
+    "directImpact": "Direct Impact",
+    "directDesc": "Your donation goes directly to maintaining and developing this platform — no middlemen.",
+    "openReports": "Full Transparency",
+    "openDesc": "We believe in accountability. How donations are used will always be shared openly."
+  },
+  "donateSuccess": {
+    "title": "Thank you for your support!",
+    "message": "Your donation helps keep this platform running for those who need it most.",
+    "amount": "Your contribution",
+    "backHome": "Back to Home",
+    "shareTitle": "Spread the word",
+    "shareMessage": "Help us reach more people by sharing this platform."
+  },
+  "whyTheyLeft": {
+    "label": "Global Context",
+    "title": "Why they left everything behind",
+    "description": "Behind every asylum file is a human being who had no choice. Click any country to see the full timeline of what forced them to flee.",
+    "clickToExplore": "Click to explore",
+    "seeTimeline": "See full timeline →",
+    "timelineTitle": "Timeline of Displacement",
+    "backToRoom": "Back to Room",
+    "gdprNote": "All statistics are sourced from UNHCR, OCHA, Human Rights Watch, and Amnesty International. This platform is GDPR compliant. No personal data is collected from this page.",
+    "bottomNote": "These people are not statistics. They are doctors, teachers, parents, and children who lost everything. When Belgium closes its doors, it sends them back to these realities.",
+    "source": "Source",
+    "countries": {
+      "palestine": {
+        "name": "Palestine",
+        "region": "Middle East",
+        "stat": "45,000+",
+        "statLabel": "killed since Oct 2023",
+        "reason": "Ongoing genocide, total destruction of infrastructure, no safe zone. Fleeing is not a choice — it is survival.",
+        "timeline": [
+          {
+            "year": "1948",
+            "title": "The Nakba",
+            "description": "700,000 Palestinians forcibly displaced from their homes. The beginning of a displacement that never ended.",
+            "stat": "700,000",
+            "statLabel": "displaced in 1948",
+            "org": "UNRWA",
+            "source": "https://www.unrwa.org"
+          },
+          {
+            "year": "2007",
+            "title": "Gaza Blockade",
+            "description": "Israel imposes a total land, air and sea blockade on Gaza. 2 million people imprisoned in the world's largest open-air prison.",
+            "stat": "2M",
+            "statLabel": "people under blockade",
+            "org": "OCHA",
+            "source": "https://www.ochaopt.org"
+          },
+          {
+            "year": "Oct 2023",
+            "title": "Genocide Begins",
+            "description": "The most intense bombing campaign in modern history. Hospitals, schools, and refugee camps targeted. No safe zone exists.",
+            "stat": "45,000+",
+            "statLabel": "killed in 8 months",
+            "org": "OCHA",
+            "source": "https://www.ochaopt.org"
+          },
+          {
+            "year": "2024–2026",
+            "title": "In The Waiting Room",
+            "description": "Palestinians who fled to Europe face rejection after rejection. Belgium's CGVS denies their claims despite the documented genocide. They wait — with nowhere to return.",
+            "stat": "0",
+            "statLabel": "safe zones in Gaza",
+            "org": "ICJ",
+            "source": "https://www.icj-cij.org"
+          }
+        ]
+      },
+      "yemen": {
+        "name": "Yemen",
+        "region": "Middle East",
+        "stat": "21M",
+        "statLabel": "people need humanitarian aid",
+        "reason": "10 years of war. The world's worst humanitarian crisis. Famine, disease, and daily airstrikes.",
+        "timeline": [
+          {
+            "year": "2011",
+            "title": "Revolution & Collapse",
+            "description": "The Arab Spring reaches Yemen. President Saleh ousted after mass protests. Political vacuum creates conditions for conflict.",
+            "stat": "24M",
+            "statLabel": "population at the time",
+            "org": "UNHCR",
+            "source": "https://www.unhcr.org"
+          },
+          {
+            "year": "2015",
+            "title": "War Erupts",
+            "description": "Saudi-led coalition begins bombing campaign. Within months, Yemen becomes the world's worst humanitarian crisis.",
+            "stat": "10,000",
+            "statLabel": "airstrikes in first year",
+            "org": "ACLED",
+            "source": "https://acleddata.com"
+          },
+          {
+            "year": "2018–2022",
+            "title": "Famine & Cholera",
+            "description": "UN declares Yemen the world's worst humanitarian crisis. Largest cholera outbreak in history. Children dying of starvation.",
+            "stat": "17M",
+            "statLabel": "facing food insecurity",
+            "org": "WFP",
+            "source": "https://www.wfp.org"
+          },
+          {
+            "year": "2024–2026",
+            "title": "In The Waiting Room",
+            "description": "Yemenis who survived bombs and famine now face Belgian bureaucracy. Their asylum files rejected despite documented devastation. The war continues. The waiting room does not end.",
+            "stat": "4.5M",
+            "statLabel": "internally displaced",
+            "org": "UNHCR",
+            "source": "https://www.unhcr.org"
+          }
+        ]
+      },
+      "syria": {
+        "name": "Syria",
+        "region": "Middle East",
+        "stat": "13M+",
+        "statLabel": "displaced since 2011",
+        "reason": "13 years of civil war. Over half the population has been forced to flee their homes.",
+        "timeline": [
+          {
+            "year": "2011",
+            "title": "Peaceful Protests Crushed",
+            "description": "Syrian civilians demand reform. Assad's government responds with live ammunition. The seeds of civil war are planted in blood.",
+            "stat": "1,000+",
+            "statLabel": "protesters killed in weeks",
+            "org": "Amnesty International",
+            "source": "https://www.amnesty.org"
+          },
+          {
+            "year": "2013–2015",
+            "title": "Chemical Weapons & ISIS",
+            "description": "Sarin gas attacks on civilians. ISIS rises and takes control of vast territories. Syria becomes a battlefield for global powers.",
+            "stat": "250,000",
+            "statLabel": "killed by 2015",
+            "org": "UN",
+            "source": "https://www.un.org"
+          },
+          {
+            "year": "2019",
+            "title": "Idlib — The Last Refuge",
+            "description": "3 million civilians trapped in Idlib as the final offensive begins. Hospitals bombed 50+ times. No place left to run inside Syria.",
+            "stat": "3M",
+            "statLabel": "trapped in Idlib",
+            "org": "OCHA",
+            "source": "https://www.ochaopt.org"
+          },
+          {
+            "year": "2024–2026",
+            "title": "In The Waiting Room",
+            "description": "Syrians who fled chemical weapons and barrel bombs now face administrative rejection in Belgium. Many have waited 5–8 years. Their children grew up in uncertainty.",
+            "stat": "6.8M",
+            "statLabel": "Syrian refugees worldwide",
+            "org": "UNHCR",
+            "source": "https://www.unhcr.org"
+          }
+        ]
+      },
+      "sudan": {
+        "name": "Sudan",
+        "region": "East Africa",
+        "stat": "11M+",
+        "statLabel": "displaced in 2024",
+        "reason": "The world's largest displacement crisis in 2024. Civil war, ethnic cleansing, and mass starvation.",
+        "timeline": [
+          {
+            "year": "2003",
+            "title": "Darfur Genocide",
+            "description": "Janjaweed militias backed by Khartoum slaughter hundreds of thousands in Darfur. The world watches. Nothing changes.",
+            "stat": "300,000",
+            "statLabel": "killed in Darfur",
+            "org": "ICC",
+            "source": "https://www.icc-cpi.int"
+          },
+          {
+            "year": "2019",
+            "title": "Revolution & Hope",
+            "description": "Sudanese people overthrow Omar al-Bashir after 30 years. Millions celebrate. A brief window of hope opens.",
+            "stat": "30",
+            "statLabel": "years of dictatorship ended",
+            "org": "HRW",
+            "source": "https://www.hrw.org"
+          },
+          {
+            "year": "April 2023",
+            "title": "War Returns",
+            "description": "SAF and RSF go to war in the streets of Khartoum. Hospitals shelled. Mass rape used as weapon. Ethnic cleansing in Darfur again.",
+            "stat": "150,000",
+            "statLabel": "killed in first year",
+            "org": "ACLED",
+            "source": "https://acleddata.com"
+          },
+          {
+            "year": "2024–2026",
+            "title": "In The Waiting Room",
+            "description": "Sudanese who fled ethnic cleansing are told by Belgian authorities their situation is 'not severe enough.' They wait, while their families disappear.",
+            "stat": "25M",
+            "statLabel": "need humanitarian aid",
+            "org": "OCHA",
+            "source": "https://www.ochaopt.org"
+          }
+        ]
+      },
+      "kurdistan": {
+        "name": "Kurdistan",
+        "region": "Middle East",
+        "stat": "40M+",
+        "statLabel": "Kurds with no state",
+        "reason": "The world's largest stateless nation. Persecuted across Turkey, Syria, Iraq and Iran.",
+        "timeline": [
+          {
+            "year": "1923",
+            "title": "Promised & Betrayed",
+            "description": "The Treaty of Sèvres promised Kurds a homeland. The Treaty of Lausanne erased that promise. 40 million people left stateless.",
+            "stat": "40M",
+            "statLabel": "Kurds with no country",
+            "org": "UN",
+            "source": "https://www.un.org"
+          },
+          {
+            "year": "1988",
+            "title": "Anfal Genocide",
+            "description": "Saddam Hussein's chemical weapons attack on Halabja kills 5,000 Kurds in hours. Over 180,000 killed in the Anfal campaign.",
+            "stat": "180,000",
+            "statLabel": "killed in Anfal",
+            "org": "HRW",
+            "source": "https://www.hrw.org"
+          },
+          {
+            "year": "2014",
+            "title": "ISIS & Kobane",
+            "description": "ISIS surrounds Kobane. Kurdish fighters resist. The world finally watches. But the displacement continues.",
+            "stat": "1.8M",
+            "statLabel": "Kurds displaced by ISIS",
+            "org": "UNHCR",
+            "source": "https://www.unhcr.org"
+          },
+          {
+            "year": "2024–2026",
+            "title": "In The Waiting Room",
+            "description": "Kurdish asylum seekers face a cruel paradox: Belgium questions which country they 'belong to.' The answer is: none. They have no country. Yet their asylum is denied.",
+            "stat": "0",
+            "statLabel": "internationally recognized Kurdish state",
+            "org": "UN",
+            "source": "https://www.un.org"
+          }
+        ]
+      },
+      "afghanistan": {
+        "name": "Afghanistan",
+        "region": "Central Asia",
+        "stat": "6M+",
+        "statLabel": "refugees outside the country",
+        "reason": "Under Taliban rule, women cannot work or study. Minorities face execution. There is no future to stay for.",
+        "timeline": [
+          {
+            "year": "2001",
+            "title": "US Invasion",
+            "description": "NATO invades following 9/11. The Taliban falls. Brief hope for a new Afghanistan. 20 years of conflict begin.",
+            "stat": "20",
+            "statLabel": "years of NATO presence",
+            "org": "NATO",
+            "source": "https://www.nato.int"
+          },
+          {
+            "year": "2021",
+            "title": "Taliban Returns",
+            "description": "US withdraws. Taliban takes Kabul in days. Girls banned from school. Women erased from public life. Minorities hunted.",
+            "stat": "48hrs",
+            "statLabel": "for Taliban to take Kabul",
+            "org": "BBC",
+            "source": "https://www.bbc.com"
+          },
+          {
+            "year": "2022–2023",
+            "title": "Gender Apartheid",
+            "description": "UN declares Taliban's treatment of women 'gender apartheid.' Girls above grade 6 banned from education. Women banned from universities.",
+            "stat": "14M",
+            "statLabel": "girls denied education",
+            "org": "UNICEF",
+            "source": "https://www.unicef.org"
+          },
+          {
+            "year": "2024–2026",
+            "title": "In The Waiting Room",
+            "description": "Afghan women, journalists, and former NATO translators now wait in Belgium. Rejected. Told to 'return home.' To a home where they would be executed.",
+            "stat": "0",
+            "statLabel": "women in Afghan government",
+            "org": "UN Women",
+            "source": "https://www.unwomen.org"
+          }
+        ]
+      },
+      "eritrea": {
+        "name": "Eritrea",
+        "region": "East Africa",
+        "stat": "500,000+",
+        "statLabel": "refugees abroad",
+        "reason": "Africa's North Korea. Indefinite military conscription. No freedom of press or religion.",
+        "timeline": [
+          {
+            "year": "1993",
+            "title": "Independence & Betrayal",
+            "description": "Eritrea gains independence after 30-year war. Hopes for democracy crushed within years. One of Africa's most brutal dictatorships begins.",
+            "stat": "30",
+            "statLabel": "years of liberation war",
+            "org": "UN",
+            "source": "https://www.un.org"
+          },
+          {
+            "year": "2001",
+            "title": "Darkness Falls",
+            "description": "11 reformers arrested. Independent press shut down overnight. Eritrea becomes a prison state. No elections. No free speech.",
+            "stat": "0",
+            "statLabel": "free press outlets remain",
+            "org": "RSF",
+            "source": "https://rsf.org"
+          },
+          {
+            "year": "2004–Present",
+            "title": "Conscription Without End",
+            "description": "Military service becomes indefinite. Men and women conscripted for decades. Thousands risk death crossing the Sahara to escape.",
+            "stat": "Indefinite",
+            "statLabel": "military service",
+            "org": "HRW",
+            "source": "https://www.hrw.org"
+          },
+          {
+            "year": "2024–2026",
+            "title": "In The Waiting Room",
+            "description": "Eritreans in Belgium face a system that doubts their persecution. 'Why did you really leave?' they are asked. The answer: to survive. To be free. To exist.",
+            "stat": "9%",
+            "statLabel": "of population fled abroad",
+            "org": "UNHCR",
+            "source": "https://www.unhcr.org"
+          }
+        ]
+      },
+      "somalia": {
+        "name": "Somalia",
+        "region": "East Africa",
+        "stat": "3M+",
+        "statLabel": "internally displaced",
+        "reason": "30+ years of civil war, Al-Shabaab terror, and climate disaster.",
+        "timeline": [
+          {
+            "year": "1991",
+            "title": "State Collapse",
+            "description": "President Barre ousted. Somalia enters permanent civil war. For 30+ years, there is no functioning central government.",
+            "stat": "30+",
+            "statLabel": "years without stable government",
+            "org": "UN",
+            "source": "https://www.un.org"
+          },
+          {
+            "year": "2006–2011",
+            "title": "Al-Shabaab Terror",
+            "description": "Al-Shabaab controls large territories. Public executions. Women forced into marriages. Men recruited by force. Fleeing is the only option.",
+            "stat": "1M",
+            "statLabel": "fled during 2011 famine",
+            "org": "UNHCR",
+            "source": "https://www.unhcr.org"
+          },
+          {
+            "year": "2022–2023",
+            "title": "Climate & Conflict",
+            "description": "The worst drought in 40 years. Al-Shabaab attacks continue. Triple crisis: conflict, famine, and climate collapse simultaneously.",
+            "stat": "43,000",
+            "statLabel": "excess deaths in 2022",
+            "org": "WHO",
+            "source": "https://www.who.int"
+          },
+          {
+            "year": "2024–2026",
+            "title": "In The Waiting Room",
+            "description": "Somalis in Belgium are told Somalia has 'some safe areas.' Which areas? The ones Al-Shabaab controls? They wait. There is no safe area.",
+            "stat": "0",
+            "statLabel": "fully safe regions in Somalia",
+            "org": "ACLED",
+            "source": "https://acleddata.com"
+          }
+        ]
+      }
     }
-  }
-},
+  },
   "news": {
-  "title": "News & Reports",
-  "description": "Stay informed with the latest reports from international human rights organizations.",
-  "readReport": "Read Full Report",
-  "filterAll": "All News",
-  "filterGreece": "Greece",
-  "filterBulgaria": "Bulgaria",
-  "filterBelgium": "Belgium",
-  "filterMentalHealth": "Mental Health",
-  "filterLegal": "Legal",
-  "featuredOrg": "Amnesty International",
-  "featuredDate": "May 15, 2024",
-  "featuredTitle": "Border Realities: Human Rights Assessment on the Greece-Turkey Frontier",
-  "featuredDesc": "A comprehensive study examining the procedural challenges and legal protections for displaced individuals at the border regions of Greece. The report highlights critical gaps in immediate medical care and legal representation.",
-  "sideOrg": "UNHCR",
-  "sideDate": "May 12, 2024",
-  "sideTitle": "Mental Health Support Gaps in Belgian Integration Centers",
-  "sideDesc": "New data reveals the urgent need for psychological services in urban reception facilities.",
-  "footerNote": "Reports from UNHCR, Amnesty International, Human Rights Watch and others."
-},
+    "title": "News & Reports",
+    "description": "Stay informed with the latest reports from international human rights organizations.",
+    "readReport": "Read Full Report",
+    "filterAll": "All News",
+    "filterGreece": "Greece",
+    "filterBulgaria": "Bulgaria",
+    "filterBelgium": "Belgium",
+    "filterMentalHealth": "Mental Health",
+    "filterLegal": "Legal",
+    "featuredOrg": "Amnesty International",
+    "featuredDate": "May 15, 2024",
+    "featuredTitle": "Border Realities: Human Rights Assessment on the Greece-Turkey Frontier",
+    "featuredDesc": "A comprehensive study examining the procedural challenges and legal protections for displaced individuals at the border regions of Greece. The report highlights critical gaps in immediate medical care and legal representation.",
+    "sideOrg": "UNHCR",
+    "sideDate": "May 12, 2024",
+    "sideTitle": "Mental Health Support Gaps in Belgian Integration Centers",
+    "sideDesc": "New data reveals the urgent need for psychological services in urban reception facilities.",
+    "footerNote": "Reports from UNHCR, Amnesty International, Human Rights Watch and others."
+  },
   "about": {
-  "purpose": "Our Purpose",
-  "heroTitle": "A platform born from lived experience",
-  "heroDescription": "The Waiting Room was built by someone who lived through it — years of uncertainty, rejected files, and the invisible weight of legal limbo in Belgium. This platform exists to make that weight visible.",
-  "founderSectionTitle": "Why this platform exists",
-  "founderP1": "I arrived in Belgium after years of waiting in Greece. My protection status there meant nothing here. Every door I knocked on led to another waiting room. I built this platform because I refused to wait in silence.",
-  "founderP2": "This is not an organization. There is no funding, no team, no office. Just one person who believes that gathering voices is the first step toward being heard.",
-  "founderCredit": "— The founder, Brussels 2024",
-  "legalAdvocacy": "Legal Advocacy",
-  "legalDesc": "We document the gap between what the law promises and what migrants actually experience. Every story on this platform is evidence. Every signature is pressure. Together, we build a case that cannot be ignored.",
-  "inclusion": "Inclusion First",
-  "inclusionDesc": "Every language, every background, every story matters here. No one is left out.",
-  "ourImpact": "Our Impact",
-  "petitionsWon": "Signatures collected",
-  "voicesActive": "People reached",
-  "citiesReached": "Cities in Belgium",
-  "united": "One community. Many voices. One demand.",
-  "collaborate": "Want to collaborate or share your experience?",
-  "contactSubtitle": "Get in touch",
-  "fullName": "Full Name",
-  "emailAddress": "Email Address",
-  "message": "Message",
-  "messagePlaceholder": "Tell us how you'd like to collaborate, or share your experience...",
-  "sendMessage": "Send Message",
-  "messageSent": "Message sent!",
-  "messageSentNote": "We'll get back to you as soon as possible."
-},
+    "purpose": "Our Purpose",
+    "heroTitle": "A platform born from lived experience",
+    "heroDescription": "The Waiting Room was built by someone who lived through it — years of uncertainty, rejected files, and the invisible weight of legal limbo in Belgium. This platform exists to make that weight visible.",
+    "founderSectionTitle": "Why this platform exists",
+    "founderP1": "I arrived in Belgium after years of waiting in Greece. My protection status there meant nothing here. Every door I knocked on led to another waiting room. I built this platform because I refused to wait in silence.",
+    "founderP2": "This is not an organization. There is no funding, no team, no office. Just one person who believes that gathering voices is the first step toward being heard.",
+    "founderCredit": "— The founder, MOHAMED 2026",
+    "legalAdvocacy": "Legal Advocacy",
+    "legalDesc": "We document the gap between what the law promises and what migrants actually experience. Every story on this platform is evidence. Every signature is pressure. Together, we build a case that cannot be ignored.",
+    "inclusion": "Inclusion First",
+    "inclusionDesc": "Every language, every background, every story matters here. No one is left out.",
+    "ourImpact": "Our Impact",
+    "petitionsWon": "Signatures collected",
+    "voicesActive": "People reached",
+    "citiesReached": "Cities in Belgium",
+    "united": "One community. Many voices. One demand.",
+    "collaborate": "Want to collaborate or share your experience?",
+    "contactSubtitle": "Get in touch",
+    "fullName": "Full Name",
+    "emailAddress": "Email Address",
+    "message": "Message",
+    "messagePlaceholder": "Tell us how you'd like to collaborate, or share your experience...",
+    "sendMessage": "Send Message",
+    "messageSent": "Message sent!",
+    "messageSentNote": "We'll get back to you as soon as possible.",
+    "founderName": "Mohamed — Yemen",
+    "founderLocation": "Belgium · Since 2024",
+    "tagGreece": "Greece",
+    "tagBelgium": "Belgium",
+    "namePlaceholder": "Your full name",
+    "emailPlaceholder": "Your email address",
+    "sending": "Sending...",
+    "errorSending": "Something went wrong. Please try again."
+  },
   "language": {
     "choose": "Choose your language",
     "subtitle": "Choose your language / Choisissez votre langue / اختر لغتك"
   },
   "login": {
-  "subtitle": "Sign in to continue",
-  "email": "Email",
-  "password": "Password",
-  "signIn": "Sign In",
-  "or": "or",
-  "googleSignIn": "Continue with Google",
-  "noAccount": "Don't have an account?",
-  "register": "Create account",
-  "showPassword": "Show password",
-  "hidePassword": "Hide password"
-},
+    "subtitle": "Sign in to continue",
+    "email": "Email",
+    "password": "Password",
+    "signIn": "Sign In",
+    "or": "or",
+    "googleSignIn": "Continue with Google",
+    "noAccount": "Don't have an account?",
+    "register": "Create account",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password"
+  },
   "register": {
-  "title": "Create Account",
-  "subtitle": "Join our community",
-  "name": "Full Name",
-  "email": "Email",
-  "password": "Password",
-  "confirmPassword": "Confirm Password",
-  "submit": "Create Account",
-  "orContinueWith": "or continue with",
-  "googleSignIn": "Continue with Google",
-  "hasAccount": "Already have an account?",
-  "login": "Sign in"
-},
+    "title": "Create Account",
+    "subtitle": "Join our community",
+    "name": "Full Name",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "submit": "Create Account",
+    "orContinueWith": "or continue with",
+    "googleSignIn": "Continue with Google",
+    "hasAccount": "Already have an account?",
+    "login": "Sign in"
+  },
   "footer": {
     "tagline": "Empowering migrants in legal limbo to participate in the civic journey through storytelling and advocacy.",
     "privacy": "Privacy Policy",

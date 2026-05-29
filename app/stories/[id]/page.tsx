@@ -1,7 +1,8 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { useParams, useRouter } from "next/navigation"
+import { useParams } from "next/navigation"
+import { useTranslations } from "next-intl"
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
 import { supabase } from "@/lib/supabase"
@@ -12,7 +13,7 @@ import Link from "next/link"
 
 export default function StoryPage() {
   const { id } = useParams()
-  const router = useRouter()
+  const t = useTranslations('storyPage')
   const [story, setStory] = useState<any>(null)
   const [loading, setLoading] = useState(true)
   const [notFound, setNotFound] = useState(false)
@@ -55,11 +56,13 @@ export default function StoryPage() {
         <main className="flex-1 flex items-center justify-center px-4">
           <div className="text-center">
             <p className="text-6xl mb-4">📭</p>
-            <h1 className="font-serif text-2xl font-bold text-foreground mb-2">Story not found</h1>
-            <p className="text-muted-foreground mb-6">This story may have been removed or is under review.</p>
+            <h1 className="font-serif text-2xl font-bold text-foreground mb-2">
+              {t('notFound')}
+            </h1>
+            <p className="text-muted-foreground mb-6">{t('notFoundDesc')}</p>
             <Link href="/stories">
               <Button className="bg-primary text-primary-foreground rounded-full">
-                Back to Stories
+                {t('backToStories')}
               </Button>
             </Link>
           </div>
@@ -90,7 +93,7 @@ export default function StoryPage() {
             <Link href="/stories">
               <Button variant="ghost" className="mb-6 text-muted-foreground hover:text-foreground -ml-2">
                 <ArrowLeft className="mr-2 h-4 w-4" />
-                Back to Stories
+                {t('backToStories')}
               </Button>
             </Link>
           </motion.div>
@@ -114,17 +117,15 @@ export default function StoryPage() {
                   </div>
                   <div>
                     <p className="font-semibold text-foreground text-lg">
-                      {isAnonymous ? 'Anonymous' : name}
+                      {isAnonymous ? t('anonymous') : name}
                     </p>
                     <p className="text-sm text-muted-foreground">
-                      {isAnonymous ? 'Identity protected' : 'Verified contributor'}
+                      {isAnonymous ? t('identityProtected') : t('verifiedContributor')}
                     </p>
                   </div>
                 </div>
-
-                {/* Status badge */}
                 <span className="text-xs font-medium text-primary bg-primary/10 px-3 py-1 rounded-full border border-primary/20">
-                  Verified Story
+                  {t('verifiedStory')}
                 </span>
               </div>
             </div>
@@ -141,7 +142,7 @@ export default function StoryPage() {
                 {story.years_in_belgium && (
                   <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
                     <Clock className="h-4 w-4 text-primary" />
-                    <span>{story.years_in_belgium} years in Belgium</span>
+                    <span>{story.years_in_belgium} {t('yearsInBelgium')}</span>
                   </div>
                 )}
                 <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
@@ -165,7 +166,7 @@ export default function StoryPage() {
               <div className="rounded-xl bg-muted/30 border border-border p-4 flex items-start gap-3">
                 <span className="text-primary text-lg">🔒</span>
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  This story was shared on The Waiting Room platform. The identity of the contributor is {isAnonymous ? 'protected and anonymous' : 'shared with their consent'}.
+                  {isAnonymous ? t('protectedAnonymous') : t('sharedConsent')}
                 </p>
               </div>
             </div>
@@ -178,13 +179,11 @@ export default function StoryPage() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="mt-6 rounded-2xl border border-primary/20 bg-primary/5 p-6 text-center"
           >
-            <p className="font-semibold text-foreground mb-2">Have a similar story?</p>
-            <p className="text-sm text-muted-foreground mb-4">
-              Your voice matters. Share your experience and help make the invisible visible.
-            </p>
+            <p className="font-semibold text-foreground mb-2">{t('similarStory')}</p>
+            <p className="text-sm text-muted-foreground mb-4">{t('similarStoryDesc')}</p>
             <Link href="/stories/new">
               <Button className="bg-primary text-primary-foreground hover:bg-[#D9F87E] rounded-full">
-                Share Your Story
+                {t('shareYourStory')}
               </Button>
             </Link>
           </motion.div>

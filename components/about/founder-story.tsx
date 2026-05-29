@@ -1,12 +1,12 @@
 // components/about/founder-story.tsx
-"use client"
+"use client";
 
-import { useTranslations } from "next-intl"
-import { motion } from "framer-motion"
-import { User } from "lucide-react"
+import { useTranslations } from "next-intl";
+import { motion } from "framer-motion";
+import { User } from "lucide-react";
 
 export function FounderStory() {
-  const t = useTranslations('about')
+  const t = useTranslations("about");
 
   return (
     <motion.section
@@ -37,15 +37,22 @@ export function FounderStory() {
               <User className="h-12 w-12 text-primary" />
             </motion.div>
             <div className="text-center">
-              <p className="font-semibold text-foreground">Anonymous Founder</p>
-              <p className="text-sm text-muted-foreground">Belgium · Since 2023</p>
+              <p className="font-semibold text-foreground">
+                {t("founderName")}
+              </p>
+              <p className="text-sm text-muted-foreground">
+                {t("founderLocation")}
+              </p>
             </div>
             <div className="flex gap-2">
-              {["Greece", "Belgium"].map((tag) => (
-                <span key={tag} className="rounded-full bg-muted px-3 py-1 text-xs text-muted-foreground border border-border">
+              {[t("tagGreece"), t("tagBelgium")].map(tag =>
+                <span
+                  key={tag}
+                  className="rounded-full bg-muted px-3 py-1 text-xs text-muted-foreground border border-border"
+                >
                   {tag}
                 </span>
-              ))}
+              )}
             </div>
           </div>
         </div>
@@ -66,10 +73,10 @@ export function FounderStory() {
           className="mb-4 h-1 w-12 bg-primary origin-left"
         />
         <h2 className="font-serif text-2xl font-bold text-foreground">
-          {t('founderSectionTitle')}
+          {t("founderSectionTitle")}
         </h2>
         <div className="mt-4 space-y-4 text-muted-foreground leading-relaxed">
-          {[t('founderP1'), t('founderP2')].map((p, i) => (
+          {[t("founderP1"), t("founderP2")].map((p, i) =>
             <motion.p
               key={i}
               initial={{ opacity: 0, y: 10 }}
@@ -79,7 +86,7 @@ export function FounderStory() {
             >
               {p}
             </motion.p>
-          ))}
+          )}
         </div>
         <motion.p
           initial={{ opacity: 0 }}
@@ -88,9 +95,9 @@ export function FounderStory() {
           transition={{ delay: 0.6 }}
           className="mt-6 font-medium text-foreground italic"
         >
-          {t('founderCredit')}
+          {t("founderCredit")}
         </motion.p>
       </motion.div>
     </motion.section>
-  )
+  );
 }

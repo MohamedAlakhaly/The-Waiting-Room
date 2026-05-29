@@ -1,18 +1,39 @@
-// components/about/contact-form.tsx
 "use client"
 
 import { useState } from "react"
 import { useTranslations } from "next-intl"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { CheckCircle, Send } from "lucide-react"
+import { sendContactMessage } from "@/lib/about"
 
 export function ContactForm() {
   const t = useTranslations('about')
+
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [message, setMessage] = useState("")
+  const [loading, setLoading] = useState(false)
   const [sent, setSent] = useState(false)
+  const [error, setError] = useState("")
+
+  const handleSend = async () => {
+    if (!email || !message) return
+    setLoading(true)
+    setError("")
+
+    const { error } = await sendContactMessage({ name, email, message })
+
+    if (error) {
+      setError(t('errorSending'))
+      setLoading(false)
+    } else {
+      setSent(true)
+    }
+  }
 
   if (sent) {
     return (
@@ -66,6 +87,18 @@ export function ContactForm() {
         </div>
 
         <div className="p-6 space-y-5">
+
+          {/* Error */}
+          {error && (
+            <motion.div
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="rounded-xl bg-red-500/10 border border-red-500/20 px-4 py-3"
+            >
+              <p className="text-sm text-red-400">{error}</p>
+            </motion.div>
+          )}
+
           <div className="grid gap-4 sm:grid-cols-2">
             <motion.div
               initial={{ opacity: 0, x: -10 }}
@@ -76,7 +109,9 @@ export function ContactForm() {
             >
               <Label className="text-foreground">{t('fullName')}</Label>
               <Input
-                placeholder="Jane Doe"
+                value={name}
+                onChange={e => setName(e.target.value)}
+                placeholder={t('namePlaceholder')}
                 className="bg-background border-border focus:border-primary h-11"
               />
             </motion.div>
@@ -90,7 +125,9 @@ export function ContactForm() {
               <Label className="text-foreground">{t('emailAddress')}</Label>
               <Input
                 type="email"
-                placeholder="jane@example.com"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                placeholder={t('emailPlaceholder')}
                 className="bg-background border-border focus:border-primary h-11"
               />
             </motion.div>
@@ -105,25 +142,34 @@ export function ContactForm() {
           >
             <Label className="text-foreground">{t('message')}</Label>
             <Textarea
+              value={message}
+              onChange={e => setMessage(e.target.value)}
               placeholder={t('messagePlaceholder')}
               className="min-h-32 resize-none bg-background border-border focus:border-primary"
             />
           </motion.div>
 
           <div className="flex justify-center">
-            <motion.div
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-            >
+            <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
               <Button
-                onClick={() => setSent(true)}
-                className="bg-primary text-primary-foreground hover:bg-[#D9F87E] rounded-full px-8 h-12 font-bold"
+                onClick={handleSend}
+                disabled={loading || !email || !message}
+                className="bg-primary text-primary-foreground hover:bg-[#D9F87E] rounded-full px-8 h-12 font-bold disabled:opacity-40"
               >
-                {t('sendMessage')}
-                <Send className="ml-2 h-4 w-4" />
+                {loading ? (
+                  <motion.div
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 0.8, repeat: Infinity, ease: 'linear' }}
+                    className="h-4 w-4 border-2 border-primary-foreground border-t-transparent rounded-full mr-2"
+                  />
+                ) : (
+                  <Send className="ml-2 h-4 w-4" />
+                )}
+                {loading ? t('sending') : t('sendMessage')}
               </Button>
             </motion.div>
           </div>
+
         </div>
       </div>
     </motion.section>

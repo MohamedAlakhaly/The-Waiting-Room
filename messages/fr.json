@@ -49,7 +49,14 @@
     "filterNamed": "Nommé",
     "filterGreece": "Grèce",
     "filterBulgaria": "Bulgarie",
-    "yearsInBE": "ans en Belgique"
+    "yearsInBE": "ans en Belgique",
+    "statsLabel": "Impact de la plateforme",
+    "statsStories": "Témoignages partagés",
+    "statsSignatures": "Signatures de pétition",
+    "statsMembers": "Membres de la communauté",
+    "ctaTitle": "Votre voix compte ici",
+    "ctaDesc": "Partagez votre histoire ou signez la pétition. Chaque voix rend l'invisible visible.",
+    "signPetition": "Signer la pétition"
   },
   "reports": {
     "label": "Rapports internationaux",
@@ -86,7 +93,37 @@
     "cityBelgium": "Ville en Belgique",
     "cityPlaceholder": "ex. Bruxelles, Anvers...",
     "successTitle": "Merci pour votre partage",
-    "successMessage": "Votre voix compte. Votre histoire aidera à rendre l'invisible visible."
+    "successMessage": "Votre voix compte. Votre histoire aidera à rendre l'invisible visible.",
+    "published": "Publié",
+    "underReview": "En cours de révision",
+    "storyLabel": "Votre témoignage",
+    "yearsLabel": "ans",
+    "anonymousLabel": "Anonyme",
+    "editMyStory": "Modifier mon témoignage",
+    "editingStory": "Modification en cours",
+    "cancelEdit": "Annuler",
+    "updateStory": "Mettre à jour",
+    "deleteStory": "Supprimer mon témoignage",
+    "deleteConfirmTitle": "Êtes-vous sûr?",
+    "deleteConfirmDesc": "Cela supprimera définitivement votre témoignage. Cette action est irréversible.",
+    "deleteConfirm": "Oui, supprimer",
+    "deleteCancel": "Garder mon témoignage",
+    "deleteSuccess": "Votre témoignage a été supprimé."
+  },
+  "storyPage": {
+    "backToStories": "Retour aux témoignages",
+    "notFound": "Témoignage introuvable",
+    "notFoundDesc": "Ce témoignage a peut-être été supprimé ou est en cours de révision.",
+    "verifiedStory": "Témoignage vérifié",
+    "anonymous": "Anonyme",
+    "identityProtected": "Identité protégée",
+    "verifiedContributor": "Contributeur vérifié",
+    "yearsInBelgium": "ans en Belgique",
+    "protectedAnonymous": "Ce témoignage a été partagé sur la plateforme The Waiting Room. L'identité du contributeur est protégée et anonyme.",
+    "sharedConsent": "Ce témoignage a été partagé sur la plateforme The Waiting Room. L'identité du contributeur est partagée avec son consentement.",
+    "similarStory": "Vous avez une histoire similaire?",
+    "similarStoryDesc": "Votre voix compte. Partagez votre expérience et aidez à rendre l'invisible visible.",
+    "shareYourStory": "Partagez votre témoignage"
   },
   "addStoryPage": {
     "title": "Partagez votre histoire",
@@ -95,238 +132,541 @@
     "wordsDescription": "Les histoires brèves portent souvent la plus forte résonance émotionnelle. Visez la clarté et concentrez-vous sur un moment précis de votre parcours.",
     "privacyTitle": "Confidentialité et sécurité",
     "privacyDescription": "Votre histoire peut être partagée de façon totalement anonyme. Nous ne partageons jamais vos données personnelles.",
-    "encrypted": "Soumission chiffrée de bout en bout"
+    "encrypted": "Soumission chiffrée de bout en bout",
+    "published": "Publié",
+    "underReview": "En cours de révision",
+    "yourStory": "Votre témoignage",
+    "yearsLabel": "ans",
+    "anonymousLabel": "Anonyme",
+    "editMyStory": "Modifier mon témoignage",
+    "editingStory": "Modification en cours",
+    "cancelEdit": "Annuler",
+    "updateStory": "Mettre à jour",
+    "deleteStory": "Supprimer mon témoignage",
+    "deleteConfirmTitle": "Êtes-vous sûr?",
+    "deleteConfirmDesc": "Cela supprimera définitivement votre témoignage. Cette action est irréversible.",
+    "deleteConfirm": "Oui, supprimer",
+    "deleteCancel": "Garder mon témoignage",
+    "deleteSuccess": "Votre témoignage a été supprimé."
   },
   "petition": {
-  "active": "Pétition active",
-  "title": "Exiger un traitement équitable pour tous les demandeurs d'asile vulnérables",
-  "addressee": "À: CGVS / Commissariat général aux réfugiés et aux apatrides",
-  "p1": "Nous, soussignés, appelons l'autorité belge d'asile (CGVS) à garantir une évaluation transparente, humaine et individualisée pour tous les demandeurs. Chaque histoire mérite d'être entendue avec la gravité et la dignité qu'elle mérite.",
-  "p2": "Les retards systémiques actuels et les obstacles procéduraux rigides laissent des milliers de personnes vulnérables dans un vide juridique et émotionnel. Nous demandons une réforme qui privilégie la sécurité et le droit fondamental à la protection sans préjugés.",
-  "p3": "Notre communauté est unie dans la conviction que cette plateforme n'est pas un slogan — c'est une exigence pour une société juste. Nous vous demandons de revoir les protocoles actuels et de réaffirmer l'engagement de la Belgique envers les droits de l'homme.",
-  "signaturesOf": "signatures sur",
-  "goal": "objectif",
-  "nextMilestone": "Prochaine étape:",
-  "sign": "Signer la pétition",
-  "yourName": "Votre nom (ou rester anonyme)",
-  "namePlaceholder": "Nom complet ou 'Anonyme'",
-  "privateEmail": "Email privé",
-  "emailNote": "Votre email reste strictement privé et n'est utilisé que pour vérification.",
-  "displayName": "Afficher mon nom publiquement sur la page de pétition.",
-  "signButton": "Signer cette pétition",
-  "shareTitle": "Partagez cette pétition avec votre réseau:",
-  "copyLink": "Copier le lien",
-  "newSignatories": "Nouveaux signataires",
-  "signed": "a signé",
-  "minutesAgo": "minutes",
-  "successTitle": "Merci pour votre signature",
-  "successMessage": "Votre voix fait une vraie différence."
-},
+    "active": "Pétition active",
+    "title": "Exiger un traitement équitable pour tous les demandeurs d'asile vulnérables",
+    "addressee": "À: CGVS / Commissariat général aux réfugiés et aux apatrides",
+    "p1": "Nous, soussignés, appelons l'autorité belge d'asile (CGVS) à garantir une évaluation transparente, humaine et individualisée pour tous les demandeurs. Chaque histoire mérite d'être entendue avec la gravité et la dignité qu'elle mérite.",
+    "p2": "Les retards systémiques actuels et les obstacles procéduraux rigides laissent des milliers de personnes vulnérables dans un vide juridique et émotionnel. Nous demandons une réforme qui privilégie la sécurité et le droit fondamental à la protection sans préjugés.",
+    "p3": "Notre communauté est unie dans la conviction que cette plateforme n'est pas un slogan — c'est une exigence pour une société juste. Nous vous demandons de revoir les protocoles actuels et de réaffirmer l'engagement de la Belgique envers les droits de l'homme.",
+    "signaturesOf": "signatures sur",
+    "goal": "objectif",
+    "nextMilestone": "Prochaine étape:",
+    "sign": "Signer la pétition",
+    "yourName": "Votre nom (ou rester anonyme)",
+    "namePlaceholder": "Nom complet ou 'Anonyme'",
+    "privateEmail": "Email privé",
+    "emailNote": "Votre email reste strictement privé et n'est utilisé que pour vérification.",
+    "displayName": "Masquer mon nom de la page de pétition.",
+    "signButton": "Signer cette pétition",
+    "shareTitle": "Partagez cette pétition avec votre réseau:",
+    "copyLink": "Copier le lien",
+    "newSignatories": "Nouveaux signataires",
+    "signed": "a signé",
+    "successTitle": "Merci pour votre signature",
+    "successMessage": "Votre voix fait une vraie différence.",
+    "recentSupporters": "Signataires récents",
+    "alreadySigned": "Déjà signé!",
+    "alreadySignedDesc": "Vous avez déjà signé cette pétition. Merci pour votre soutien!",
+    "justNow": "à l'instant",
+    "minutesAgo": "min",
+    "hoursAgo": "h",
+    "daysAgo": "j",
+    "beFirstToSign": "Soyez le premier à signer!",
+    "anonymous": "Anonyme"
+  },
   "donate": {
-  "badge": "Soutenir ce travail",
-  "heroTitle": "Chaque euro maintient cette plateforme en vie",
-  "heroDescription": "C'est une plateforme indépendante construite par une seule personne pour des milliers de migrants en situation juridique précaire. Votre contribution aide à maintenir cet espace pour ceux qui en ont le plus besoin.",
-  "enterAmount": "Entrez le montant en €",
-  "placeholder": "ex. 1, 5, 20...",
-  "minError": "Le don minimum est de €1",
-  "everyEuro": "Chaque euro aide à maintenir cette plateforme",
-  "payPal": "Payer avec PayPal",
-  "payCard": "Payer par carte (Stripe)",
-  "transparencyTitle": "Transparence",
-  "transparencyNote": "100% des dons vont à la maintenance. C'est un projet personnel indépendant — construit par une seule personne, pour les migrants qui méritent d'être entendus.",
-  "securePayment": "Paiement sécurisé",
-  "secureDesc": "Toutes les transactions sont chiffrées et traitées en toute sécurité via Stripe et PayPal.",
-  "directImpact": "Impact direct",
-  "directDesc": "Votre don va directement à la maintenance et au développement — sans intermédiaires.",
-  "openReports": "Transparence totale",
-  "openDesc": "Nous croyons en la responsabilité. L'utilisation des dons sera toujours partagée ouvertement."
-},
-"donateSuccess": {
-  "title": "Merci pour votre soutien!",
-  "message": "Votre don aide à maintenir cette plateforme pour ceux qui en ont le plus besoin.",
-  "amount": "Votre contribution",
-  "backHome": "Retour à l'accueil",
-  "shareTitle": "Faites passer le mot",
-  "shareMessage": "Aidez-nous à atteindre plus de personnes en partageant cette plateforme."
-},
-"whyTheyLeft": {
-  "label": "Contexte mondial",
-  "title": "Pourquoi ils ont tout laissé derrière eux",
-  "description": "Derrière chaque dossier d'asile se trouve un être humain qui n'avait pas le choix. Cliquez sur un pays pour voir la chronologie complète de ce qui les a forcés à fuir.",
-  "clickToExplore": "Cliquer pour explorer",
-  "seeTimeline": "Voir la chronologie →",
-  "timelineTitle": "Chronologie du déplacement",
-  "backToRoom": "Retour à la salle",
-  "gdprNote": "Toutes les statistiques proviennent du HCR, OCHA, Human Rights Watch et Amnesty International. Cette plateforme est conforme au RGPD. Aucune donnée personnelle n'est collectée sur cette page.",
-  "bottomNote": "Ces personnes ne sont pas des statistiques. Ce sont des médecins, enseignants, parents et enfants qui ont tout perdu. Quand la Belgique ferme ses portes, elle les renvoie à ces réalités.",
-  "source": "Source",
-  "countries": {
-    "palestine": {
-      "name": "Palestine", "region": "Moyen-Orient",
-      "stat": "45 000+", "statLabel": "tués depuis oct. 2023",
-      "reason": "Génocide en cours, destruction totale des infrastructures, aucune zone sûre. Fuir n'est pas un choix — c'est survivre.",
-      "timeline": [
-        { "year": "1948", "title": "La Nakba", "description": "700 000 Palestiniens déplacés de force de leurs maisons. Le début d'un déplacement qui ne s'est jamais terminé.", "stat": "700 000", "statLabel": "déplacés en 1948", "org": "UNRWA", "source": "https://www.unrwa.org" },
-        { "year": "2007", "title": "Blocus de Gaza", "description": "Israël impose un blocus total terrestre, maritime et aérien sur Gaza. 2 millions de personnes emprisonnées dans la plus grande prison à ciel ouvert du monde.", "stat": "2M", "statLabel": "personnes sous blocus", "org": "OCHA", "source": "https://www.ochaopt.org" },
-        { "year": "Oct. 2023", "title": "Le génocide commence", "description": "La campagne de bombardements la plus intense de l'histoire moderne. Hôpitaux, écoles et camps de réfugiés ciblés. Aucune zone sûre n'existe.", "stat": "45 000+", "statLabel": "tués en 8 mois", "org": "OCHA", "source": "https://www.ochaopt.org" },
-        { "year": "2024–2026", "title": "Dans la salle d'attente", "description": "Les Palestiniens qui ont fui vers l'Europe font face à des rejets successifs. Le CGVS belge nie leurs demandes malgré le génocide documenté. Ils attendent — sans nulle part où retourner.", "stat": "0", "statLabel": "zones sûres à Gaza", "org": "CIJ", "source": "https://www.icj-cij.org" }
-      ]
-    },
-    "yemen": {
-      "name": "Yémen", "region": "Moyen-Orient",
-      "stat": "21M", "statLabel": "personnes ont besoin d'aide humanitaire",
-      "reason": "10 ans de guerre. La pire crise humanitaire du monde. Famine, maladies et frappes aériennes quotidiennes.",
-      "timeline": [
-        { "year": "2011", "title": "Révolution & effondrement", "description": "Le Printemps arabe atteint le Yémen. Le président Saleh renversé après des manifestations massives. Le vide politique crée les conditions du conflit.", "stat": "24M", "statLabel": "population à l'époque", "org": "HCR", "source": "https://www.unhcr.org" },
-        { "year": "2015", "title": "La guerre éclate", "description": "La coalition dirigée par l'Arabie saoudite lance une campagne de bombardements. En quelques mois, le Yémen devient la pire crise humanitaire du monde.", "stat": "10 000", "statLabel": "frappes aériennes la 1ère année", "org": "ACLED", "source": "https://acleddata.com" },
-        { "year": "2018–2022", "title": "Famine & choléra", "description": "L'ONU déclare le Yémen la pire crise humanitaire du monde. La plus grande épidémie de choléra de l'histoire. Des enfants mourant de faim devant les caméras.", "stat": "17M", "statLabel": "en insécurité alimentaire", "org": "PAM", "source": "https://www.wfp.org" },
-        { "year": "2024–2026", "title": "Dans la salle d'attente", "description": "Les Yéménites qui ont survécu aux bombes et à la famine font maintenant face à la bureaucratie belge. Leurs dossiers d'asile rejetés malgré les dévastations documentées.", "stat": "4,5M", "statLabel": "déplacés internes", "org": "HCR", "source": "https://www.unhcr.org" }
-      ]
-    },
-    "syria": {
-      "name": "Syrie", "region": "Moyen-Orient",
-      "stat": "13M+", "statLabel": "déplacés depuis 2011",
-      "reason": "13 ans de guerre civile. Plus de la moitié de la population a été forcée de fuir ses maisons.",
-      "timeline": [
-        { "year": "2011", "title": "Manifestations pacifiques écrasées", "description": "Les civils syriens réclament des réformes. Le gouvernement d'Assad répond avec des balles réelles. Les germes de la guerre civile sont plantés dans le sang.", "stat": "1 000+", "statLabel": "manifestants tués en semaines", "org": "Amnesty International", "source": "https://www.amnesty.org" },
-        { "year": "2013–2015", "title": "Armes chimiques & Daech", "description": "Attaques au gaz sarin sur des civils. Daech monte en puissance. La Syrie devient un champ de bataille pour les puissances mondiales.", "stat": "250 000", "statLabel": "tués en 2015", "org": "ONU", "source": "https://www.un.org" },
-        { "year": "2019", "title": "Idlib — le dernier refuge", "description": "3 millions de civils piégés à Idlib lors de l'offensive finale. Des hôpitaux bombardés plus de 50 fois. Plus d'endroit où fuir en Syrie.", "stat": "3M", "statLabel": "piégés à Idlib", "org": "OCHA", "source": "https://www.ochaopt.org" },
-        { "year": "2024–2026", "title": "Dans la salle d'attente", "description": "Les Syriens qui ont fui les armes chimiques font face au rejet administratif en Belgique. Beaucoup ont attendu 5 à 8 ans. Leurs enfants ont grandi dans l'incertitude.", "stat": "6,8M", "statLabel": "réfugiés syriens dans le monde", "org": "HCR", "source": "https://www.unhcr.org" }
-      ]
-    },
-    "sudan": {
-      "name": "Soudan", "region": "Afrique de l'Est",
-      "stat": "11M+", "statLabel": "déplacés en 2024",
-      "reason": "La plus grande crise de déplacement du monde en 2024. Guerre civile, nettoyage ethnique et famine de masse.",
-      "timeline": [
-        { "year": "2003", "title": "Génocide du Darfour", "description": "Les milices Janjaweed soutenues par Khartoum massacrent des centaines de milliers au Darfour. Le monde regarde. Rien ne change.", "stat": "300 000", "statLabel": "tués au Darfour", "org": "CPI", "source": "https://www.icc-cpi.int" },
-        { "year": "2019", "title": "Révolution & espoir", "description": "Le peuple soudanais renverse Omar el-Béchir après 30 ans. Des millions célèbrent. Une brève fenêtre d'espoir s'ouvre.", "stat": "30", "statLabel": "ans de dictature terminés", "org": "HRW", "source": "https://www.hrw.org" },
-        { "year": "Avril 2023", "title": "La guerre revient", "description": "Les SAF et les RSF se font la guerre dans les rues de Khartoum. Hôpitaux bombardés. Viols massifs comme arme de guerre. Nettoyage ethnique au Darfour à nouveau.", "stat": "150 000", "statLabel": "tués la 1ère année", "org": "ACLED", "source": "https://acleddata.com" },
-        { "year": "2024–2026", "title": "Dans la salle d'attente", "description": "On dit aux Soudanais qui ont fui le nettoyage ethnique que leur situation n'est 'pas assez grave'. Ils attendent, pendant que leurs familles disparaissent.", "stat": "25M", "statLabel": "ont besoin d'aide humanitaire", "org": "OCHA", "source": "https://www.ochaopt.org" }
-      ]
-    },
-    "kurdistan": {
-      "name": "Kurdistan", "region": "Moyen-Orient",
-      "stat": "40M+", "statLabel": "Kurdes sans État",
-      "reason": "La plus grande nation apatride du monde. Persécutés en Turquie, Syrie, Irak et Iran.",
-      "timeline": [
-        { "year": "1923", "title": "Promesse & trahison", "description": "Le Traité de Sèvres promettait une patrie aux Kurdes. Le Traité de Lausanne a effacé cette promesse. 40 millions de personnes laissées apatrides.", "stat": "40M", "statLabel": "Kurdes sans pays", "org": "ONU", "source": "https://www.un.org" },
-        { "year": "1988", "title": "Génocide d'Anfal", "description": "L'attaque aux armes chimiques de Saddam Hussein sur Halabja tue 5 000 Kurdes en quelques heures. Plus de 180 000 tués dans la campagne Anfal.", "stat": "180 000", "statLabel": "tués lors d'Anfal", "org": "HRW", "source": "https://www.hrw.org" },
-        { "year": "2014", "title": "Daech & Kobané", "description": "Daech encercle Kobané. Les combattants kurdes — dont des milliers de femmes — résistent. Le monde regarde enfin. Mais le déplacement continue.", "stat": "1,8M", "statLabel": "Kurdes déplacés par Daech", "org": "HCR", "source": "https://www.unhcr.org" },
-        { "year": "2024–2026", "title": "Dans la salle d'attente", "description": "Les demandeurs d'asile kurdes font face à un paradoxe cruel: la Belgique questionne à quel pays ils 'appartiennent'. La réponse: aucun. Ils n'ont pas de pays. Pourtant leur asile est refusé.", "stat": "0", "statLabel": "État kurde reconnu internationalement", "org": "ONU", "source": "https://www.un.org" }
-      ]
-    },
-    "afghanistan": {
-      "name": "Afghanistan", "region": "Asie centrale",
-      "stat": "6M+", "statLabel": "réfugiés hors du pays",
-      "reason": "Sous le régime taliban, les femmes ne peuvent ni travailler ni étudier. Les minorités font face à l'exécution.",
-      "timeline": [
-        { "year": "2001", "title": "Invasion américaine", "description": "L'OTAN envahit suite au 11 septembre. Les talibans tombent. Bref espoir pour un nouvel Afghanistan. 20 ans de conflit commencent.", "stat": "20", "statLabel": "ans de présence de l'OTAN", "org": "OTAN", "source": "https://www.nato.int" },
-        { "year": "2021", "title": "Retour des talibans", "description": "Les États-Unis se retirent. Les talibans prennent Kaboul en jours. Les filles bannies de l'école. Les femmes effacées de la vie publique.", "stat": "48h", "statLabel": "pour que les talibans prennent Kaboul", "org": "BBC", "source": "https://www.bbc.com" },
-        { "year": "2022–2023", "title": "Apartheid de genre", "description": "L'ONU déclare le traitement des femmes par les talibans 'apartheid de genre'. Filles au-dessus du CM1 bannies de l'éducation. Femmes bannies des universités.", "stat": "14M", "statLabel": "filles privées d'éducation", "org": "UNICEF", "source": "https://www.unicef.org" },
-        { "year": "2024–2026", "title": "Dans la salle d'attente", "description": "Les femmes afghanes, journalistes et anciens traducteurs de l'OTAN attendent maintenant en Belgique. Rejetés. On leur dit de 'rentrer chez eux'. Dans une maison où ils seraient exécutés.", "stat": "0", "statLabel": "femmes dans le gouvernement afghan", "org": "ONU Femmes", "source": "https://www.unwomen.org" }
-      ]
-    },
-    "eritrea": {
-      "name": "Érythrée", "region": "Afrique de l'Est",
-      "stat": "500 000+", "statLabel": "réfugiés à l'étranger",
-      "reason": "La Corée du Nord africaine. Conscription militaire indéfinie. Aucune liberté de presse ou de religion.",
-      "timeline": [
-        { "year": "1993", "title": "Indépendance & trahison", "description": "L'Érythrée obtient son indépendance après une guerre de libération de 30 ans. Les espoirs démocratiques brisés en quelques années. L'une des dictatures les plus brutales d'Afrique commence.", "stat": "30", "statLabel": "ans de guerre de libération", "org": "ONU", "source": "https://www.un.org" },
-        { "year": "2001", "title": "Les ténèbres tombent", "description": "11 réformateurs arrêtés. Presse indépendante fermée du jour au lendemain. L'Érythrée devient un État-prison. Pas d'élections. Pas de liberté d'expression.", "stat": "0", "statLabel": "médias libres restants", "org": "RSF", "source": "https://rsf.org" },
-        { "year": "2004–Présent", "title": "Conscription sans fin", "description": "Le service militaire devient indéfini. Hommes et femmes enrôlés pendant des décennies. Des milliers risquent la mort en traversant le Sahara pour s'échapper.", "stat": "Indéfinie", "statLabel": "service militaire", "org": "HRW", "source": "https://www.hrw.org" },
-        { "year": "2024–2026", "title": "Dans la salle d'attente", "description": "Les Érythréens en Belgique font face à un système qui doute de leur persécution. 'Pourquoi avez-vous vraiment quitté?' leur demande-t-on. La réponse: pour survivre. Pour être libres. Pour exister.", "stat": "9%", "statLabel": "de la population a fui à l'étranger", "org": "HCR", "source": "https://www.unhcr.org" }
-      ]
-    },
-    "somalia": {
-      "name": "Somalie", "region": "Afrique de l'Est",
-      "stat": "3M+", "statLabel": "déplacés internes",
-      "reason": "Plus de 30 ans de guerre civile, terrorisme d'Al-Shabaab et catastrophe climatique.",
-      "timeline": [
-        { "year": "1991", "title": "Effondrement de l'État", "description": "Le président Barre renversé. La Somalie entre dans une guerre civile permanente. Pendant 30+ ans, il n'y a pas de gouvernement central fonctionnel.", "stat": "30+", "statLabel": "ans sans gouvernement stable", "org": "ONU", "source": "https://www.un.org" },
-        { "year": "2006–2011", "title": "Terreur d'Al-Shabaab", "description": "Al-Shabaab contrôle de vastes territoires. Exécutions publiques. Femmes forcées à des mariages. Hommes recrutés de force. Fuir est la seule option.", "stat": "1M", "statLabel": "ont fui lors de la famine 2011", "org": "HCR", "source": "https://www.unhcr.org" },
-        { "year": "2022–2023", "title": "Climat & conflit", "description": "La pire sécheresse en 40 ans. Les attaques d'Al-Shabaab continuent. Triple crise: conflit, famine et effondrement climatique simultanément.", "stat": "43 000", "statLabel": "décès excessifs en 2022", "org": "OMS", "source": "https://www.who.int" },
-        { "year": "2024–2026", "title": "Dans la salle d'attente", "description": "On dit aux Somaliens en Belgique que la Somalie a 'quelques zones sûres'. Lesquelles? Celles contrôlées par Al-Shabaab? Celles noyées dans la sécheresse? Ils attendent. Il n'y a pas de zone sûre.", "stat": "0", "statLabel": "régions totalement sûres en Somalie", "org": "ACLED", "source": "https://acleddata.com" }
-      ]
+    "badge": "Soutenir ce travail",
+    "heroTitle": "Chaque euro maintient cette plateforme en vie",
+    "heroDescription": "C'est une plateforme indépendante construite par une seule personne pour des milliers de migrants en situation juridique précaire. Votre contribution aide à maintenir cet espace pour ceux qui en ont le plus besoin.",
+    "enterAmount": "Entrez le montant en €",
+    "placeholder": "ex. 1, 5, 20...",
+    "minError": "Le don minimum est de €1",
+    "everyEuro": "Chaque euro aide à maintenir cette plateforme",
+    "payPal": "Payer avec PayPal",
+    "payCard": "Payer par carte (Stripe)",
+    "transparencyTitle": "Transparence",
+    "transparencyNote": "100% des dons vont à la maintenance. C'est un projet personnel indépendant — construit par une seule personne, pour les migrants qui méritent d'être entendus.",
+    "securePayment": "Paiement sécurisé",
+    "secureDesc": "Toutes les transactions sont chiffrées et traitées en toute sécurité via Stripe et PayPal.",
+    "directImpact": "Impact direct",
+    "directDesc": "Votre don va directement à la maintenance et au développement — sans intermédiaires.",
+    "openReports": "Transparence totale",
+    "openDesc": "Nous croyons en la responsabilité. L'utilisation des dons sera toujours partagée ouvertement."
+  },
+  "donateSuccess": {
+    "title": "Merci pour votre soutien!",
+    "message": "Votre don aide à maintenir cette plateforme pour ceux qui en ont le plus besoin.",
+    "amount": "Votre contribution",
+    "backHome": "Retour à l'accueil",
+    "shareTitle": "Faites passer le mot",
+    "shareMessage": "Aidez-nous à atteindre plus de personnes en partageant cette plateforme."
+  },
+  "whyTheyLeft": {
+    "label": "Contexte mondial",
+    "title": "Pourquoi ils ont tout laissé derrière eux",
+    "description": "Derrière chaque dossier d'asile se trouve un être humain qui n'avait pas le choix. Cliquez sur un pays pour voir la chronologie complète de ce qui les a forcés à fuir.",
+    "clickToExplore": "Cliquer pour explorer",
+    "seeTimeline": "Voir la chronologie →",
+    "timelineTitle": "Chronologie du déplacement",
+    "backToRoom": "Retour à la salle",
+    "gdprNote": "Toutes les statistiques proviennent du HCR, OCHA, Human Rights Watch et Amnesty International. Cette plateforme est conforme au RGPD. Aucune donnée personnelle n'est collectée sur cette page.",
+    "bottomNote": "Ces personnes ne sont pas des statistiques. Ce sont des médecins, enseignants, parents et enfants qui ont tout perdu. Quand la Belgique ferme ses portes, elle les renvoie à ces réalités.",
+    "source": "Source",
+    "countries": {
+      "palestine": {
+        "name": "Palestine",
+        "region": "Moyen-Orient",
+        "stat": "45 000+",
+        "statLabel": "tués depuis oct. 2023",
+        "reason": "Génocide en cours, destruction totale des infrastructures, aucune zone sûre. Fuir n'est pas un choix — c'est survivre.",
+        "timeline": [
+          {
+            "year": "1948",
+            "title": "La Nakba",
+            "description": "700 000 Palestiniens déplacés de force de leurs maisons. Le début d'un déplacement qui ne s'est jamais terminé.",
+            "stat": "700 000",
+            "statLabel": "déplacés en 1948",
+            "org": "UNRWA",
+            "source": "https://www.unrwa.org"
+          },
+          {
+            "year": "2007",
+            "title": "Blocus de Gaza",
+            "description": "Israël impose un blocus total terrestre, maritime et aérien sur Gaza. 2 millions de personnes emprisonnées dans la plus grande prison à ciel ouvert du monde.",
+            "stat": "2M",
+            "statLabel": "personnes sous blocus",
+            "org": "OCHA",
+            "source": "https://www.ochaopt.org"
+          },
+          {
+            "year": "Oct. 2023",
+            "title": "Le génocide commence",
+            "description": "La campagne de bombardements la plus intense de l'histoire moderne. Hôpitaux, écoles et camps de réfugiés ciblés. Aucune zone sûre n'existe.",
+            "stat": "45 000+",
+            "statLabel": "tués en 8 mois",
+            "org": "OCHA",
+            "source": "https://www.ochaopt.org"
+          },
+          {
+            "year": "2024–2026",
+            "title": "Dans la salle d'attente",
+            "description": "Les Palestiniens qui ont fui vers l'Europe font face à des rejets successifs. Le CGVS belge nie leurs demandes malgré le génocide documenté. Ils attendent — sans nulle part où retourner.",
+            "stat": "0",
+            "statLabel": "zones sûres à Gaza",
+            "org": "CIJ",
+            "source": "https://www.icj-cij.org"
+          }
+        ]
+      },
+      "yemen": {
+        "name": "Yémen",
+        "region": "Moyen-Orient",
+        "stat": "21M",
+        "statLabel": "personnes ont besoin d'aide humanitaire",
+        "reason": "10 ans de guerre. La pire crise humanitaire du monde. Famine, maladies et frappes aériennes quotidiennes.",
+        "timeline": [
+          {
+            "year": "2011",
+            "title": "Révolution & effondrement",
+            "description": "Le Printemps arabe atteint le Yémen. Le président Saleh renversé après des manifestations massives. Le vide politique crée les conditions du conflit.",
+            "stat": "24M",
+            "statLabel": "population à l'époque",
+            "org": "HCR",
+            "source": "https://www.unhcr.org"
+          },
+          {
+            "year": "2015",
+            "title": "La guerre éclate",
+            "description": "La coalition dirigée par l'Arabie saoudite lance une campagne de bombardements. En quelques mois, le Yémen devient la pire crise humanitaire du monde.",
+            "stat": "10 000",
+            "statLabel": "frappes aériennes la 1ère année",
+            "org": "ACLED",
+            "source": "https://acleddata.com"
+          },
+          {
+            "year": "2018–2022",
+            "title": "Famine & choléra",
+            "description": "L'ONU déclare le Yémen la pire crise humanitaire du monde. La plus grande épidémie de choléra de l'histoire. Des enfants mourant de faim devant les caméras.",
+            "stat": "17M",
+            "statLabel": "en insécurité alimentaire",
+            "org": "PAM",
+            "source": "https://www.wfp.org"
+          },
+          {
+            "year": "2024–2026",
+            "title": "Dans la salle d'attente",
+            "description": "Les Yéménites qui ont survécu aux bombes et à la famine font maintenant face à la bureaucratie belge. Leurs dossiers d'asile rejetés malgré les dévastations documentées.",
+            "stat": "4,5M",
+            "statLabel": "déplacés internes",
+            "org": "HCR",
+            "source": "https://www.unhcr.org"
+          }
+        ]
+      },
+      "syria": {
+        "name": "Syrie",
+        "region": "Moyen-Orient",
+        "stat": "13M+",
+        "statLabel": "déplacés depuis 2011",
+        "reason": "13 ans de guerre civile. Plus de la moitié de la population a été forcée de fuir ses maisons.",
+        "timeline": [
+          {
+            "year": "2011",
+            "title": "Manifestations pacifiques écrasées",
+            "description": "Les civils syriens réclament des réformes. Le gouvernement d'Assad répond avec des balles réelles. Les germes de la guerre civile sont plantés dans le sang.",
+            "stat": "1 000+",
+            "statLabel": "manifestants tués en semaines",
+            "org": "Amnesty International",
+            "source": "https://www.amnesty.org"
+          },
+          {
+            "year": "2013–2015",
+            "title": "Armes chimiques & Daech",
+            "description": "Attaques au gaz sarin sur des civils. Daech monte en puissance. La Syrie devient un champ de bataille pour les puissances mondiales.",
+            "stat": "250 000",
+            "statLabel": "tués en 2015",
+            "org": "ONU",
+            "source": "https://www.un.org"
+          },
+          {
+            "year": "2019",
+            "title": "Idlib — le dernier refuge",
+            "description": "3 millions de civils piégés à Idlib lors de l'offensive finale. Des hôpitaux bombardés plus de 50 fois. Plus d'endroit où fuir en Syrie.",
+            "stat": "3M",
+            "statLabel": "piégés à Idlib",
+            "org": "OCHA",
+            "source": "https://www.ochaopt.org"
+          },
+          {
+            "year": "2024–2026",
+            "title": "Dans la salle d'attente",
+            "description": "Les Syriens qui ont fui les armes chimiques font face au rejet administratif en Belgique. Beaucoup ont attendu 5 à 8 ans. Leurs enfants ont grandi dans l'incertitude.",
+            "stat": "6,8M",
+            "statLabel": "réfugiés syriens dans le monde",
+            "org": "HCR",
+            "source": "https://www.unhcr.org"
+          }
+        ]
+      },
+      "sudan": {
+        "name": "Soudan",
+        "region": "Afrique de l'Est",
+        "stat": "11M+",
+        "statLabel": "déplacés en 2024",
+        "reason": "La plus grande crise de déplacement du monde en 2024. Guerre civile, nettoyage ethnique et famine de masse.",
+        "timeline": [
+          {
+            "year": "2003",
+            "title": "Génocide du Darfour",
+            "description": "Les milices Janjaweed soutenues par Khartoum massacrent des centaines de milliers au Darfour. Le monde regarde. Rien ne change.",
+            "stat": "300 000",
+            "statLabel": "tués au Darfour",
+            "org": "CPI",
+            "source": "https://www.icc-cpi.int"
+          },
+          {
+            "year": "2019",
+            "title": "Révolution & espoir",
+            "description": "Le peuple soudanais renverse Omar el-Béchir après 30 ans. Des millions célèbrent. Une brève fenêtre d'espoir s'ouvre.",
+            "stat": "30",
+            "statLabel": "ans de dictature terminés",
+            "org": "HRW",
+            "source": "https://www.hrw.org"
+          },
+          {
+            "year": "Avril 2023",
+            "title": "La guerre revient",
+            "description": "Les SAF et les RSF se font la guerre dans les rues de Khartoum. Hôpitaux bombardés. Viols massifs comme arme de guerre. Nettoyage ethnique au Darfour à nouveau.",
+            "stat": "150 000",
+            "statLabel": "tués la 1ère année",
+            "org": "ACLED",
+            "source": "https://acleddata.com"
+          },
+          {
+            "year": "2024–2026",
+            "title": "Dans la salle d'attente",
+            "description": "On dit aux Soudanais qui ont fui le nettoyage ethnique que leur situation n'est 'pas assez grave'. Ils attendent, pendant que leurs familles disparaissent.",
+            "stat": "25M",
+            "statLabel": "ont besoin d'aide humanitaire",
+            "org": "OCHA",
+            "source": "https://www.ochaopt.org"
+          }
+        ]
+      },
+      "kurdistan": {
+        "name": "Kurdistan",
+        "region": "Moyen-Orient",
+        "stat": "40M+",
+        "statLabel": "Kurdes sans État",
+        "reason": "La plus grande nation apatride du monde. Persécutés en Turquie, Syrie, Irak et Iran.",
+        "timeline": [
+          {
+            "year": "1923",
+            "title": "Promesse & trahison",
+            "description": "Le Traité de Sèvres promettait une patrie aux Kurdes. Le Traité de Lausanne a effacé cette promesse. 40 millions de personnes laissées apatrides.",
+            "stat": "40M",
+            "statLabel": "Kurdes sans pays",
+            "org": "ONU",
+            "source": "https://www.un.org"
+          },
+          {
+            "year": "1988",
+            "title": "Génocide d'Anfal",
+            "description": "L'attaque aux armes chimiques de Saddam Hussein sur Halabja tue 5 000 Kurdes en quelques heures. Plus de 180 000 tués dans la campagne Anfal.",
+            "stat": "180 000",
+            "statLabel": "tués lors d'Anfal",
+            "org": "HRW",
+            "source": "https://www.hrw.org"
+          },
+          {
+            "year": "2014",
+            "title": "Daech & Kobané",
+            "description": "Daech encercle Kobané. Les combattants kurdes — dont des milliers de femmes — résistent. Le monde regarde enfin. Mais le déplacement continue.",
+            "stat": "1,8M",
+            "statLabel": "Kurdes déplacés par Daech",
+            "org": "HCR",
+            "source": "https://www.unhcr.org"
+          },
+          {
+            "year": "2024–2026",
+            "title": "Dans la salle d'attente",
+            "description": "Les demandeurs d'asile kurdes font face à un paradoxe cruel: la Belgique questionne à quel pays ils 'appartiennent'. La réponse: aucun. Ils n'ont pas de pays. Pourtant leur asile est refusé.",
+            "stat": "0",
+            "statLabel": "État kurde reconnu internationalement",
+            "org": "ONU",
+            "source": "https://www.un.org"
+          }
+        ]
+      },
+      "afghanistan": {
+        "name": "Afghanistan",
+        "region": "Asie centrale",
+        "stat": "6M+",
+        "statLabel": "réfugiés hors du pays",
+        "reason": "Sous le régime taliban, les femmes ne peuvent ni travailler ni étudier. Les minorités font face à l'exécution.",
+        "timeline": [
+          {
+            "year": "2001",
+            "title": "Invasion américaine",
+            "description": "L'OTAN envahit suite au 11 septembre. Les talibans tombent. Bref espoir pour un nouvel Afghanistan. 20 ans de conflit commencent.",
+            "stat": "20",
+            "statLabel": "ans de présence de l'OTAN",
+            "org": "OTAN",
+            "source": "https://www.nato.int"
+          },
+          {
+            "year": "2021",
+            "title": "Retour des talibans",
+            "description": "Les États-Unis se retirent. Les talibans prennent Kaboul en jours. Les filles bannies de l'école. Les femmes effacées de la vie publique.",
+            "stat": "48h",
+            "statLabel": "pour que les talibans prennent Kaboul",
+            "org": "BBC",
+            "source": "https://www.bbc.com"
+          },
+          {
+            "year": "2022–2023",
+            "title": "Apartheid de genre",
+            "description": "L'ONU déclare le traitement des femmes par les talibans 'apartheid de genre'. Filles au-dessus du CM1 bannies de l'éducation. Femmes bannies des universités.",
+            "stat": "14M",
+            "statLabel": "filles privées d'éducation",
+            "org": "UNICEF",
+            "source": "https://www.unicef.org"
+          },
+          {
+            "year": "2024–2026",
+            "title": "Dans la salle d'attente",
+            "description": "Les femmes afghanes, journalistes et anciens traducteurs de l'OTAN attendent maintenant en Belgique. Rejetés. On leur dit de 'rentrer chez eux'. Dans une maison où ils seraient exécutés.",
+            "stat": "0",
+            "statLabel": "femmes dans le gouvernement afghan",
+            "org": "ONU Femmes",
+            "source": "https://www.unwomen.org"
+          }
+        ]
+      },
+      "eritrea": {
+        "name": "Érythrée",
+        "region": "Afrique de l'Est",
+        "stat": "500 000+",
+        "statLabel": "réfugiés à l'étranger",
+        "reason": "La Corée du Nord africaine. Conscription militaire indéfinie. Aucune liberté de presse ou de religion.",
+        "timeline": [
+          {
+            "year": "1993",
+            "title": "Indépendance & trahison",
+            "description": "L'Érythrée obtient son indépendance après une guerre de libération de 30 ans. Les espoirs démocratiques brisés en quelques années. L'une des dictatures les plus brutales d'Afrique commence.",
+            "stat": "30",
+            "statLabel": "ans de guerre de libération",
+            "org": "ONU",
+            "source": "https://www.un.org"
+          },
+          {
+            "year": "2001",
+            "title": "Les ténèbres tombent",
+            "description": "11 réformateurs arrêtés. Presse indépendante fermée du jour au lendemain. L'Érythrée devient un État-prison. Pas d'élections. Pas de liberté d'expression.",
+            "stat": "0",
+            "statLabel": "médias libres restants",
+            "org": "RSF",
+            "source": "https://rsf.org"
+          },
+          {
+            "year": "2004–Présent",
+            "title": "Conscription sans fin",
+            "description": "Le service militaire devient indéfini. Hommes et femmes enrôlés pendant des décennies. Des milliers risquent la mort en traversant le Sahara pour s'échapper.",
+            "stat": "Indéfinie",
+            "statLabel": "service militaire",
+            "org": "HRW",
+            "source": "https://www.hrw.org"
+          },
+          {
+            "year": "2024–2026",
+            "title": "Dans la salle d'attente",
+            "description": "Les Érythréens en Belgique font face à un système qui doute de leur persécution. 'Pourquoi avez-vous vraiment quitté?' leur demande-t-on. La réponse: pour survivre. Pour être libres. Pour exister.",
+            "stat": "9%",
+            "statLabel": "de la population a fui à l'étranger",
+            "org": "HCR",
+            "source": "https://www.unhcr.org"
+          }
+        ]
+      },
+      "somalia": {
+        "name": "Somalie",
+        "region": "Afrique de l'Est",
+        "stat": "3M+",
+        "statLabel": "déplacés internes",
+        "reason": "Plus de 30 ans de guerre civile, terrorisme d'Al-Shabaab et catastrophe climatique.",
+        "timeline": [
+          {
+            "year": "1991",
+            "title": "Effondrement de l'État",
+            "description": "Le président Barre renversé. La Somalie entre dans une guerre civile permanente. Pendant 30+ ans, il n'y a pas de gouvernement central fonctionnel.",
+            "stat": "30+",
+            "statLabel": "ans sans gouvernement stable",
+            "org": "ONU",
+            "source": "https://www.un.org"
+          },
+          {
+            "year": "2006–2011",
+            "title": "Terreur d'Al-Shabaab",
+            "description": "Al-Shabaab contrôle de vastes territoires. Exécutions publiques. Femmes forcées à des mariages. Hommes recrutés de force. Fuir est la seule option.",
+            "stat": "1M",
+            "statLabel": "ont fui lors de la famine 2011",
+            "org": "HCR",
+            "source": "https://www.unhcr.org"
+          },
+          {
+            "year": "2022–2023",
+            "title": "Climat & conflit",
+            "description": "La pire sécheresse en 40 ans. Les attaques d'Al-Shabaab continuent. Triple crise: conflit, famine et effondrement climatique simultanément.",
+            "stat": "43 000",
+            "statLabel": "décès excessifs en 2022",
+            "org": "OMS",
+            "source": "https://www.who.int"
+          },
+          {
+            "year": "2024–2026",
+            "title": "Dans la salle d'attente",
+            "description": "On dit aux Somaliens en Belgique que la Somalie a 'quelques zones sûres'. Lesquelles? Celles contrôlées par Al-Shabaab? Celles noyées dans la sécheresse? Ils attendent. Il n'y a pas de zone sûre.",
+            "stat": "0",
+            "statLabel": "régions totalement sûres en Somalie",
+            "org": "ACLED",
+            "source": "https://acleddata.com"
+          }
+        ]
+      }
     }
-  }
-},
+  },
   "news": {
-  "title": "Actualités et rapports",
-  "description": "Restez informé des derniers rapports des organisations internationales de droits de l'homme.",
-  "readReport": "Lire le rapport complet",
-  "filterAll": "Toutes les actualités",
-  "filterGreece": "Grèce",
-  "filterBulgaria": "Bulgarie",
-  "filterBelgium": "Belgique",
-  "filterMentalHealth": "Santé mentale",
-  "filterLegal": "Juridique",
-  "featuredOrg": "Amnesty International",
-  "featuredDate": "15 mai 2024",
-  "featuredTitle": "Réalités frontalières: évaluation des droits humains à la frontière gréco-turque",
-  "featuredDesc": "Une étude complète examinant les défis procéduraux et les protections juridiques pour les personnes déplacées dans les régions frontalières de la Grèce.",
-  "sideOrg": "HCR",
-  "sideDate": "12 mai 2024",
-  "sideTitle": "Lacunes dans le soutien à la santé mentale dans les centres belges",
-  "sideDesc": "De nouvelles données révèlent le besoin urgent de services psychologiques dans les centres d'accueil urbains.",
-  "footerNote": "Rapports du HCR, d'Amnesty International, de Human Rights Watch et d'autres."
-},
+    "title": "Actualités et rapports",
+    "description": "Restez informé des derniers rapports des organisations internationales de droits de l'homme.",
+    "readReport": "Lire le rapport complet",
+    "filterAll": "Toutes les actualités",
+    "filterGreece": "Grèce",
+    "filterBulgaria": "Bulgarie",
+    "filterBelgium": "Belgique",
+    "filterMentalHealth": "Santé mentale",
+    "filterLegal": "Juridique",
+    "featuredOrg": "Amnesty International",
+    "featuredDate": "15 mai 2024",
+    "featuredTitle": "Réalités frontalières: évaluation des droits humains à la frontière gréco-turque",
+    "featuredDesc": "Une étude complète examinant les défis procéduraux et les protections juridiques pour les personnes déplacées dans les régions frontalières de la Grèce.",
+    "sideOrg": "HCR",
+    "sideDate": "12 mai 2024",
+    "sideTitle": "Lacunes dans le soutien à la santé mentale dans les centres belges",
+    "sideDesc": "De nouvelles données révèlent le besoin urgent de services psychologiques dans les centres d'accueil urbains.",
+    "footerNote": "Rapports du HCR, d'Amnesty International, de Human Rights Watch et d'autres."
+  },
   "about": {
-  "purpose": "Notre objectif",
-  "heroTitle": "Une plateforme née d'une expérience vécue",
-  "heroDescription": "The Waiting Room a été construite par quelqu'un qui l'a vécu — des années d'incertitude, des dossiers rejetés, et le poids invisible du vide juridique en Belgique.",
-  "founderSectionTitle": "Pourquoi cette plateforme existe",
-  "founderP1": "Je suis arrivé en Belgique après des années d'attente en Grèce. Mon statut de protection là-bas ne signifiait rien ici. J'ai construit cette plateforme parce que je refusais d'attendre en silence.",
-  "founderP2": "Ce n'est pas une organisation. Pas de financement, pas d'équipe, pas de bureau. Juste une personne qui croit que rassembler des voix est la première étape pour être entendu.",
-  "founderCredit": "— Le fondateur, Bruxelles 2024",
-  "legalAdvocacy": "Plaidoyer juridique",
-  "legalDesc": "Nous documentons l'écart entre ce que la loi promet et ce que les migrants vivent réellement. Chaque histoire est une preuve. Chaque signature est une pression.",
-  "inclusion": "L'inclusion d'abord",
-  "inclusionDesc": "Chaque langue, chaque parcours, chaque histoire compte ici. Personne n'est exclu.",
-  "ourImpact": "Notre impact",
-  "petitionsWon": "Signatures collectées",
-  "voicesActive": "Personnes touchées",
-  "citiesReached": "Villes en Belgique",
-  "united": "Une communauté. Plusieurs voix. Une exigence.",
-  "collaborate": "Vous voulez collaborer ou partager votre expérience?",
-  "contactSubtitle": "Contactez-nous",
-  "fullName": "Nom complet",
-  "emailAddress": "Adresse email",
-  "message": "Message",
-  "messagePlaceholder": "Dites-nous comment vous souhaitez collaborer, ou partagez votre expérience...",
-  "sendMessage": "Envoyer le message",
-  "messageSent": "Message envoyé!",
-  "messageSentNote": "Nous vous répondrons dès que possible."
-},
+    "purpose": "Notre objectif",
+    "heroTitle": "Une plateforme née d'une expérience vécue",
+    "heroDescription": "The Waiting Room a été construite par quelqu'un qui l'a vécu — des années d'incertitude, des dossiers rejetés, et le poids invisible du vide juridique en Belgique.",
+    "founderSectionTitle": "Pourquoi cette plateforme existe",
+    "founderP1": "Je suis arrivé en Belgique après des années d'attente en Grèce. Mon statut de protection là-bas ne signifiait rien ici. J'ai construit cette plateforme parce que je refusais d'attendre en silence.",
+    "founderP2": "Ce n'est pas une organisation. Pas de financement, pas d'équipe, pas de bureau. Juste une personne qui croit que rassembler des voix est la première étape pour être entendu.",
+    "founderCredit": "— Le fondateur, MOHAMED 2026",
+    "legalAdvocacy": "Plaidoyer juridique",
+    "legalDesc": "Nous documentons l'écart entre ce que la loi promet et ce que les migrants vivent réellement. Chaque histoire est une preuve. Chaque signature est une pression.",
+    "inclusion": "L'inclusion d'abord",
+    "inclusionDesc": "Chaque langue, chaque parcours, chaque histoire compte ici. Personne n'est exclu.",
+    "ourImpact": "Notre impact",
+    "petitionsWon": "Signatures collectées",
+    "voicesActive": "Personnes touchées",
+    "citiesReached": "Villes en Belgique",
+    "united": "Une communauté. Plusieurs voix. Une exigence.",
+    "collaborate": "Vous voulez collaborer ou partager votre expérience?",
+    "contactSubtitle": "Contactez-nous",
+    "fullName": "Nom complet",
+    "emailAddress": "Adresse email",
+    "message": "Message",
+    "messagePlaceholder": "Dites-nous comment vous souhaitez collaborer, ou partagez votre expérience...",
+    "sendMessage": "Envoyer le message",
+    "messageSent": "Message envoyé!",
+    "messageSentNote": "Nous vous répondrons dès que possible.",
+    "founderName": "Mohamed — Yémen",
+    "founderLocation": "Belgique · Depuis 2024",
+    "tagGreece": "Grèce",
+    "tagBelgium": "Belgique",
+    "namePlaceholder": "Votre nom complet",
+    "emailPlaceholder": "Votre adresse email",
+    "sending": "Envoi en cours...",
+    "errorSending": "Une erreur s'est produite. Veuillez réessayer."
+  },
   "language": {
     "choose": "Choisissez votre langue",
     "subtitle": "Choose your language / Choisissez votre langue / اختر لغتك"
   },
   "login": {
-  "subtitle": "Connectez-vous pour continuer",
-  "email": "Email",
-  "password": "Mot de passe",
-  "signIn": "Se connecter",
-  "or": "ou",
-  "googleSignIn": "Continuer avec Google",
-  "noAccount": "Pas encore de compte?",
-  "register": "Créer un compte",
-  "showPassword": "Afficher le mot de passe",
-  "hidePassword": "Masquer le mot de passe"
-},
+    "subtitle": "Connectez-vous pour continuer",
+    "email": "Email",
+    "password": "Mot de passe",
+    "signIn": "Se connecter",
+    "or": "ou",
+    "googleSignIn": "Continuer avec Google",
+    "noAccount": "Pas encore de compte?",
+    "register": "Créer un compte",
+    "showPassword": "Afficher le mot de passe",
+    "hidePassword": "Masquer le mot de passe"
+  },
   "register": {
-  "title": "Créer un compte",
-  "subtitle": "Rejoignez notre communauté",
-  "name": "Nom complet",
-  "email": "Email",
-  "password": "Mot de passe",
-  "confirmPassword": "Confirmer le mot de passe",
-  "submit": "Créer le compte",
-  "orContinueWith": "ou continuer avec",
-  "googleSignIn": "Continuer avec Google",
-  "hasAccount": "Vous avez déjà un compte?",
-  "login": "Se connecter"
-},
+    "title": "Créer un compte",
+    "subtitle": "Rejoignez notre communauté",
+    "name": "Nom complet",
+    "email": "Email",
+    "password": "Mot de passe",
+    "confirmPassword": "Confirmer le mot de passe",
+    "submit": "Créer le compte",
+    "orContinueWith": "ou continuer avec",
+    "googleSignIn": "Continuer avec Google",
+    "hasAccount": "Vous avez déjà un compte?",
+    "login": "Se connecter"
+  },
   "footer": {
     "tagline": "Donner aux migrants en situation juridique précaire les moyens de participer au parcours civique grâce au témoignage et à la plaidoyer.",
     "privacy": "Politique de confidentialité",

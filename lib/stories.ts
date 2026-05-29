@@ -94,3 +94,12 @@ export async function getStories() {
 
   return { data, error }
 }
+
+export async function deleteStory(id: string) {
+  const { error } = await supabase
+    .from('stories')
+    .delete()
+    .eq('id', id)
+
+  return { error }
+}

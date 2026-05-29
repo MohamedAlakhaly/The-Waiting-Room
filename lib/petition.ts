@@ -64,3 +64,11 @@ export async function getRecentSupporters() {
 
   return data || []
 }
+
+export async function getUsersCount() {
+  const { count } = await supabase
+    .from('profiles')
+    .select('*', { count: 'exact', head: true })
+
+  return count || 0
+}

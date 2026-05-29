@@ -1,9 +1,39 @@
-// components/about/mission-bento.tsx
 "use client"
 
 import { useTranslations } from "next-intl"
 import { Scale, Users } from "lucide-react"
-import { motion } from "framer-motion"
+import { motion, useMotionValue, useSpring, useInView } from "framer-motion"
+import { useEffect, useRef, useState } from "react"
+import { getSignaturesCount } from "@/lib/petition"
+import { getUsersCount } from "@/lib/petition"
+
+// Counter مع أنيميشن
+function AnimatedCounter({ value, suffix = "" }: { value: number, suffix?: string }) {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true })
+  const [display, setDisplay] = useState(0)
+
+  useEffect(() => {
+    if (!isInView || value === 0) return
+
+    let start = 0
+    const duration = 1500
+    const step = (timestamp: number) => {
+      if (!start) start = timestamp
+      const progress = Math.min((timestamp - start) / duration, 1)
+      const eased = 1 - Math.pow(1 - progress, 3) // easeOutCubic
+      setDisplay(Math.floor(eased * value))
+      if (progress < 1) requestAnimationFrame(step)
+    }
+    requestAnimationFrame(step)
+  }, [isInView, value])
+
+  return (
+    <span ref={ref} className="font-semibold text-primary">
+      {display.toLocaleString()}{suffix}
+    </span>
+  )
+}
 
 const container = {
   hidden: {},
@@ -17,6 +47,40 @@ const cardVariant = {
 
 export function MissionBento() {
   const t = useTranslations('about')
+  const [signaturesCount, setSignaturesCount] = useState(0)
+  const [usersCount, setUsersCount] = useState(0)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const loadData = async () => {
+      const [signatures, users] = await Promise.all([
+        getSignaturesCount(),
+        getUsersCount(),
+      ])
+      setSignaturesCount(signatures)
+      setUsersCount(users)
+      setLoading(false)
+    }
+    loadData()
+  }, [])
+
+  const stats = [
+    {
+      label: t('petitionsWon'),
+      value: signaturesCount,
+      suffix: "+",
+    },
+    {
+      label: t('voicesActive'),
+      value: usersCount,
+      suffix: "+",
+    },
+    {
+      label: t('citiesReached'),
+      value: 12,
+      suffix: "",
+    },
+  ]
 
   return (
     <motion.section
@@ -82,25 +146,34 @@ export function MissionBento() {
         <h3 className="font-serif text-xl font-bold text-foreground mb-4">
           {t('ourImpact')}
         </h3>
-        <div className="space-y-3">
-          {[
-            { label: t('petitionsWon'), value: "8,432+" },
-            { label: t('voicesActive'), value: "1,248+" },
-            { label: t('citiesReached'), value: "12" },
-          ].map((stat, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, x: -10 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 + i * 0.1 }}
-              className="flex justify-between items-center"
-            >
-              <span className="text-sm text-muted-foreground">{stat.label}</span>
-              <span className="font-semibold text-primary">{stat.value}</span>
-            </motion.div>
-          ))}
-        </div>
+
+        {loading ? (
+          // Skeleton loading
+          <div className="space-y-3">
+            {[1, 2, 3].map(i => (
+              <div key={i} className="flex justify-between items-center">
+                <div className="h-3 w-32 bg-muted rounded animate-pulse" />
+                <div className="h-3 w-12 bg-muted rounded animate-pulse" />
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="space-y-4">
+            {stats.map((stat, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, x: -10 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 + i * 0.1 }}
+                className="flex justify-between items-center"
+              >
+                <span className="text-sm text-muted-foreground">{stat.label}</span>
+                <AnimatedCounter value={stat.value} suffix={stat.suffix} />
+              </motion.div>
+            ))}
+          </div>
+        )}
       </motion.div>
 
       {/* United banner */}

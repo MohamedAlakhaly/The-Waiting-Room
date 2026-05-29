@@ -29,10 +29,10 @@ export function RecentSupporters() {
 
   const getTimeAgo = (createdAt: string) => {
     const diff = Math.floor((Date.now() - new Date(createdAt).getTime()) / 60000)
-    if (diff < 1) return 'just now'
-    if (diff < 60) return `${diff} min ago`
-    if (diff < 1440) return `${Math.floor(diff / 60)}h ago`
-    return `${Math.floor(diff / 1440)}d ago`
+    if (diff < 1) return t('justNow')
+    if (diff < 60) return `${diff} ${t('minutesAgo')}`
+    if (diff < 1440) return `${Math.floor(diff / 60)} ${t('hoursAgo')}`
+    return `${Math.floor(diff / 1440)} ${t('daysAgo')}`
   }
 
   const getInitials = (name: string) => {
@@ -48,12 +48,12 @@ export function RecentSupporters() {
       className="rounded-2xl border border-border bg-card p-5"
     >
       <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-4">
-        {t('newSignatories')}
+        {t('recentSupporters')}
       </p>
 
       {supporters.length === 0 ? (
         <p className="text-sm text-muted-foreground text-center py-4">
-          Be the first to sign!
+          {t('beFirstToSign')}
         </p>
       ) : (
         <motion.div variants={container} initial="hidden" animate="show" className="space-y-3">
@@ -73,7 +73,10 @@ export function RecentSupporters() {
               </motion.div>
               <p className="text-sm text-foreground">
                 <span className="font-medium">
-                  {supporter.is_anonymous ? 'Anonymous' : (supporter.display_name || 'Anonymous')}
+                  {supporter.is_anonymous
+                    ? t('anonymous')
+                    : (supporter.display_name || t('anonymous'))
+                  }
                 </span>
                 {" "}{t('signed')}{" "}
                 <span className="text-muted-foreground">

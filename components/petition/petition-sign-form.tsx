@@ -57,6 +57,18 @@ export function PetitionSignForm() {
     }
   }
 
+  if (loadingData) {
+  return (
+    <div className="rounded-2xl border border-border bg-card p-12 flex items-center justify-center">
+      <motion.div
+        animate={{ rotate: 360 }}
+        transition={{ duration: 0.8, repeat: Infinity, ease: 'linear' }}
+        className="h-8 w-8 border-2 border-primary border-t-transparent rounded-full"
+      />
+    </div>
+  )
+}
+
   // شاشة النجاح أو "وقّعت مسبقاً"
   if (signed) {
     return (
@@ -79,7 +91,7 @@ export function PetitionSignForm() {
           transition={{ delay: 0.3 }}
           className="font-serif text-xl font-bold text-foreground"
         >
-          {alreadySigned && !loading ? "Already Signed!" : t('successTitle')}
+          {alreadySigned && !loading ? t('alreadySigned') : t('successTitle')}
         </motion.h3>
         <motion.p
           initial={{ opacity: 0 }}
@@ -88,7 +100,7 @@ export function PetitionSignForm() {
           className="text-sm text-muted-foreground"
         >
           {alreadySigned && !loading
-            ? "You have already signed this petition. Thank you for your support!"
+            ? t('alreadySignedDesc')
             : t('successMessage')
           }
         </motion.p>

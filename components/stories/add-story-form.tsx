@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { useTranslations } from "next-intl"
-import { Eye, EyeOff, Send, CheckCircle, User, MapPin, Calendar, PenLine } from "lucide-react"
+import { Eye, EyeOff, Send, CheckCircle, User, MapPin, Calendar, PenLine ,Trash2} from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
@@ -16,13 +16,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { addStory, getUserStory, updateStory } from '@/lib/stories'
-
+import { addStory, getUserStory, updateStory ,deleteStory} from '@/lib/stories'
 
 export function AddStoryForm() {
-
-
-
   const t = useTranslations('addStory')
 
   const [isAnonymous, setIsAnonymous] = useState(false)
@@ -32,27 +28,24 @@ export function AddStoryForm() {
   const [city, setCity] = useState("")
   const [country, setCountry] = useState("")
   const [years, setYears] = useState("")
-
   const [loading, setLoading] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState("")
-
-  // هل المستخدم عنده قصة موجودة
   const [existingStory, setExistingStory] = useState<any>(null)
   const [loadingExisting, setLoadingExisting] = useState(true)
   const [isEditing, setIsEditing] = useState(false)
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)
+const [deleting, setDeleting] = useState(false)
 
   const maxWords = 500
   const wordCount = story.trim() ? story.trim().split(/\s+/).length : 0
   const progress = Math.min((wordCount / maxWords) * 100, 100)
 
-  // تحقق إذا المستخدم عنده قصة عند فتح الصفحة
   useEffect(() => {
     const checkExistingStory = async () => {
       const { data } = await getUserStory()
       if (data) {
         setExistingStory(data)
-        // ملء الفورم ببيانات القصة الموجودة
         setStory(data.content || "")
         setIsAnonymous(data.is_anonymous || false)
         setDisplayName(data.display_name || "")
@@ -83,7 +76,6 @@ export function AddStoryForm() {
     let result
 
     if (existingStory && isEditing) {
-      // تعديل القصة الموجودة
       result = await updateStory({
         id: existingStory.id,
         content: story,
@@ -93,7 +85,6 @@ export function AddStoryForm() {
         displayName: isAnonymous ? undefined : displayName || undefined,
       })
     } else if (!existingStory) {
-      // إضافة قصة جديدة
       result = await addStory({
         content: story,
         previousCountry: country,
@@ -112,7 +103,28 @@ export function AddStoryForm() {
     }
   }
 
-  // شاشة التحميل
+  const handleDelete = async () => {
+  if (!existingStory) return
+  setDeleting(true)
+
+  const { error } = await deleteStory(existingStory.id)
+
+  if (error) {
+    setError(error.message)
+    setDeleting(false)
+    setShowDeleteConfirm(false)
+  } else {
+    setExistingStory(null)
+    setStory("")
+    setDisplayName("")
+    setCountry("")
+    setYears("")
+    setAgreed(false)
+    setShowDeleteConfirm(false)
+    setDeleting(false)
+  }
+}
+
   if (loadingExisting) {
     return (
       <div className="rounded-2xl border border-border bg-card p-12 flex items-center justify-center">
@@ -161,69 +173,125 @@ export function AddStoryForm() {
     )
   }
 
-  // شاشة "عندك قصة موجودة" — إذا ما يريد يعدل
+  // شاشة القصة الموجودة
   if (existingStory && !isEditing) {
-    return (
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="rounded-2xl border border-border bg-card p-8 flex flex-col gap-6"
-      >
-        {/* Badge حالة القصة */}
-        <div className="flex items-center gap-2">
-          {existingStory.is_approved ? (
-            <span className="flex items-center gap-1.5 text-xs font-medium text-primary bg-primary/10 px-3 py-1 rounded-full border border-primary/20">
-              <CheckCircle className="h-3.5 w-3.5" />
-              Published
-            </span>
-          ) : (
-            <span className="flex items-center gap-1.5 text-xs font-medium text-amber-400 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">
-              Under Review
-            </span>
-          )}
-        </div>
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="rounded-2xl border border-border bg-card p-8 flex flex-col gap-6"
+    >
+      {/* Badge */}
+      <div className="flex items-center gap-2">
+        {existingStory.is_approved ? (
+          <span className="flex items-center gap-1.5 text-xs font-medium text-primary bg-primary/10 px-3 py-1 rounded-full border border-primary/20">
+            <CheckCircle className="h-3.5 w-3.5" />
+            {t('published')}
+          </span>
+        ) : (
+          <span className="flex items-center gap-1.5 text-xs font-medium text-amber-400 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">
+            {t('underReview')}
+          </span>
+        )}
+      </div>
 
-        {/* القصة */}
-        <div>
-          <h3 className="font-semibold text-foreground mb-3">Your Story</h3>
-          <p className="text-sm text-muted-foreground leading-relaxed bg-muted/30 rounded-xl p-4 border border-border">
-            {existingStory.content}
-          </p>
-        </div>
+      {/* القصة */}
+      <div>
+        <h3 className="font-semibold text-foreground mb-3">{t('storyLabel')}</h3>
+        <p className="text-sm text-muted-foreground leading-relaxed bg-muted/30 rounded-xl p-4 border border-border">
+          {existingStory.content}
+        </p>
+      </div>
 
-        {/* معلومات إضافية */}
-        <div className="flex flex-wrap gap-3">
-          {existingStory.previous_country && (
-            <span className="text-xs bg-muted px-3 py-1 rounded-full border border-border text-muted-foreground">
-              {existingStory.previous_country} → BE
-            </span>
-          )}
-          {existingStory.years_in_belgium && (
-            <span className="text-xs bg-muted px-3 py-1 rounded-full border border-border text-muted-foreground">
-              {existingStory.years_in_belgium} years
-            </span>
-          )}
-          {existingStory.is_anonymous && (
-            <span className="text-xs bg-muted px-3 py-1 rounded-full border border-border text-muted-foreground">
-              Anonymous
-            </span>
-          )}
-        </div>
+      {/* معلومات */}
+      <div className="flex flex-wrap gap-3">
+        {existingStory.previous_country && (
+          <span className="text-xs bg-muted px-3 py-1 rounded-full border border-border text-muted-foreground">
+            {existingStory.previous_country} → BE
+          </span>
+        )}
+        {existingStory.years_in_belgium && (
+          <span className="text-xs bg-muted px-3 py-1 rounded-full border border-border text-muted-foreground">
+            {existingStory.years_in_belgium} {t('yearsLabel')}
+          </span>
+        )}
+        {existingStory.is_anonymous && (
+          <span className="text-xs bg-muted px-3 py-1 rounded-full border border-border text-muted-foreground">
+            {t('anonymousLabel')}
+          </span>
+        )}
+      </div>
 
-        {/* زر التعديل */}
+      {/* Confirm حذف */}
+      <AnimatePresence>
+        {showDeleteConfirm && (
+          <motion.div
+            initial={{ opacity: 0, y: -8, scale: 0.97 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -8, scale: 0.97 }}
+            className="rounded-xl bg-red-500/10 border border-red-500/20 p-4 flex flex-col gap-3"
+          >
+            <p className="text-sm font-semibold text-red-400">{t('deleteConfirmTitle')}</p>
+            <p className="text-xs text-muted-foreground">{t('deleteConfirmDesc')}</p>
+            <div className="flex gap-2">
+              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="flex-1">
+                <Button
+                  onClick={handleDelete}
+                  disabled={deleting}
+                  className="w-full h-10 bg-red-500 hover:bg-red-600 text-white rounded-full text-sm font-bold disabled:opacity-40"
+                >
+                  {deleting ? (
+                    <motion.div
+                      animate={{ rotate: 360 }}
+                      transition={{ duration: 0.8, repeat: Infinity, ease: 'linear' }}
+                      className="h-4 w-4 border-2 border-white border-t-transparent rounded-full mr-2"
+                    />
+                  ) : null}
+                  {deleting ? '...' : t('deleteConfirm')}
+                </Button>
+              </motion.div>
+              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="flex-1">
+                <Button
+                  onClick={() => setShowDeleteConfirm(false)}
+                  variant="outline"
+                  className="w-full h-10 rounded-full text-sm border-border"
+                >
+                  {t('deleteCancel')}
+                </Button>
+              </motion.div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* أزرار */}
+      <div className="flex flex-col gap-3">
         <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
           <Button
             onClick={() => setIsEditing(true)}
             className="w-full h-12 bg-primary text-primary-foreground hover:bg-[#D9F87E] rounded-full font-bold"
           >
             <PenLine className="mr-2 h-4 w-4" />
-            Edit My Story
+            {t('editMyStory')}
           </Button>
         </motion.div>
-      </motion.div>
-    )
-  }
+
+        <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+          <Button
+            onClick={() => setShowDeleteConfirm(!showDeleteConfirm)}
+            variant="outline"
+            className="w-full h-10 rounded-full text-sm border-red-500/20 text-red-400 hover:bg-red-500/10 hover:border-red-500/40"
+          >
+            <Trash2 className="mr-2 h-4 w-4" />
+            {t('deleteStory')}
+          </Button>
+        </motion.div>
+      </div>
+
+    </motion.div>
+  )
+}
 
   // فورم الإضافة أو التعديل
   return (
@@ -234,17 +302,17 @@ export function AddStoryForm() {
       animate="show"
       className="rounded-2xl border border-border bg-card overflow-hidden"
     >
-      {/* إذا كان تعديل — أظهر header */}
+      {/* Header التعديل */}
       {isEditing && (
         <div className="px-6 pt-4 pb-0">
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <PenLine className="h-4 w-4 text-primary" />
-            <span>Editing your story</span>
+            <span>{t('editingStory')}</span>
             <button
               onClick={() => setIsEditing(false)}
               className="ml-auto text-xs text-muted-foreground hover:text-foreground transition-colors"
             >
-              Cancel
+              {t('cancelEdit')}
             </button>
           </div>
         </div>
@@ -293,6 +361,7 @@ export function AddStoryForm() {
 
       <div className="p-6 space-y-5">
 
+        {/* Error */}
         <AnimatePresence>
           {error && (
             <motion.div
@@ -306,44 +375,47 @@ export function AddStoryForm() {
           )}
         </AnimatePresence>
 
+        {/* Identity fields */}
         <AnimatePresence>
-  {!isAnonymous && (
-    <motion.div
-      initial={{ opacity: 0, height: 0 }}
-      animate={{ opacity: 1, height: "auto" }}
-      exit={{ opacity: 0, height: 0 }}
-      transition={{ duration: 0.35, ease: "easeInOut" as const }}
-      className="overflow-hidden"
-    >
-      <div className="grid gap-4 sm:grid-cols-2 pb-2">
-        <div className="space-y-2">
-          <Label className="text-sm font-medium text-foreground flex items-center gap-1.5">
-            <User className="h-3.5 w-3.5 text-muted-foreground" />
-            {t('fullName')}
-          </Label>
-          <Input
-            value={displayName}
-            onChange={e => setDisplayName(e.target.value)}
-            placeholder={t('namePlaceholder')}
-            className="bg-background border-border focus:border-primary h-11"
-          />
-        </div>
-        <div className="space-y-2">
-          <Label className="text-sm font-medium text-foreground flex items-center gap-1.5">
-            <MapPin className="h-3.5 w-3.5 text-muted-foreground" />
-            {t('cityBelgium')}
-          </Label>
-          <Input
-            value={city}
-            onChange={e => setCity(e.target.value)}
-            placeholder={t('cityPlaceholder')}
-            className="bg-background border-border focus:border-primary h-11"
-          />
-        </div>
-      </div>
-    </motion.div>
-  )}
-</AnimatePresence>
+          {!isAnonymous && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.35, ease: "easeInOut" as const }}
+              className="overflow-hidden"
+            >
+              <div className="grid gap-4 sm:grid-cols-2 pb-2">
+                <div className="space-y-2">
+                  <Label className="text-sm font-medium text-foreground flex items-center gap-1.5">
+                    <User className="h-3.5 w-3.5 text-muted-foreground" />
+                    {t('fullName')}
+                  </Label>
+                  <Input
+                    value={displayName}
+                    onChange={e => setDisplayName(e.target.value)}
+                    placeholder={t('namePlaceholder')}
+                    className="bg-background border-border focus:border-primary h-11"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label className="text-sm font-medium text-foreground flex items-center gap-1.5">
+                    <MapPin className="h-3.5 w-3.5 text-muted-foreground" />
+                    {t('cityBelgium')}
+                  </Label>
+                  <Input
+                    value={city}
+                    onChange={e => setCity(e.target.value)}
+                    placeholder={t('cityPlaceholder')}
+                    className="bg-background border-border focus:border-primary h-11"
+                  />
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Dropdowns */}
         <motion.div variants={item} className="grid gap-4 sm:grid-cols-2">
           <div className="space-y-2">
             <Label className="text-sm font-medium text-foreground flex items-center gap-1.5">
@@ -383,6 +455,7 @@ export function AddStoryForm() {
           </div>
         </motion.div>
 
+        {/* Textarea */}
         <motion.div variants={item} className="space-y-2">
           <div className="flex items-center justify-between">
             <Label className="text-sm font-medium text-foreground">
@@ -407,6 +480,7 @@ export function AddStoryForm() {
           </div>
         </motion.div>
 
+        {/* Guidelines */}
         <motion.div variants={item} className="flex items-start gap-3">
           <Checkbox
             id="guidelines"
@@ -422,6 +496,7 @@ export function AddStoryForm() {
           </Label>
         </motion.div>
 
+        {/* Submit */}
         <motion.div variants={item} className="flex justify-end">
           <motion.div
             whileHover={{ scale: agreed && wordCount > 0 ? 1.03 : 1 }}
@@ -441,7 +516,7 @@ export function AddStoryForm() {
               ) : (
                 <Send className="ml-2 h-4 w-4" />
               )}
-              {loading ? '...' : isEditing ? 'Update Story' : t('submit')}
+              {loading ? '...' : isEditing ? t('updateStory') : t('submit')}
             </Button>
           </motion.div>
         </motion.div>
