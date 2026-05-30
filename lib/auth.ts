@@ -23,10 +23,12 @@ export async function signIn(email: string, password: string) {
 
 // تسجيل دخول بـ Google
 export async function signInWithGoogle() {
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || window.location.origin
+  
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: 'google',
     options: {
-      redirectTo: `${window.location.origin}/auth/callback`
+      redirectTo: `${siteUrl}/auth/callback`
     }
   })
   return { data, error }
