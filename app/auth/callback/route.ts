@@ -15,12 +15,21 @@ export async function GET(request: Request) {
     const { data, error: exchangeError } = await supabase.auth.exchangeCodeForSession(code)
 
     if (exchangeError) {
-      console.error('Exchange error:', exchangeError.message)
-      return NextResponse.redirect(`${origin}/login?error=${exchangeError.message}`)
+      return NextResponse.redirect(`${origin}/login?error=exchange_failed`)
     }
 
     if (data.session) {
-      return NextResponse.redirect(`${origin}/`)
+      const response = NextResponse.redirect(`${origin}/`)
+      // تأكد من وجود كوكي لغة حتى ما يرجّعه proxy لـ /language
+      const hasLang = request.headers.get('cookie')?.includes('language=')
+      if (!hasLang) {
+        response.cookies.set('language', 'en', {
+          path: '/',
+          maxAge: 60 * 60 * 24 * 365,
+          sameSite: 'lax',
+        })
+      }
+      return response
     }
   }
 
