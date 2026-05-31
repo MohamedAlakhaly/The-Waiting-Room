@@ -50,6 +50,14 @@
     "anonymous": "Anonyme",
     "noStories": "Soyez le premier à partager votre histoire."
   },
+  "homeCta": {
+  "title": "Cette plateforme vit de solidarité",
+  "description": "Pas d'organisation. Pas de financement. Juste une personne et des milliers de voix. Si cette plateforme vous a aidé — gardez-la en vie.",
+  "donateBtn": "Soutenir ce travail",
+  "shareBtn": "Partager la plateforme",
+  "shareText": "The Waiting Room — une plateforme pour les migrants en Belgique. waitroom.be",
+  "note": "Chaque euro va directement au maintien de cette plateforme."
+},
   "storiesPage": {
     "title": "Voyages partagés",
     "description": "Chaque voix ajoute du poids à l'appel à la justice. Ce sont les expériences vécues de ceux qui naviguent dans le paysage belge.",
@@ -191,9 +199,9 @@
     "alreadySigned": "Déjà signé!",
     "alreadySignedDesc": "Vous avez déjà signé cette pétition. Merci pour votre soutien!",
     "justNow": "à l'instant",
-"minutesAgo": "minutes",
-"hoursAgo": "heures",
-"daysAgo": "jours",
+    "minutesAgo": "minutes",
+    "hoursAgo": "heures",
+    "daysAgo": "jours",
     "beFirstToSign": "Soyez le premier à signer!",
     "anonymous": "Anonyme"
   },

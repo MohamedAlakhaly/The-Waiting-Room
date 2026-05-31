@@ -38,8 +38,8 @@
     "rejectionRate": "First rejection rate",
     "countriesAffected": "EU countries affected",
     "signatures": "voices demanding justice",
-"signaturesDesc": "signed the petition to CGVS — and counting.",
-"signNow": "Add Your Voice"
+    "signaturesDesc": "signed the petition to CGVS — and counting.",
+    "signNow": "Add Your Voice"
   },
   "latestVoices": {
     "label": "Latest Voices",
@@ -50,6 +50,14 @@
     "anonymous": "Anonymous",
     "noStories": "Be the first to share your story."
   },
+  "homeCta": {
+  "title": "This platform runs on solidarity",
+  "description": "No organization. No funding. Just one person and thousands of voices. If this platform helped you or someone you know — keep it alive.",
+  "donateBtn": "Support This Work",
+  "shareBtn": "Share the Platform",
+  "shareText": "The Waiting Room — a platform for migrants in Belgium seeking justice. waitroom.be",
+  "note": "Every euro goes directly to keeping this platform running."
+},
   "storiesPage": {
     "title": "Shared Journeys",
     "description": "Every voice adds weight to the call for justice. These are the lived experiences of those navigating the Belgian advocacy landscape.",
@@ -176,9 +184,9 @@
     "alreadySigned": "Already Signed!",
     "alreadySignedDesc": "You have already signed this petition. Thank you for your support!",
     "justNow": "just now",
-"minutesAgo": "minutes ago",
-"hoursAgo": "hours ago",
-"daysAgo": "days ago",
+    "minutesAgo": "minutes ago",
+    "hoursAgo": "hours ago",
+    "daysAgo": "days ago",
     "beFirstToSign": "Be the first to sign!",
     "anonymous": "Anonymous"
   },
