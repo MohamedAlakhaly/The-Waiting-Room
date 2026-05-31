@@ -377,24 +377,7 @@ export function Header() {
                   </Link>
                 </motion.div>
               ))}
-
-              {/* روابط المستخدم في الموبايل */}
-              {isLoggedIn && (
-                <div className="pt-2 border-t border-border mt-2 space-y-1">
-                  {userMenuItems.map((item) => (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="flex items-center gap-3 px-3 py-2.5 text-sm text-muted-foreground hover:text-primary hover:bg-primary/5 rounded-xl transition-colors"
-                    >
-                      <item.icon className="h-4 w-4" />
-                      {item.label}
-                    </Link>
-                  ))}
-                </div>
-              )}
-
+              
               {/* تسجيل خروج */}
               {isLoggedIn && (
                 <div className="pt-2 border-t border-border mt-2">

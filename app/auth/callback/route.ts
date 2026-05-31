@@ -1,6 +1,8 @@
 import { createSupabaseServer } from '@/lib/supabase-server'
 import { NextResponse } from 'next/server'
 
+const ADMIN_EMAIL = process.env.NEXT_PUBLIC_ADMIN_EMAIL
+
 export async function GET(request: Request) {
   const { searchParams, origin } = new URL(request.url)
   const code = searchParams.get('code')
@@ -19,8 +21,14 @@ export async function GET(request: Request) {
     }
 
     if (data.session) {
-      const response = NextResponse.redirect(`${origin}/`)
-      // تأكد من وجود كوكي لغة حتى ما يرجّعه proxy لـ /language
+      const userEmail = data.session.user.email
+
+      // تحديد الصفحة بعد تسجيل الدخول
+      const redirectTo = userEmail === ADMIN_EMAIL ? '/admin' : '/'
+
+      const response = NextResponse.redirect(`${origin}${redirectTo}`)
+
+      // تأكد من وجود كوكي لغة
       const hasLang = request.headers.get('cookie')?.includes('language=')
       if (!hasLang) {
         response.cookies.set('language', 'en', {
@@ -29,6 +37,7 @@ export async function GET(request: Request) {
           sameSite: 'lax',
         })
       }
+
       return response
     }
   }

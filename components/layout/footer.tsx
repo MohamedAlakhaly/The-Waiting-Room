@@ -3,21 +3,38 @@
 import Link from "next/link"
 import { useTranslations } from "next-intl"
 import { motion } from "framer-motion"
-import { Heart, Github, Twitter, Instagram } from "lucide-react"
+import { Heart, Github, Instagram, Mail, MessageCircle } from "lucide-react"
 
 export function Footer() {
   const t = useTranslations('footer')
 
   const footerLinks = [
     { name: t('privacy'), href: "/privacy" },
-    { name: t('contact'), href: "/contact" },
+    { name: t('contact'), href: "/about" },
     { name: t('terms'), href: "/terms" },
   ]
 
   const socials = [
-    { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
-    { icon: Instagram, href: "https://instagram.com", label: "Instagram" },
-    { icon: Github, href: "https://github.com", label: "GitHub" },
+    {
+      icon: MessageCircle,
+      href: "https://wa.me/32466161289",
+      label: "WhatsApp",
+    },
+    {
+      icon: Instagram,
+      href: "https://www.instagram.com/iom._.moi",
+      label: "Instagram",
+    },
+    {
+      icon: Github,
+      href: "https://github.com/MohamedAlakhaly",
+      label: "GitHub",
+    },
+    {
+      icon: Mail,
+      href: "mailto:alakhail755@gmail.com",
+      label: "Email",
+    },
   ]
 
   const container = {
@@ -27,7 +44,7 @@ export function Footer() {
 
   const item = {
     hidden: { opacity: 0, y: 10 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } },
+    show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" as const } },
   }
 
   return (
@@ -49,7 +66,7 @@ export function Footer() {
 
           {/* Logo */}
           <motion.div variants={item} className="flex flex-col items-center gap-3">
-            <Link href="/" className="group flex items-center gap-2">
+            <Link href="/" className="group">
               <motion.span
                 className="font-serif text-2xl font-bold text-primary"
                 whileHover={{ scale: 1.05 }}
@@ -64,43 +81,34 @@ export function Footer() {
           </motion.div>
 
           {/* Divider */}
-          <motion.div
-            variants={item}
-            className="w-full max-w-xs"
-          >
+          <motion.div variants={item} className="w-full max-w-xs">
             <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent" />
           </motion.div>
 
           {/* Links */}
-          <motion.nav
-            variants={container}
-            className="flex flex-wrap justify-center gap-6"
-          >
+          <motion.nav variants={container} className="flex flex-wrap justify-center gap-6">
             {footerLinks.map((link) => (
               <motion.div key={link.href} variants={item}>
                 <Link
                   href={link.href}
-                  className="relative text-sm text-muted-foreground transition-colors hover:text-primary group"
+                  className="text-sm text-muted-foreground transition-colors hover:text-primary"
                 >
                   {link.name}
-                  <motion.span
-                    className="absolute -bottom-0.5 left-0 h-px w-0 bg-primary group-hover:w-full transition-all duration-300"
-                  />
                 </Link>
               </motion.div>
             ))}
           </motion.nav>
 
           {/* Socials */}
-          <motion.div variants={item} className="flex items-center gap-4">
+          <motion.div variants={item} className="flex items-center gap-3">
             {socials.map((social) => (
               <motion.a
                 key={social.label}
                 href={social.href}
-                target="_blank"
+                target={social.href.startsWith('mailto') ? undefined : "_blank"}
                 rel="noopener noreferrer"
                 aria-label={social.label}
-                className="h-9 w-9 rounded-full border border-border bg-card flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-colors"
+                className="h-10 w-10 rounded-full border border-border bg-card flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-colors"
                 whileHover={{ scale: 1.15, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ type: "spring", stiffness: 300 }}

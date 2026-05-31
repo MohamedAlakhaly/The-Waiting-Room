@@ -45,7 +45,7 @@ export default function LoginPage() {
     setLoading(true)
     setError('')
 
-    const { error } = await signIn(email, password)
+    const { error, isAdmin } = await signIn(email, password)
 
     if (error) {
       // ترجمة أشهر أخطاء Supabase لرسائل مفهومة
@@ -59,7 +59,7 @@ export default function LoginPage() {
       setLoading(false)
     } else {
       // نجح تسجيل الدخول — انتقل للرئيسية
-      router.push('/')
+      router.push(isAdmin ? '/admin' : '/')
       router.refresh()
     }
   }

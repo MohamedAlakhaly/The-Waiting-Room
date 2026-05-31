@@ -1,5 +1,7 @@
 import { supabase } from './supabase'
 
+const ADMIN_EMAIL = process.env.NEXT_PUBLIC_ADMIN_EMAIL
+
 // تسجيل حساب جديد
 export async function signUp(email: string, password: string, name: string) {
   const { data, error } = await supabase.auth.signUp({
@@ -12,13 +14,14 @@ export async function signUp(email: string, password: string, name: string) {
   return { data, error }
 }
 
-// تسجيل دخول
+// تسجيل دخول — يرجع isAdmin لتحديد التوجيه
 export async function signIn(email: string, password: string) {
   const { data, error } = await supabase.auth.signInWithPassword({
     email,
     password,
   })
-  return { data, error }
+  const isAdmin = data?.user?.email === ADMIN_EMAIL
+  return { data, error, isAdmin }
 }
 
 // تسجيل دخول بـ Google
@@ -32,6 +35,7 @@ export async function signInWithGoogle() {
   })
   return { data, error }
 }
+
 // تسجيل خروج
 export async function signOut() {
   const { error } = await supabase.auth.signOut()
