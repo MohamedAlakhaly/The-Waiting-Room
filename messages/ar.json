@@ -5,7 +5,13 @@
     "petitions": "العرائض",
     "news": "الأخبار",
     "donate": "تبرع",
-    "about": "من نحن"
+    "about": "من نحن",
+    "myStories": "قصصي",
+"myDonations": "تبرعاتي",
+"settings": "الإعدادات",
+"signOut": "تسجيل الخروج",
+"member": "عضو",
+"language": "اللغة"
   },
   "hero": {
     "badge": "للاجئين والمهاجرين الساعين للعدالة في بلجيكا",
@@ -133,6 +139,29 @@
     "deleteCancel": "احتفظ بقصتي",
     "deleteSuccess": "تم حذف قصتك."
   },
+"settings": {
+  "title": "إعدادات الحساب",
+  "subtitle": "إدارة ملفك الشخصي وتفضيلات حسابك.",
+  "profileSection": "الملف الشخصي",
+  "nameLabel": "الاسم المعروض",
+  "namePlaceholder": "اسمك",
+  "emailLabel": "البريد الإلكتروني",
+  "emailNote": "لا يمكن تغيير البريد الإلكتروني.",
+  "saveChanges": "حفظ التغييرات",
+  "nameSaved": "تم تحديث الاسم بنجاح.",
+  "passwordSection": "كلمة المرور",
+  "newPassword": "كلمة المرور الجديدة",
+  "changePassword": "تغيير كلمة المرور",
+  "passwordSaved": "تم تغيير كلمة المرور بنجاح.",
+  "passwordTooShort": "كلمة المرور يجب أن تكون 6 أحرف على الأقل.",
+  "dangerSection": "منطقة الخطر",
+  "deleteDesc": "حذف حسابك وجميع بياناتك نهائياً. لا يمكن التراجع عن هذا.",
+  "deleteAccount": "حذف حسابي",
+  "deleteConfirmTitle": "هل أنت متأكد؟",
+  "deleteConfirmDesc": "سيؤدي هذا إلى حذف حسابك وقصتك وجميع بياناتك نهائياً.",
+  "deleteConfirm": "نعم، احذف كل شيء",
+  "deleteCancel": "إلغاء"
+},
   "storyPage": {
     "backToStories": "العودة للقصص",
     "notFound": "القصة غير موجودة",

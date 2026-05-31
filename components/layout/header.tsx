@@ -11,6 +11,7 @@ import { useLanguage, LANGUAGES } from "@/hooks/use-language"
 import { supabase } from "@/lib/supabase"
 import { cn } from "@/lib/utils"
 import type { Session, AuthChangeEvent } from '@supabase/supabase-js'
+
 const LANG_FLAGS: Record<string, string> = {
   ar: '🇸🇦', fr: '🇫🇷', en: '🇬🇧', fa: '🇮🇷', ti: '🇹🇬',
 }
@@ -26,63 +27,52 @@ export function Header() {
   const [userMenuOpen, setUserMenuOpen] = useState(false)
   const [currentLang, setCurrentLang] = useState('en')
   const [scrolled, setScrolled] = useState(false)
-
-  // بيانات المستخدم — فقط من الـ session مش من قاعدة البيانات
   const [userInitials, setUserInitials] = useState('')
   const [userAvatar, setUserAvatar] = useState('')
+  const [userName, setUserName] = useState('')
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   const langRef = useRef<HTMLDivElement>(null)
   const userRef = useRef<HTMLDivElement>(null)
 
-  // جلب بيانات المستخدم من الـ session فقط
+  const updateUserState = (user: any) => {
+    setIsLoggedIn(true)
+    const avatar = user.user_metadata?.avatar_url || ''
+    setUserAvatar(avatar)
+    const name = user.user_metadata?.name || user.user_metadata?.full_name || user.email || ''
+    setUserName(name.split(' ')[0] || name)
+    const parts = name.trim().split(' ')
+    if (parts.length >= 2) {
+      setUserInitials((parts[0][0] + parts[1][0]).toUpperCase())
+    } else {
+      setUserInitials(name.substring(0, 2).toUpperCase())
+    }
+  }
+
   useEffect(() => {
     const getUser = async () => {
       const { data: { user } } = await supabase.auth.getUser()
-      if (user) {
-        setIsLoggedIn(true)
-
-        // صورة من Google إذا موجودة
-        const avatar = user.user_metadata?.avatar_url || ''
-        setUserAvatar(avatar)
-
-        // أول حرفين من الاسم
-        const name = user.user_metadata?.name || user.email || ''
-        const parts = name.trim().split(' ')
-        if (parts.length >= 2) {
-          setUserInitials((parts[0][0] + parts[1][0]).toUpperCase())
-        } else {
-          setUserInitials(name.substring(0, 2).toUpperCase())
-        }
-      } else {
+      if (user) updateUserState(user)
+      else {
         setIsLoggedIn(false)
         setUserInitials('')
         setUserAvatar('')
+        setUserName('')
       }
     }
-
     getUser()
 
-    // استمع لتغييرات الـ session
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event: AuthChangeEvent, session: Session | null) => {
-      if (session?.user) {
-        setIsLoggedIn(true)
-        const avatar = session.user.user_metadata?.avatar_url || ''
-        setUserAvatar(avatar)
-        const name = session.user.user_metadata?.name || session.user.email || ''
-        const parts = name.trim().split(' ')
-        if (parts.length >= 2) {
-          setUserInitials((parts[0][0] + parts[1][0]).toUpperCase())
-        } else {
-          setUserInitials(name.substring(0, 2).toUpperCase())
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (_event: AuthChangeEvent, session: Session | null) => {
+        if (session?.user) updateUserState(session.user)
+        else {
+          setIsLoggedIn(false)
+          setUserInitials('')
+          setUserAvatar('')
+          setUserName('')
         }
-      } else {
-        setIsLoggedIn(false)
-        setUserInitials('')
-        setUserAvatar('')
       }
-    })
-
+    )
     return () => subscription.unsubscribe()
   }, [])
 
@@ -97,15 +87,10 @@ export function Header() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // إغلاق الـ dropdowns عند الضغط خارجها
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
-      if (langRef.current && !langRef.current.contains(e.target as Node)) {
-        setLangDropdownOpen(false)
-      }
-      if (userRef.current && !userRef.current.contains(e.target as Node)) {
-        setUserMenuOpen(false)
-      }
+      if (langRef.current && !langRef.current.contains(e.target as Node)) setLangDropdownOpen(false)
+      if (userRef.current && !userRef.current.contains(e.target as Node)) setUserMenuOpen(false)
     }
     document.addEventListener('mousedown', handleClickOutside)
     return () => document.removeEventListener('mousedown', handleClickOutside)
@@ -122,7 +107,6 @@ export function Header() {
     setUserMenuOpen(false)
     setIsLoggedIn(false)
     router.push('/login')
-    router.refresh()
   }
 
   const navigation = [
@@ -135,9 +119,9 @@ export function Header() {
   ]
 
   const userMenuItems = [
-    { icon: BookOpen, label: "My Stories", href: "/stories" },
-    { icon: Heart, label: "My Donations", href: "/donate" },
-    { icon: Settings, label: "Settings", href: "/settings" },
+    { icon: BookOpen, label: t('myStories'), href: "/stories/new" },
+    { icon: Heart, label: t('myDonations'), href: "/donate" },
+    { icon: Settings, label: t('settings'), href: "/settings" },
   ]
 
   return (
@@ -147,9 +131,7 @@ export function Header() {
       transition={{ duration: 0.4 }}
       className={cn(
         "sticky top-0 z-50 w-full border-b border-border backdrop-blur transition-all duration-300",
-        scrolled
-          ? "bg-background/98 shadow-[0_2px_20px_rgba(0,0,0,0.3)]"
-          : "bg-background/95"
+        scrolled ? "bg-background/98 shadow-[0_2px_20px_rgba(0,0,0,0.3)]" : "bg-background/95"
       )}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
@@ -245,7 +227,6 @@ export function Header() {
           <div ref={userRef} className="relative">
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               {isLoggedIn ? (
-                // مسجل دخول — يظهر Avatar
                 <button
                   onClick={() => setUserMenuOpen(!userMenuOpen)}
                   className="h-9 w-9 rounded-full overflow-hidden border-2 border-border hover:border-primary transition-colors flex items-center justify-center bg-primary/10"
@@ -257,7 +238,6 @@ export function Header() {
                   )}
                 </button>
               ) : (
-                // غير مسجل — يظهر أيقونة User
                 <Link href="/login">
                   <Button variant="ghost" size="icon" className="h-9 w-9" aria-label="Account">
                     <User className="h-5 w-5" />
@@ -266,7 +246,7 @@ export function Header() {
               )}
             </motion.div>
 
-            {/* User dropdown menu */}
+            {/* User dropdown */}
             <AnimatePresence>
               {userMenuOpen && isLoggedIn && (
                 <motion.div
@@ -274,55 +254,57 @@ export function Header() {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: -8, scale: 0.95 }}
                   transition={{ duration: 0.15 }}
-                  className="absolute right-0 top-11 w-52 rounded-2xl border border-border bg-card shadow-xl overflow-hidden z-50"
+                  className="absolute right-0 top-11 w-56 rounded-2xl border border-border bg-card shadow-xl overflow-hidden z-50"
                 >
                   {/* Header المستخدم */}
-                  <div className="px-4 py-3 border-b border-border">
+                  <div className="px-4 py-4 border-b border-border bg-muted/20">
                     <div className="flex items-center gap-3">
-                      <div className="h-9 w-9 rounded-full overflow-hidden border border-border flex items-center justify-center bg-primary/10 shrink-0">
+                      <div className="h-10 w-10 rounded-full overflow-hidden border-2 border-primary/20 flex items-center justify-center bg-primary/10 shrink-0">
                         {userAvatar ? (
                           <img src={userAvatar} alt="avatar" className="h-full w-full object-cover" />
                         ) : (
-                          <span className="text-xs font-bold text-primary">{userInitials}</span>
+                          <span className="text-sm font-bold text-primary">{userInitials}</span>
                         )}
                       </div>
                       <div className="min-w-0">
-                        <p className="text-sm font-medium text-foreground truncate">
-                          {userInitials}
+                        <p className="text-sm font-semibold text-foreground truncate">
+                          {userName || userInitials}
                         </p>
-                        <p className="text-xs text-muted-foreground">Member</p>
+                        <p className="text-xs text-primary/70 font-medium">{t('member')}</p>
                       </div>
                     </div>
                   </div>
 
-                  {/* قائمة الروابط */}
-                  {userMenuItems.map((item, i) => (
-                    <motion.div
-                      key={item.href}
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: i * 0.05 }}
-                    >
-                      <Link
-                        href={item.href}
-                        onClick={() => setUserMenuOpen(false)}
-                        className="flex items-center gap-3 px-4 py-3 text-sm text-foreground hover:bg-muted transition-colors"
+                  {/* روابط */}
+                  <div className="py-1">
+                    {userMenuItems.map((item, i) => (
+                      <motion.div
+                        key={item.href}
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: i * 0.05 }}
                       >
-                        <item.icon className="h-4 w-4 text-muted-foreground" />
-                        {item.label}
-                      </Link>
-                    </motion.div>
-                  ))}
+                        <Link
+                          href={item.href}
+                          onClick={() => setUserMenuOpen(false)}
+                          className="flex items-center gap-3 px-4 py-2.5 text-sm text-foreground hover:bg-muted hover:text-primary transition-colors group"
+                        >
+                          <item.icon className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
+                          {item.label}
+                        </Link>
+                      </motion.div>
+                    ))}
+                  </div>
 
                   {/* تسجيل خروج */}
-                  <div className="border-t border-border">
+                  <div className="border-t border-border py-1">
                     <motion.button
-                      whileHover={{ backgroundColor: "rgba(239,68,68,0.1)" }}
+                      whileHover={{ backgroundColor: "rgba(239,68,68,0.08)" }}
                       onClick={handleSignOut}
-                      className="w-full flex items-center gap-3 px-4 py-3 text-sm text-red-400 transition-colors"
+                      className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-red-400 transition-colors"
                     >
                       <LogOut className="h-4 w-4" />
-                      Sign Out
+                      {t('signOut')}
                     </motion.button>
                   </div>
                 </motion.div>
@@ -363,6 +345,24 @@ export function Header() {
             className="overflow-hidden border-t border-border md:hidden"
           >
             <div className="space-y-1 px-4 py-3">
+
+              {/* اسم المستخدم في الموبايل */}
+              {isLoggedIn && (
+                <div className="flex items-center gap-3 px-3 py-3 mb-2 rounded-xl bg-muted/30 border border-border">
+                  <div className="h-9 w-9 rounded-full overflow-hidden border-2 border-primary/20 flex items-center justify-center bg-primary/10 shrink-0">
+                    {userAvatar ? (
+                      <img src={userAvatar} alt="avatar" className="h-full w-full object-cover" />
+                    ) : (
+                      <span className="text-xs font-bold text-primary">{userInitials}</span>
+                    )}
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-foreground">{userName || userInitials}</p>
+                    <p className="text-xs text-primary/70">{t('member')}</p>
+                  </div>
+                </div>
+              )}
+
               {navigation.map((item, i) => (
                 <motion.div key={item.href} initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.05 }}>
                   <Link
@@ -378,7 +378,24 @@ export function Header() {
                 </motion.div>
               ))}
 
-              {/* تسجيل خروج في الموبايل */}
+              {/* روابط المستخدم في الموبايل */}
+              {isLoggedIn && (
+                <div className="pt-2 border-t border-border mt-2 space-y-1">
+                  {userMenuItems.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="flex items-center gap-3 px-3 py-2.5 text-sm text-muted-foreground hover:text-primary hover:bg-primary/5 rounded-xl transition-colors"
+                    >
+                      <item.icon className="h-4 w-4" />
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+
+              {/* تسجيل خروج */}
               {isLoggedIn && (
                 <div className="pt-2 border-t border-border mt-2">
                   <button
@@ -386,14 +403,16 @@ export function Header() {
                     className="flex items-center gap-2 px-3 py-2.5 text-sm text-red-400 w-full rounded-xl hover:bg-red-500/10 transition-colors"
                   >
                     <LogOut className="h-4 w-4" />
-                    Sign Out
+                    {t('signOut')}
                   </button>
                 </div>
               )}
 
-              {/* Language options */}
+              {/* Language */}
               <div className="pt-2 border-t border-border mt-2">
-                <p className="px-3 py-1 text-xs text-muted-foreground uppercase tracking-wider">Language</p>
+                <p className="px-3 py-1 text-xs text-muted-foreground uppercase tracking-wider">
+                  {t('language')}
+                </p>
                 <div className="flex gap-2 px-3 py-2 flex-wrap">
                   {LANGUAGES.map((lang) => (
                     <button
@@ -410,6 +429,7 @@ export function Header() {
                   ))}
                 </div>
               </div>
+
             </div>
           </motion.div>
         )}

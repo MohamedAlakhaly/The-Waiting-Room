@@ -5,7 +5,13 @@
     "petitions": "Petitions",
     "news": "News",
     "donate": "Donate",
-    "about": "About"
+    "about": "About",
+    "myStories": "My Stories",
+"myDonations": "My Donations",
+"settings": "Settings",
+"signOut": "Sign Out",
+"member": "Member",
+"language": "Language"
   },
   "hero": {
     "badge": "For refugees and migrants seeking justice in Belgium",
@@ -57,6 +63,29 @@
   "shareBtn": "Share the Platform",
   "shareText": "The Waiting Room — a platform for migrants in Belgium seeking justice. waitroom.be",
   "note": "Every euro goes directly to keeping this platform running."
+},
+"settings": {
+  "title": "Account Settings",
+  "subtitle": "Manage your profile and account preferences.",
+  "profileSection": "Profile",
+  "nameLabel": "Display Name",
+  "namePlaceholder": "Your name",
+  "emailLabel": "Email Address",
+  "emailNote": "Email cannot be changed.",
+  "saveChanges": "Save Changes",
+  "nameSaved": "Name updated successfully.",
+  "passwordSection": "Password",
+  "newPassword": "New Password",
+  "changePassword": "Change Password",
+  "passwordSaved": "Password changed successfully.",
+  "passwordTooShort": "Password must be at least 6 characters.",
+  "dangerSection": "Danger Zone",
+  "deleteDesc": "Permanently delete your account and all your data. This cannot be undone.",
+  "deleteAccount": "Delete My Account",
+  "deleteConfirmTitle": "Are you sure?",
+  "deleteConfirmDesc": "This will permanently delete your account, your story, and all your data.",
+  "deleteConfirm": "Yes, Delete Everything",
+  "deleteCancel": "Cancel"
 },
   "storiesPage": {
     "title": "Shared Journeys",
