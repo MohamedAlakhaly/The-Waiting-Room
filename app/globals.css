@@ -2,7 +2,9 @@
 @import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
-
+:lang(ar) {
+  font-family: var(--font-arabic), sans-serif;
+}
 :root {
   /* Light mode */
   --background: #F5F4F4;

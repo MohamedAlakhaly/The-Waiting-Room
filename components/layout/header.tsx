@@ -1,128 +1,142 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { usePathname, useRouter } from "next/navigation"
-import { useTranslations } from "next-intl"
-import { User, Menu, X, LogOut, Settings, BookOpen, Heart } from "lucide-react"
-import { useState, useEffect, useRef } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { useLanguage, LANGUAGES } from "@/hooks/use-language"
-import { supabase } from "@/lib/supabase"
-import { cn } from "@/lib/utils"
-import type { Session, AuthChangeEvent } from '@supabase/supabase-js'
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { User, Menu, X, LogOut, Settings, BookOpen, Heart } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { useLanguage, LANGUAGES } from "@/hooks/use-language";
+import { supabase } from "@/lib/supabase";
+import { cn } from "@/lib/utils";
+import type { Session, AuthChangeEvent } from "@supabase/supabase-js";
 
 const LANG_FLAGS: Record<string, string> = {
-  ar: '🇸🇦', fr: '🇫🇷', en: '🇬🇧', fa: '🇮🇷', ti: '🇹🇬',
-}
+  ar: "🇸🇦",
+  fr: "🇫🇷",
+  en: "🇬🇧",
+  fa: "🇮🇷",
+  ti: "🇹🇬"
+};
 
 export function Header() {
-  const pathname = usePathname()
-  const router = useRouter()
-  const t = useTranslations('nav')
-  const { changeLanguage } = useLanguage()
+  const pathname = usePathname();
+  const router = useRouter();
+  const t = useTranslations("nav");
+  const { changeLanguage } = useLanguage();
 
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [langDropdownOpen, setLangDropdownOpen] = useState(false)
-  const [userMenuOpen, setUserMenuOpen] = useState(false)
-  const [currentLang, setCurrentLang] = useState('en')
-  const [scrolled, setScrolled] = useState(false)
-  const [userInitials, setUserInitials] = useState('')
-  const [userAvatar, setUserAvatar] = useState('')
-  const [userName, setUserName] = useState('')
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [langDropdownOpen, setLangDropdownOpen] = useState(false);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const [currentLang, setCurrentLang] = useState("en");
+  const [scrolled, setScrolled] = useState(false);
+  const [userInitials, setUserInitials] = useState("");
+  const [userAvatar, setUserAvatar] = useState("");
+  const [userName, setUserName] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const langRef = useRef<HTMLDivElement>(null)
-  const userRef = useRef<HTMLDivElement>(null)
+  const langRef = useRef<HTMLDivElement>(null);
+  const userRef = useRef<HTMLDivElement>(null);
 
   const updateUserState = (user: any) => {
-    setIsLoggedIn(true)
-    const avatar = user.user_metadata?.avatar_url || ''
-    setUserAvatar(avatar)
-    const name = user.user_metadata?.name || user.user_metadata?.full_name || user.email || ''
-    setUserName(name.split(' ')[0] || name)
-    const parts = name.trim().split(' ')
+    setIsLoggedIn(true);
+    const avatar = user.user_metadata?.avatar_url || "";
+    setUserAvatar(avatar);
+    const name =
+      user.user_metadata?.name ||
+      user.user_metadata?.full_name ||
+      user.email ||
+      "";
+    setUserName(name.split(" ")[0] || name);
+    const parts = name.trim().split(" ");
     if (parts.length >= 2) {
-      setUserInitials((parts[0][0] + parts[1][0]).toUpperCase())
+      setUserInitials((parts[0][0] + parts[1][0]).toUpperCase());
     } else {
-      setUserInitials(name.substring(0, 2).toUpperCase())
+      setUserInitials(name.substring(0, 2).toUpperCase());
     }
-  }
+  };
 
   useEffect(() => {
     const getUser = async () => {
-      const { data: { user } } = await supabase.auth.getUser()
-      if (user) updateUserState(user)
+      const {
+        data: { user }
+      } = await supabase.auth.getUser();
+      if (user) updateUserState(user);
       else {
-        setIsLoggedIn(false)
-        setUserInitials('')
-        setUserAvatar('')
-        setUserName('')
+        setIsLoggedIn(false);
+        setUserInitials("");
+        setUserAvatar("");
+        setUserName("");
       }
-    }
-    getUser()
+    };
+    getUser();
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+    const {
+      data: { subscription }
+    } = supabase.auth.onAuthStateChange(
       (_event: AuthChangeEvent, session: Session | null) => {
-        if (session?.user) updateUserState(session.user)
+        if (session?.user) updateUserState(session.user);
         else {
-          setIsLoggedIn(false)
-          setUserInitials('')
-          setUserAvatar('')
-          setUserName('')
+          setIsLoggedIn(false);
+          setUserInitials("");
+          setUserAvatar("");
+          setUserName("");
         }
       }
-    )
-    return () => subscription.unsubscribe()
-  }, [])
+    );
+    return () => subscription.unsubscribe();
+  }, []);
 
   useEffect(() => {
-    const code = localStorage.getItem('language') || 'en'
-    setCurrentLang(code)
-  }, [])
+    const code = localStorage.getItem("language") || "en";
+    setCurrentLang(code);
+  }, []);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 10)
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+    const handleScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
-      if (langRef.current && !langRef.current.contains(e.target as Node)) setLangDropdownOpen(false)
-      if (userRef.current && !userRef.current.contains(e.target as Node)) setUserMenuOpen(false)
-    }
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => document.removeEventListener('mousedown', handleClickOutside)
-  }, [])
+      if (langRef.current && !langRef.current.contains(e.target as Node))
+        setLangDropdownOpen(false);
+      if (userRef.current && !userRef.current.contains(e.target as Node))
+        setUserMenuOpen(false);
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const handleLanguageChange = (code: string) => {
-    setCurrentLang(code)
-    setLangDropdownOpen(false)
-    changeLanguage(code as any)
-  }
+    setCurrentLang(code);
+    setLangDropdownOpen(false);
+    changeLanguage(code as any);
+  };
 
   const handleSignOut = async () => {
-    await supabase.auth.signOut()
-    setUserMenuOpen(false)
-    setIsLoggedIn(false)
-    router.push('/login')
-  }
+    await supabase.auth.signOut();
+    setUserMenuOpen(false);
+    setIsLoggedIn(false);
+    router.push("/login");
+  };
 
   const navigation = [
-    { name: t('home'), href: "/" },
-    { name: t('stories'), href: "/stories" },
-    { name: t('petitions'), href: "/petitions" },
-    { name: t('news'), href: "/news" },
-    { name: t('donate'), href: "/donate" },
-    { name: t('about'), href: "/about" },
-  ]
+    { name: t("home"), href: "/" },
+    { name: t("stories"), href: "/stories" },
+    { name: t("petitions"), href: "/petitions" },
+    { name: t("news"), href: "/news" },
+    { name: t("donate"), href: "/donate" },
+    { name: t("about"), href: "/about" }
+  ];
 
   const userMenuItems = [
-    { icon: BookOpen, label: t('myStories'), href: "/stories/new" },
-    { icon: Heart, label: t('myDonations'), href: "/donate" },
-    { icon: Settings, label: t('settings'), href: "/settings" },
-  ]
+    { icon: BookOpen, label: t("myStories"), href: "/stories/new" },
+    { icon: Heart, label: t("myDonations"), href: "/donate" },
+    { icon: Settings, label: t("settings"), href: "/settings" }
+  ];
 
   return (
     <motion.header
@@ -131,13 +145,21 @@ export function Header() {
       transition={{ duration: 0.4 }}
       className={cn(
         "sticky top-0 z-50 w-full border-b border-border backdrop-blur transition-all duration-300",
-        scrolled ? "bg-background/98 shadow-[0_2px_20px_rgba(0,0,0,0.3)]" : "bg-background/95"
+        scrolled
+          ? "bg-background/98 shadow-[0_2px_20px_rgba(0,0,0,0.3)]"
+          : "bg-background/95"
       )}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 shrink-0">
+          <motion.img
+            src="/logo.png"
+            alt="The Waiting Room"
+            className="h-10 w-8 rounded-lg"
+            whileHover={{ scale: 1.1 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          />
           <motion.span
             whileHover={{ scale: 1.03 }}
             transition={{ type: "spring", stiffness: 300 }}
@@ -150,14 +172,16 @@ export function Header() {
         {/* Desktop Navigation */}
         <div className="hidden items-center gap-1 md:flex">
           {navigation.map((item) => {
-            const isActive = pathname === item.href
+            const isActive = pathname === item.href;
             return (
               <Link
                 key={item.href}
                 href={item.href}
                 className={cn(
                   "relative px-3 py-2 text-sm font-medium transition-colors rounded-md",
-                  isActive ? "text-primary" : "text-[#D1D5DB] hover:text-primary"
+                  isActive
+                    ? "text-primary"
+                    : "text-[#D1D5DB] hover:text-primary"
                 )}
               >
                 {item.name}
@@ -169,13 +193,12 @@ export function Header() {
                   />
                 )}
               </Link>
-            )
+            );
           })}
         </div>
 
         {/* Right actions */}
         <div className="flex items-center gap-1.5">
-
           {/* Language dropdown */}
           <div ref={langRef} className="relative">
             <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
@@ -186,7 +209,7 @@ export function Header() {
                 onClick={() => setLangDropdownOpen(!langDropdownOpen)}
                 aria-label="Change language"
               >
-                {LANG_FLAGS[currentLang] || '🌐'}
+                {LANG_FLAGS[currentLang] || "🌐"}
               </Button>
             </motion.div>
 
@@ -208,7 +231,9 @@ export function Header() {
                       onClick={() => handleLanguageChange(lang.code)}
                       className={cn(
                         "w-full flex items-center gap-3 px-4 py-3 text-sm transition-colors hover:bg-muted",
-                        currentLang === lang.code ? "text-primary bg-primary/5" : "text-foreground"
+                        currentLang === lang.code
+                          ? "text-primary bg-primary/5"
+                          : "text-foreground"
                       )}
                     >
                       <span className="text-base">{lang.flag}</span>
@@ -232,14 +257,25 @@ export function Header() {
                   className="h-9 w-9 rounded-full overflow-hidden border-2 border-border hover:border-primary transition-colors flex items-center justify-center bg-primary/10"
                 >
                   {userAvatar ? (
-                    <img src={userAvatar} alt="avatar" className="h-full w-full object-cover" />
+                    <img
+                      src={userAvatar}
+                      alt="avatar"
+                      className="h-full w-full object-cover"
+                    />
                   ) : (
-                    <span className="text-xs font-bold text-primary">{userInitials}</span>
+                    <span className="text-xs font-bold text-primary">
+                      {userInitials}
+                    </span>
                   )}
                 </button>
               ) : (
                 <Link href="/login">
-                  <Button variant="ghost" size="icon" className="h-9 w-9" aria-label="Account">
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="h-9 w-9"
+                    aria-label="Account"
+                  >
                     <User className="h-5 w-5" />
                   </Button>
                 </Link>
@@ -261,16 +297,24 @@ export function Header() {
                     <div className="flex items-center gap-3">
                       <div className="h-10 w-10 rounded-full overflow-hidden border-2 border-primary/20 flex items-center justify-center bg-primary/10 shrink-0">
                         {userAvatar ? (
-                          <img src={userAvatar} alt="avatar" className="h-full w-full object-cover" />
+                          <img
+                            src={userAvatar}
+                            alt="avatar"
+                            className="h-full w-full object-cover"
+                          />
                         ) : (
-                          <span className="text-sm font-bold text-primary">{userInitials}</span>
+                          <span className="text-sm font-bold text-primary">
+                            {userInitials}
+                          </span>
                         )}
                       </div>
                       <div className="min-w-0">
                         <p className="text-sm font-semibold text-foreground truncate">
                           {userName || userInitials}
                         </p>
-                        <p className="text-xs text-primary/70 font-medium">{t('member')}</p>
+                        <p className="text-xs text-primary/70 font-medium">
+                          {t("member")}
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -304,7 +348,7 @@ export function Header() {
                       className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-red-400 transition-colors"
                     >
                       <LogOut className="h-4 w-4" />
-                      {t('signOut')}
+                      {t("signOut")}
                     </motion.button>
                   </div>
                 </motion.div>
@@ -321,11 +365,23 @@ export function Header() {
           >
             <AnimatePresence mode="wait">
               {mobileMenuOpen ? (
-                <motion.div key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.15 }}>
+                <motion.div
+                  key="close"
+                  initial={{ rotate: -90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: 90, opacity: 0 }}
+                  transition={{ duration: 0.15 }}
+                >
                   <X className="h-5 w-5" />
                 </motion.div>
               ) : (
-                <motion.div key="menu" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.15 }}>
+                <motion.div
+                  key="menu"
+                  initial={{ rotate: 90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: -90, opacity: 0 }}
+                  transition={{ duration: 0.15 }}
+                >
                   <Menu className="h-5 w-5" />
                 </motion.div>
               )}
@@ -345,39 +401,53 @@ export function Header() {
             className="overflow-hidden border-t border-border md:hidden"
           >
             <div className="space-y-1 px-4 py-3">
-
               {/* اسم المستخدم في الموبايل */}
               {isLoggedIn && (
                 <div className="flex items-center gap-3 px-3 py-3 mb-2 rounded-xl bg-muted/30 border border-border">
                   <div className="h-9 w-9 rounded-full overflow-hidden border-2 border-primary/20 flex items-center justify-center bg-primary/10 shrink-0">
                     {userAvatar ? (
-                      <img src={userAvatar} alt="avatar" className="h-full w-full object-cover" />
+                      <img
+                        src={userAvatar}
+                        alt="avatar"
+                        className="h-full w-full object-cover"
+                      />
                     ) : (
-                      <span className="text-xs font-bold text-primary">{userInitials}</span>
+                      <span className="text-xs font-bold text-primary">
+                        {userInitials}
+                      </span>
                     )}
                   </div>
                   <div>
-                    <p className="text-sm font-semibold text-foreground">{userName || userInitials}</p>
-                    <p className="text-xs text-primary/70">{t('member')}</p>
+                    <p className="text-sm font-semibold text-foreground">
+                      {userName || userInitials}
+                    </p>
+                    <p className="text-xs text-primary/70">{t("member")}</p>
                   </div>
                 </div>
               )}
 
               {navigation.map((item, i) => (
-                <motion.div key={item.href} initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.05 }}>
+                <motion.div
+                  key={item.href}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.05 }}
+                >
                   <Link
                     href={item.href}
                     onClick={() => setMobileMenuOpen(false)}
                     className={cn(
                       "block px-3 py-2.5 text-base font-medium rounded-xl transition-colors",
-                      pathname === item.href ? "text-primary bg-primary/10" : "text-[#D1D5DB] hover:text-primary hover:bg-primary/5"
+                      pathname === item.href
+                        ? "text-primary bg-primary/10"
+                        : "text-[#D1D5DB] hover:text-primary hover:bg-primary/5"
                     )}
                   >
                     {item.name}
                   </Link>
                 </motion.div>
               ))}
-              
+
               {/* تسجيل خروج */}
               {isLoggedIn && (
                 <div className="pt-2 border-t border-border mt-2">
@@ -386,7 +456,7 @@ export function Header() {
                     className="flex items-center gap-2 px-3 py-2.5 text-sm text-red-400 w-full rounded-xl hover:bg-red-500/10 transition-colors"
                   >
                     <LogOut className="h-4 w-4" />
-                    {t('signOut')}
+                    {t("signOut")}
                   </button>
                 </div>
               )}
@@ -394,16 +464,21 @@ export function Header() {
               {/* Language */}
               <div className="pt-2 border-t border-border mt-2">
                 <p className="px-3 py-1 text-xs text-muted-foreground uppercase tracking-wider">
-                  {t('language')}
+                  {t("language")}
                 </p>
                 <div className="flex gap-2 px-3 py-2 flex-wrap">
                   {LANGUAGES.map((lang) => (
                     <button
                       key={lang.code}
-                      onClick={() => { handleLanguageChange(lang.code); setMobileMenuOpen(false) }}
+                      onClick={() => {
+                        handleLanguageChange(lang.code);
+                        setMobileMenuOpen(false);
+                      }}
                       className={cn(
                         "flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm border transition-colors",
-                        currentLang === lang.code ? "border-primary text-primary bg-primary/10" : "border-border text-muted-foreground hover:border-primary/40"
+                        currentLang === lang.code
+                          ? "border-primary text-primary bg-primary/10"
+                          : "border-border text-muted-foreground hover:border-primary/40"
                       )}
                     >
                       <span>{lang.flag}</span>
@@ -412,11 +487,10 @@ export function Header() {
                   ))}
                 </div>
               </div>
-
             </div>
           </motion.div>
         )}
       </AnimatePresence>
     </motion.header>
-  )
+  );
 }

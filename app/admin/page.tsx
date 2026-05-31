@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { supabase } from "@/lib/supabase"
 import { motion } from "framer-motion"
-import { CheckCircle, XCircle, Clock, Users, FileText, MessageSquare, LogOut } from "lucide-react"
+import { CheckCircle, XCircle, Clock, Users, FileText, LogOut } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 const ADMIN_EMAIL = process.env.NEXT_PUBLIC_ADMIN_EMAIL
@@ -21,12 +21,10 @@ export default function AdminPage() {
   useEffect(() => {
     const checkAdmin = async () => {
       const { data: { user } } = await supabase.auth.getUser()
-
       if (!user || user.email !== ADMIN_EMAIL) {
         router.push('/')
         return
       }
-
       setIsAdmin(true)
       await loadData()
       setLoading(false)
@@ -34,29 +32,15 @@ export default function AdminPage() {
     checkAdmin()
   }, [])
 
-  
-
   const loadData = async () => {
-    // جلب كل القصص
     const { data: storiesData } = await supabase
-      .from('stories')
-      .select('*')
-      .order('created_at', { ascending: false })
-
-    // جلب الرسائل
+      .from('stories').select('*').order('created_at', { ascending: false })
     const { data: messagesData } = await supabase
-      .from('contact_messages')
-      .select('*')
-      .order('created_at', { ascending: false })
-
-    // إحصائيات
+      .from('contact_messages').select('*').order('created_at', { ascending: false })
     const { count: usersCount } = await supabase
-      .from('profiles')
-      .select('*', { count: 'exact', head: true })
-
+      .from('profiles').select('*', { count: 'exact', head: true })
     const { count: signaturesCount } = await supabase
-      .from('petition_signatures')
-      .select('*', { count: 'exact', head: true })
+      .from('petition_signatures').select('*', { count: 'exact', head: true })
 
     setStories(storiesData || [])
     setMessages(messagesData || [])
@@ -95,14 +79,14 @@ export default function AdminPage() {
   const approvedStories = stories.filter(s => s.is_approved)
 
   return (
-    <div className="min-h-screen bg-[#0F0F0F] px-4 py-8">
+    <div className="min-h-screen bg-[#0F0F0F] px-4 py-8" dir="rtl" lang="ar">
       <div className="mx-auto max-w-5xl">
 
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="font-serif text-3xl font-bold text-primary">Admin Panel</h1>
-            <p className="text-muted-foreground text-sm mt-1">The Waiting Room — Control Center</p>
+            <h1 className="font-serif text-3xl font-bold text-primary">لوحة التحكم</h1>
+            <p className="text-muted-foreground text-sm mt-1">غرفة الانتظار — مركز الإدارة</p>
           </div>
           <Button
             variant="outline"
@@ -112,18 +96,18 @@ export default function AdminPage() {
             }}
             className="rounded-full border-red-500/20 text-red-400 hover:bg-red-500/10"
           >
-            <LogOut className="mr-2 h-4 w-4" />
-            Sign Out
+            <LogOut className="ml-2 h-4 w-4" />
+            تسجيل الخروج
           </Button>
         </div>
 
         {/* Stats */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
           {[
-            { label: "Members", value: stats.users, icon: Users, color: "text-blue-400" },
-            { label: "Signatures", value: stats.signatures, icon: FileText, color: "text-primary" },
-            { label: "All Stories", value: stats.stories, icon: FileText, color: "text-purple-400" },
-            { label: "Pending", value: pendingStories.length, icon: Clock, color: "text-amber-400" },
+            { label: "الأعضاء", value: stats.users, icon: Users, color: "text-blue-400" },
+            { label: "التوقيعات", value: stats.signatures, icon: FileText, color: "text-primary" },
+            { label: "كل القصص", value: stats.stories, icon: FileText, color: "text-purple-400" },
+            { label: "قيد المراجعة", value: pendingStories.length, icon: Clock, color: "text-amber-400" },
           ].map((stat, i) => (
             <motion.div
               key={i}
@@ -142,8 +126,8 @@ export default function AdminPage() {
         {/* Tabs */}
         <div className="flex gap-2 mb-6">
           {[
-            { id: 'stories', label: `Stories (${pendingStories.length} pending)` },
-            { id: 'messages', label: `Messages (${messages.length})` },
+            { id: 'stories', label: `القصص (${pendingStories.length} معلق)` },
+            { id: 'messages', label: `الرسائل (${messages.length})` },
           ].map(tab => (
             <button
               key={tab.id}
@@ -162,11 +146,12 @@ export default function AdminPage() {
         {/* Stories Tab */}
         {activeTab === 'stories' && (
           <div className="space-y-4">
+
             {/* Pending */}
             {pendingStories.length > 0 && (
               <div>
                 <p className="text-xs font-semibold uppercase tracking-widest text-amber-400 mb-3">
-                  ⏳ Pending Review ({pendingStories.length})
+                  ⏳ قيد المراجعة ({pendingStories.length})
                 </p>
                 <div className="space-y-3">
                   {pendingStories.map(story => (
@@ -179,11 +164,11 @@ export default function AdminPage() {
                       <div className="flex items-start justify-between gap-4 mb-3">
                         <div>
                           <p className="text-sm font-medium text-foreground">
-                            {story.is_anonymous ? 'Anonymous' : (story.display_name || 'Unknown')}
+                            {story.is_anonymous ? 'مجهول الهوية' : (story.display_name || 'غير معروف')}
                           </p>
                           <p className="text-xs text-muted-foreground">
-                            {story.previous_country && `${story.previous_country} → BE · `}
-                            {new Date(story.created_at).toLocaleDateString('en-GB')}
+                            {story.previous_country && `${story.previous_country} ← بلجيكا · `}
+                            {new Date(story.created_at).toLocaleDateString('ar-EG')}
                           </p>
                         </div>
                         <div className="flex gap-2 shrink-0">
@@ -192,8 +177,8 @@ export default function AdminPage() {
                             onClick={() => approveStory(story.id)}
                             className="rounded-full bg-primary text-primary-foreground h-8 px-3 text-xs"
                           >
-                            <CheckCircle className="mr-1 h-3 w-3" />
-                            Approve
+                            <CheckCircle className="ml-1 h-3 w-3" />
+                            اعتماد
                           </Button>
                           <Button
                             size="sm"
@@ -201,8 +186,8 @@ export default function AdminPage() {
                             onClick={() => rejectStory(story.id)}
                             className="rounded-full border-red-500/20 text-red-400 hover:bg-red-500/10 h-8 px-3 text-xs"
                           >
-                            <XCircle className="mr-1 h-3 w-3" />
-                            Delete
+                            <XCircle className="ml-1 h-3 w-3" />
+                            حذف
                           </Button>
                         </div>
                       </div>
@@ -219,7 +204,7 @@ export default function AdminPage() {
             {approvedStories.length > 0 && (
               <div>
                 <p className="text-xs font-semibold uppercase tracking-widest text-primary mb-3 mt-6">
-                  ✅ Published ({approvedStories.length})
+                  ✅ منشور ({approvedStories.length})
                 </p>
                 <div className="space-y-3">
                   {approvedStories.map(story => (
@@ -229,11 +214,11 @@ export default function AdminPage() {
                     >
                       <div className="flex items-center justify-between mb-2">
                         <p className="text-sm font-medium text-foreground">
-                          {story.is_anonymous ? 'Anonymous' : (story.display_name || 'Unknown')}
+                          {story.is_anonymous ? 'مجهول الهوية' : (story.display_name || 'غير معروف')}
                         </p>
                         <div className="flex items-center gap-2">
                           <span className="text-xs text-primary bg-primary/10 px-2 py-0.5 rounded-full">
-                            Published
+                            منشور
                           </span>
                           <Button
                             size="sm"
@@ -255,7 +240,7 @@ export default function AdminPage() {
             {stories.length === 0 && (
               <div className="rounded-2xl border border-border bg-card p-12 text-center">
                 <p className="text-4xl mb-3">📭</p>
-                <p className="text-muted-foreground">No stories yet.</p>
+                <p className="text-muted-foreground">لا توجد قصص بعد.</p>
               </div>
             )}
           </div>
@@ -267,7 +252,7 @@ export default function AdminPage() {
             {messages.length === 0 ? (
               <div className="rounded-2xl border border-border bg-card p-12 text-center">
                 <p className="text-4xl mb-3">📭</p>
-                <p className="text-muted-foreground">No messages yet.</p>
+                <p className="text-muted-foreground">لا توجد رسائل بعد.</p>
               </div>
             ) : (
               messages.map(msg => (
@@ -279,7 +264,7 @@ export default function AdminPage() {
                 >
                   <div className="flex items-start justify-between mb-3">
                     <div>
-                      <p className="text-sm font-semibold text-foreground">{msg.name || 'Anonymous'}</p>
+                      <p className="text-sm font-semibold text-foreground">{msg.name || 'مجهول'}</p>
                       <a
                         href={`mailto:${msg.email}`}
                         className="text-xs text-primary hover:underline"
@@ -288,7 +273,7 @@ export default function AdminPage() {
                       </a>
                     </div>
                     <span className="text-xs text-muted-foreground">
-                      {new Date(msg.created_at).toLocaleDateString('en-GB')}
+                      {new Date(msg.created_at).toLocaleDateString('ar-EG')}
                     </span>
                   </div>
                   <p className="text-sm text-muted-foreground leading-relaxed bg-muted/20 rounded-xl p-3">
@@ -299,7 +284,7 @@ export default function AdminPage() {
                       href={`mailto:${msg.email}?subject=Re: The Waiting Room`}
                       className="text-xs font-medium text-primary hover:underline"
                     >
-                      Reply via Email →
+                      ← الرد عبر البريد الإلكتروني
                     </a>
                   </div>
                 </motion.div>

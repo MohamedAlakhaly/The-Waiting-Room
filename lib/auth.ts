@@ -29,8 +29,7 @@ export async function signInWithGoogle() {
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: 'google',
     options: {
-      redirectTo: `https://waitroom.be/auth/callback`
-      // redirectTo: `http://localhost:3000/auth/callback`
+      redirectTo: `${window.location.origin}/auth/callback`
     }
   })
   return { data, error }

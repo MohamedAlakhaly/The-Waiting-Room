@@ -55,7 +55,7 @@ export function Footer() {
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-primary/5 blur-[80px] rounded-full" />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <div className="relative mx-auto max-w-7xl px-4 py-16 pb-24 sm:pb-16 sm:px-6 lg:px-8">
         <motion.div
           variants={container}
           initial="hidden"

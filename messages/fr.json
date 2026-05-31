@@ -732,5 +732,24 @@
     "back": "Retour",
     "save": "Enregistrer",
     "cancel": "Annuler"
-  }
+  },
+  "admin": {
+  "title": "Panneau d'administration",
+  "subtitle": "The Waiting Room — Centre de contrôle",
+  "signOut": "Se déconnecter",
+  "members": "Membres",
+  "signatures": "Signatures",
+  "allStories": "Tous les témoignages",
+  "pending": "En attente",
+  "pendingReview": "En attente de révision",
+  "published": "Publié",
+  "approve": "Approuver",
+  "delete": "Supprimer",
+  "noStories": "Aucun témoignage pour l'instant.",
+  "noMessages": "Aucun message pour l'instant.",
+  "replyEmail": "Répondre par email →",
+  "storiesTab": "Témoignages",
+  "messagesTab": "Messages",
+  "pendingLabel": "en attente"
+}
 }

@@ -3,299 +3,295 @@
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"
-import { motion } from "framer-motion"
-import { Header } from "@/components/layout/header"
-import { Footer } from "@/components/layout/footer"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 import { supabase } from "@/lib/supabase"
-import { User, Lock, Trash2, CheckCircle } from "lucide-react"
-import { AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
+import { CheckCircle, XCircle, Clock, Users, FileText, LogOut } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
-export default function SettingsPage() {
-  const t = useTranslations('settings')
+const ADMIN_EMAIL = process.env.NEXT_PUBLIC_ADMIN_EMAIL
+
+export default function AdminPage() {
   const router = useRouter()
-
-  const [user, setUser] = useState<any>(null)
-  const [name, setName] = useState("")
-  const [loading, setLoading] = useState(false)
-  const [success, setSuccess] = useState("")
-  const [error, setError] = useState("")
-  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)
-  const [deleting, setDeleting] = useState(false)
-
-  // كلمة المرور
-  const [currentPassword, setCurrentPassword] = useState("")
-  const [newPassword, setNewPassword] = useState("")
-  const [passwordLoading, setPasswordLoading] = useState(false)
-  const [originalName, setOriginalName] = useState("")
+  const t = useTranslations('admin')
+  const [loading, setLoading] = useState(true)
+  const [isAdmin, setIsAdmin] = useState(false)
+  const [stories, setStories] = useState<any[]>([])
+  const [messages, setMessages] = useState<any[]>([])
+  const [stats, setStats] = useState({ users: 0, signatures: 0, stories: 0 })
+  const [activeTab, setActiveTab] = useState<'stories' | 'messages'>('stories')
 
   useEffect(() => {
-    const getUser = async () => {
+    const checkAdmin = async () => {
       const { data: { user } } = await supabase.auth.getUser()
-      if (user) {
-        setUser(user)
-        setName(user.user_metadata?.name || '')
-        setOriginalName(user.user_metadata?.name || '')
+      if (!user || user.email !== ADMIN_EMAIL) {
+        router.push('/')
+        return
       }
+      setIsAdmin(true)
+      await loadData()
+      setLoading(false)
     }
-    getUser()
+    checkAdmin()
   }, [])
 
-  // تحديث الاسم
-  const handleUpdateName = async () => {
-    if (!name.trim()) return
-    setLoading(true)
-    setError("")
-    setSuccess("")
 
-    const { error } = await supabase.auth.updateUser({
-      data: { name }
+
+  const loadData = async () => {
+    const { data: storiesData } = await supabase
+      .from('stories').select('*').order('created_at', { ascending: false })
+    const { data: messagesData } = await supabase
+      .from('contact_messages').select('*').order('created_at', { ascending: false })
+    const { count: usersCount } = await supabase
+      .from('profiles').select('*', { count: 'exact', head: true })
+    const { count: signaturesCount } = await supabase
+      .from('petition_signatures').select('*', { count: 'exact', head: true })
+
+    setStories(storiesData || [])
+    setMessages(messagesData || [])
+    setStats({
+      users: usersCount || 0,
+      signatures: signaturesCount || 0,
+      stories: storiesData?.length || 0,
     })
-
-    if (error) {
-      setError(error.message)
-    } else {
-      setSuccess(t('nameSaved'))
-      setOriginalName(name)
-    }
-    setLoading(false)
   }
 
-  // تغيير كلمة المرور
-  const handleChangePassword = async () => {
-    if (!newPassword || newPassword.length < 6) {
-      setError(t('passwordTooShort'))
-      return
-    }
-    setPasswordLoading(true)
-    setError("")
-    setSuccess("")
-
-    const { error } = await supabase.auth.updateUser({
-      password: newPassword
-    })
-
-    if (error) {
-      setError(error.message)
-    } else {
-      setSuccess(t('passwordSaved'))
-      setCurrentPassword("")
-      setNewPassword("")
-    }
-    setPasswordLoading(false)
+  const approveStory = async (id: string) => {
+    await supabase.from('stories').update({ is_approved: true }).eq('id', id)
+    setStories(prev => prev.map(s => s.id === id ? { ...s, is_approved: true } : s))
   }
 
-  // حذف الحساب
-  const handleDeleteAccount = async () => {
-  setDeleting(true)
-
-  const response = await fetch('/api/delete-account', {
-    method: 'DELETE',
-  })
-
-  if (response.ok) {
-    await supabase.auth.signOut()
-    router.push('/login')
-  } else {
-    const data = await response.json()
-    setError(data.error || 'Failed to delete account')
-    setDeleting(false)
-    setShowDeleteConfirm(false)
-  }
-}
-// lltauhloywjyrhmfyutf.supabase.co
-  const container = {
-    hidden: {},
-    show: { transition: { staggerChildren: 0.1, delayChildren: 0.1 } },
+  const rejectStory = async (id: string) => {
+    await supabase.from('stories').delete().eq('id', id)
+    setStories(prev => prev.filter(s => s.id !== id))
   }
 
-  const item = {
-    hidden: { opacity: 0, y: 16 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.4 } },
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-[#0F0F0F] flex items-center justify-center">
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{ duration: 0.8, repeat: Infinity, ease: 'linear' }}
+          className="h-8 w-8 border-2 border-primary border-t-transparent rounded-full"
+        />
+      </div>
+    )
   }
+
+  if (!isAdmin) return null
+
+  const pendingStories = stories.filter(s => !s.is_approved)
+  const approvedStories = stories.filter(s => s.is_approved)
 
   return (
-    <div className="flex min-h-screen flex-col">
-      <Header />
-      <main className="flex-1 px-4 py-8 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl">
+    <div className="min-h-screen bg-[#0F0F0F] px-4 py-8">
+      <div className="mx-auto max-w-5xl">
 
-          {/* Header */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="mb-8"
+        {/* Header */}
+        <div className="flex items-center justify-between mb-8">
+          <div>
+            <h1 className="font-serif text-3xl font-bold text-primary">{t('title')}</h1>
+            <p className="text-muted-foreground text-sm mt-1">{t('subtitle')}</p>
+          </div>
+          <Button
+            variant="outline"
+            onClick={async () => {
+              await supabase.auth.signOut()
+              router.push('/login')
+            }}
+            className="rounded-full border-red-500/20 text-red-400 hover:bg-red-500/10"
           >
-            <h1 className="font-serif text-3xl font-bold text-foreground">
-              {t('title')}
-            </h1>
-            <p className="mt-2 text-muted-foreground">{t('subtitle')}</p>
-          </motion.div>
+            <LogOut className="mr-2 h-4 w-4" />
+            {t('signOut')}
+          </Button>
+        </div>
 
-          <motion.div
-            variants={container}
-            initial="hidden"
-            animate="show"
-            className="space-y-4"
-          >
-
-            {/* Success/Error */}
-            <AnimatePresence>
-              {success && (
-                <motion.div
-                  initial={{ opacity: 0, y: -8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0 }}
-                  className="rounded-xl bg-primary/10 border border-primary/20 px-4 py-3 flex items-center gap-2"
-                >
-                  <CheckCircle className="h-4 w-4 text-primary" />
-                  <p className="text-sm text-primary">{success}</p>
-                </motion.div>
-              )}
-              {error && (
-                <motion.div
-                  initial={{ opacity: 0, y: -8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0 }}
-                  className="rounded-xl bg-red-500/10 border border-red-500/20 px-4 py-3"
-                >
-                  <p className="text-sm text-red-400">{error}</p>
-                </motion.div>
-              )}
-            </AnimatePresence>
-
-            {/* Profile */}
-            <motion.div variants={item} className="rounded-2xl border border-border bg-card p-6 space-y-4">
-              <div className="flex items-center gap-3 mb-2">
-                <div className="h-9 w-9 rounded-xl bg-primary/10 flex items-center justify-center">
-                  <User className="h-5 w-5 text-primary" />
-                </div>
-                <h2 className="font-semibold text-foreground">{t('profileSection')}</h2>
-              </div>
-
-              <div className="space-y-2">
-                <Label className="text-foreground">{t('nameLabel')}</Label>
-                <Input
-                  value={name}
-                  onChange={e => setName(e.target.value)}
-                  placeholder={t('namePlaceholder')}
-                  className="bg-background border-border focus:border-primary h-11"
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label className="text-foreground">{t('emailLabel')}</Label>
-                <Input
-                  value={user?.email || ''}
-                  disabled
-                  className="bg-background border-border h-11 opacity-50"
-                />
-                <p className="text-xs text-muted-foreground">{t('emailNote')}</p>
-              </div>
-
-              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                <Button
-  onClick={handleUpdateName}
-  disabled={loading || name === originalName || !name.trim()}
-  className="bg-primary text-primary-foreground hover:bg-[#D9F87E] rounded-full px-6 disabled:opacity-40"
->
-  {loading ? '...' : t('saveChanges')}
-</Button>
-              </motion.div>
+        {/* Stats */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+          {[
+            { label: t('members'), value: stats.users, icon: Users, color: "text-blue-400" },
+            { label: t('signatures'), value: stats.signatures, icon: FileText, color: "text-primary" },
+            { label: t('allStories'), value: stats.stories, icon: FileText, color: "text-purple-400" },
+            { label: t('pending'), value: pendingStories.length, icon: Clock, color: "text-amber-400" },
+          ].map((stat, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.1 }}
+              className="rounded-2xl border border-border bg-card p-4"
+            >
+              <stat.icon className={`h-5 w-5 ${stat.color} mb-2`} />
+              <p className={`font-serif text-2xl font-bold ${stat.color}`}>{stat.value}</p>
+              <p className="text-xs text-muted-foreground">{stat.label}</p>
             </motion.div>
+          ))}
+        </div>
 
-            {/* Password — فقط لو مش Google */}
-            {user?.app_metadata?.provider !== 'google' && (
-              <motion.div variants={item} className="rounded-2xl border border-border bg-card p-6 space-y-4">
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="h-9 w-9 rounded-xl bg-primary/10 flex items-center justify-center">
-                    <Lock className="h-5 w-5 text-primary" />
-                  </div>
-                  <h2 className="font-semibold text-foreground">{t('passwordSection')}</h2>
+        {/* Tabs */}
+        <div className="flex gap-2 mb-6">
+          {[
+            { id: 'stories', label: `${t('storiesTab')} (${pendingStories.length} ${t('pendingLabel')})` },
+            { id: 'messages', label: `${t('messagesTab')} (${messages.length})` },
+          ].map(tab => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id as any)}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                activeTab === tab.id
+                  ? 'bg-primary text-primary-foreground'
+                  : 'bg-card border border-border text-muted-foreground hover:text-foreground'
+              }`}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Stories Tab */}
+        {activeTab === 'stories' && (
+          <div className="space-y-4">
+            {pendingStories.length > 0 && (
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-widest text-amber-400 mb-3">
+                  ⏳ {t('pendingReview')} ({pendingStories.length})
+                </p>
+                <div className="space-y-3">
+                  {pendingStories.map(story => (
+                    <motion.div
+                      key={story.id}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="rounded-2xl border border-amber-500/20 bg-card p-5"
+                    >
+                      <div className="flex items-start justify-between gap-4 mb-3">
+                        <div>
+                          <p className="text-sm font-medium text-foreground">
+                            {story.is_anonymous ? 'Anonymous' : (story.display_name || 'Unknown')}
+                          </p>
+                          <p className="text-xs text-muted-foreground">
+                            {story.previous_country && `${story.previous_country} → BE · `}
+                            {new Date(story.created_at).toLocaleDateString('en-GB')}
+                          </p>
+                        </div>
+                        <div className="flex gap-2 shrink-0">
+                          <Button
+                            size="sm"
+                            onClick={() => approveStory(story.id)}
+                            className="rounded-full bg-primary text-primary-foreground h-8 px-3 text-xs"
+                          >
+                            <CheckCircle className="mr-1 h-3 w-3" />
+                            {t('approve')}
+                          </Button>
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={() => rejectStory(story.id)}
+                            className="rounded-full border-red-500/20 text-red-400 hover:bg-red-500/10 h-8 px-3 text-xs"
+                          >
+                            <XCircle className="mr-1 h-3 w-3" />
+                            {t('delete')}
+                          </Button>
+                        </div>
+                      </div>
+                      <p className="text-sm text-muted-foreground leading-relaxed line-clamp-4 bg-muted/20 rounded-xl p-3">
+                        {story.content}
+                      </p>
+                    </motion.div>
+                  ))}
                 </div>
-
-                <div className="space-y-2">
-                  <Label className="text-foreground">{t('newPassword')}</Label>
-                  <Input
-                    type="password"
-                    value={newPassword}
-                    onChange={e => setNewPassword(e.target.value)}
-                    placeholder="••••••••"
-                    className="bg-background border-border focus:border-primary h-11"
-                  />
-                </div>
-
-                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                  <Button
-                    onClick={handleChangePassword}
-                    disabled={passwordLoading || !newPassword}
-                    className="bg-primary text-primary-foreground hover:bg-[#D9F87E] rounded-full px-6 disabled:opacity-40"
-                  >
-                    {passwordLoading ? '...' : t('changePassword')}
-                  </Button>
-                </motion.div>
-              </motion.div>
+              </div>
             )}
 
-            {/* Danger Zone */}
-            <motion.div variants={item} className="rounded-2xl border border-red-500/20 bg-red-500/5 p-6 space-y-4">
-              <div className="flex items-center gap-3 mb-2">
-                <div className="h-9 w-9 rounded-xl bg-red-500/10 flex items-center justify-center">
-                  <Trash2 className="h-5 w-5 text-red-400" />
-                </div>
-                <h2 className="font-semibold text-red-400">{t('dangerSection')}</h2>
-              </div>
-
-              <p className="text-sm text-muted-foreground">{t('deleteDesc')}</p>
-
-              <AnimatePresence>
-                {showDeleteConfirm && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0 }}
-                    className="rounded-xl bg-red-500/10 border border-red-500/20 p-4 space-y-3"
-                  >
-                    <p className="text-sm font-semibold text-red-400">{t('deleteConfirmTitle')}</p>
-                    <p className="text-xs text-muted-foreground">{t('deleteConfirmDesc')}</p>
-                    <div className="flex gap-2">
-                      <Button
-                        onClick={handleDeleteAccount}
-                        disabled={deleting}
-                        className="flex-1 h-10 bg-red-500 hover:bg-red-600 text-white rounded-full text-sm font-bold"
-                      >
-                        {deleting ? '...' : t('deleteConfirm')}
-                      </Button>
-                      <Button
-                        onClick={() => setShowDeleteConfirm(false)}
-                        variant="outline"
-                        className="flex-1 h-10 rounded-full text-sm"
-                      >
-                        {t('deleteCancel')}
-                      </Button>
+            {approvedStories.length > 0 && (
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-widest text-primary mb-3 mt-6">
+                  ✅ {t('published')} ({approvedStories.length})
+                </p>
+                <div className="space-y-3">
+                  {approvedStories.map(story => (
+                    <div
+                      key={story.id}
+                      className="rounded-2xl border border-primary/10 bg-card p-5 opacity-70"
+                    >
+                      <div className="flex items-center justify-between mb-2">
+                        <p className="text-sm font-medium text-foreground">
+                          {story.is_anonymous ? 'Anonymous' : (story.display_name || 'Unknown')}
+                        </p>
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs text-primary bg-primary/10 px-2 py-0.5 rounded-full">
+                            {t('published')}
+                          </span>
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={() => rejectStory(story.id)}
+                            className="rounded-full border-red-500/20 text-red-400 hover:bg-red-500/10 h-7 px-2 text-xs"
+                          >
+                            <XCircle className="h-3 w-3" />
+                          </Button>
+                        </div>
+                      </div>
+                      <p className="text-xs text-muted-foreground line-clamp-2">{story.content}</p>
                     </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+                  ))}
+                </div>
+              </div>
+            )}
 
-              {!showDeleteConfirm && (
-                <Button
-                  onClick={() => setShowDeleteConfirm(true)}
-                  variant="outline"
-                  className="rounded-full border-red-500/20 text-red-400 hover:bg-red-500/10"
+            {stories.length === 0 && (
+              <div className="rounded-2xl border border-border bg-card p-12 text-center">
+                <p className="text-4xl mb-3">📭</p>
+                <p className="text-muted-foreground">{t('noStories')}</p>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Messages Tab */}
+        {activeTab === 'messages' && (
+          <div className="space-y-3">
+            {messages.length === 0 ? (
+              <div className="rounded-2xl border border-border bg-card p-12 text-center">
+                <p className="text-4xl mb-3">📭</p>
+                <p className="text-muted-foreground">{t('noMessages')}</p>
+              </div>
+            ) : (
+              messages.map(msg => (
+                <motion.div
+                  key={msg.id}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="rounded-2xl border border-border bg-card p-5"
                 >
-                  <Trash2 className="mr-2 h-4 w-4" />
-                  {t('deleteAccount')}
-                </Button>
-              )}
-            </motion.div>
+                  <div className="flex items-start justify-between mb-3">
+                    <div>
+                      <p className="text-sm font-semibold text-foreground">{msg.name || 'Anonymous'}</p>
+                      <a href={`mailto:${msg.email}`} className="text-xs text-primary hover:underline">
+                        {msg.email}
+                      </a>
+                    </div>
+                    <span className="text-xs text-muted-foreground">
+                      {new Date(msg.created_at).toLocaleDateString('en-GB')}
+                    </span>
+                  </div>
+                  <p className="text-sm text-muted-foreground leading-relaxed bg-muted/20 rounded-xl p-3">
+                    {msg.message}
+                  </p>
+                  <div className="mt-3">
+                    <a
+                      href={`mailto:${msg.email}?subject=Re: The Waiting Room`}
+                      className="text-xs font-medium text-primary hover:underline"
+                    >
+                      {t('replyEmail')}
+                    </a>
+                  </div>
+                </motion.div>
+              ))
+            )}
+          </div>
+        )}
 
-          </motion.div>
-        </div>
-      </main>
-      <Footer />
+      </div>
     </div>
   )
 }
