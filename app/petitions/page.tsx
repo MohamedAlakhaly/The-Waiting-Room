@@ -1,14 +1,14 @@
 // app/petitions/page.tsx
-"use client"
+"use client";
 
-import { Header } from "@/components/layout/header"
-import { Footer } from "@/components/layout/footer"
-import { PetitionHeader } from "@/components/petition/petition-header"
-import { PetitionContent } from "@/components/petition/petition-content"
-import { PetitionSignForm } from "@/components/petition/petition-sign-form"
-import { RecentSupporters } from "@/components/petition/recent-supporters"
-import { SharePetition } from "@/components/petition/share-petition"
-import { motion } from "framer-motion"
+import { Header } from "@/components/layout/header";
+import { Footer } from "@/components/layout/footer";
+import { PetitionHeader } from "@/components/petition/petition-header";
+import { PetitionContent } from "@/components/petition/petition-content";
+import { PetitionSignForm } from "@/components/petition/petition-sign-form";
+import { RecentSupporters } from "@/components/petition/recent-supporters";
+import { SharePetition } from "@/components/petition/share-petition";
+import { motion } from "framer-motion";
 
 export default function PetitionsPage() {
   return (
@@ -17,7 +17,6 @@ export default function PetitionsPage() {
       <main className="flex-1 px-4 py-8 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-8 lg:grid-cols-5">
-
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -38,11 +37,10 @@ export default function PetitionsPage() {
               <PetitionSignForm />
               <RecentSupporters />
             </motion.div>
-
           </div>
         </div>
       </main>
       <Footer />
     </div>
-  )
+  );
 }

@@ -15,7 +15,26 @@
     "signPetition": "وقّع على العريضة",
     "shareStory": "شارك قصتك",
     "supportWork": "ادعم هذا العمل",
-    "affected": "شخص في بلجيكا يطالب بالعدالة"
+    "affected": "عضو في مجتمعنا",
+    "countriesAffectedWars": "اكثر الدول المتضررة في الحروب",
+    "countries": {
+      "yemen": "🇾🇪 اليمن",
+      "syria": "🇸🇾 سوريا",
+      "afghanistan": "🇦🇫 أفغانستان",
+      "sudan": "🇸🇩 السودان",
+      "palestine": "🇵🇸 فلسطين",
+      "kurdistan": "🏳️ كردستان",
+      "eritrea": "🇪🇷 إريتريا",
+      "somalia": "🇸🇴 الصومال"
+    }
+  },
+  "homeCta": {
+    "title": "هذه المنصة تعيش بالتضامن",
+    "description": "لا منظمة. لا تمويل. فقط شخص واحد وآلاف الأصوات. إذا ساعدتك هذه المنصة أو ساعدت شخصاً تعرفه — أبقها حية.",
+    "donateBtn": "ادعم هذا العمل",
+    "shareBtn": "شارك المنصة",
+    "shareText": "غرفة الانتظار — منصة للمهاجرين في بلجيكا الساعين للعدالة. waitroom.be",
+    "note": "كل يورو يذهب مباشرة للإبقاء على هذه المنصة."
   },
   "impact": {
     "label": "العدد التقديري للمتضررين",
@@ -25,7 +44,10 @@
     "goal": "الهدف: {count} صوت للمراجعة البرلمانية",
     "yearsWait": "سنوات انتظار في المتوسط",
     "rejectionRate": "نسبة الرفض الأول",
-    "countriesAffected": "دولة أوروبية متأثرة"
+    "countriesAffected": "دولة أوروبية متأثرة",
+    "signatures": "صوت يطالب بالعدالة",
+    "signaturesDesc": "وقّعوا العريضة لـ CGVS — والعدد يتزايد.",
+    "signNow": "أضف صوتك"
   },
   "latestVoices": {
     "label": "أحدث الأصوات",
@@ -33,7 +55,8 @@
     "viewAll": "عرض جميع القصص",
     "readStory": "اقرأ القصة",
     "yearsInBE": "سنوات في بلجيكا",
-    "anonymous": "مجهول الهوية"
+    "anonymous": "مجهول الهوية",
+    "noStories": "كن أول من يشارك قصته."
   },
   "storiesPage": {
     "title": "رحلات مشتركة",
@@ -176,9 +199,9 @@
     "alreadySigned": "وقّعت بالفعل!",
     "alreadySignedDesc": "لقد وقّعت على هذه العريضة مسبقاً. شكراً لدعمك!",
     "justNow": "الآن",
-    "minutesAgo": "د مضت",
-    "hoursAgo": "س مضت",
-    "daysAgo": "ي مضت",
+    "minutesAgo": "دقيقة مضت",
+    "hoursAgo": "ساعة مضت",
+    "daysAgo": "يوم مضى",
     "beFirstToSign": "كن أول من يوقع!",
     "anonymous": "مجهول الهوية"
   },

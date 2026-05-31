@@ -1,52 +1,22 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { useTranslations } from "next-intl"
-import { ArrowRight, Clock, User } from "lucide-react"
-import { motion } from "framer-motion"
+import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { ArrowRight, Clock, User } from "lucide-react";
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { getStories } from "@/lib/stories";
 
-const stories = [
-  {
-    id: 1,
-    name: "anonymous",
-    isAnonymous: true,
-    initials: null,
-    route: "Greece",
-    years: 3,
-    quote: "After 2 years in Greece with no future, I came to Belgium. Now I face the same wall — but at least here, people listen.",
-    color: "bg-blue-500/10 text-blue-400",
-  },
-  {
-    id: 2,
-    name: "Fatima A.",
-    isAnonymous: false,
-    initials: "FA",
-    route: "Bulgaria",
-    years: 1.5,
-    quote: "In Sofia I had papers but no rights. Here in Antwerp I have people who fight with me. That is everything.",
-    color: "bg-emerald-500/10 text-emerald-400",
-  },
-  {
-    id: 3,
-    name: "anonymous",
-    isAnonymous: true,
-    initials: null,
-    route: "Greece",
-    years: 4,
-    quote: "Five languages, zero rights on paper. The system sees a file number, not a human being who has been waiting 4 years.",
-    color: "bg-muted text-muted-foreground",
-  },
-]
+const COLORS = [
+  "bg-blue-500/10 text-blue-400",
+  "bg-emerald-500/10 text-emerald-400",
+  "bg-amber-500/10 text-amber-400"
+];
 
 const container = {
   hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.2,
-    },
-  },
-}
+  show: { transition: { staggerChildren: 0.15, delayChildren: 0.2 } }
+};
 
 const cardVariant = {
   hidden: { opacity: 0, y: 40, scale: 0.97 },
@@ -54,17 +24,28 @@ const cardVariant = {
     opacity: 1,
     y: 0,
     scale: 1,
-    transition: { duration: 0.5, ease: "easeOut" as const},
-  },
-}
+    transition: { duration: 0.5, ease: "easeOut" as const }
+  }
+};
 
 export function LatestVoices() {
-  const t = useTranslations('latestVoices')
+  const t = useTranslations("latestVoices");
+  const [stories, setStories] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchStories = async () => {
+      const { data } = await getStories();
+      // خذ آخر 3 قصص فقط
+      setStories((data || []).slice(0, 3));
+      setLoading(false);
+    };
+    fetchStories();
+  }, []);
 
   return (
     <section className="px-4 py-12 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
-
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -75,87 +56,132 @@ export function LatestVoices() {
         >
           <div>
             <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-1">
-              {t('label')}
+              {t("label")}
             </p>
             <h2 className="font-serif text-3xl font-bold text-foreground sm:text-4xl">
-              {t('title')}
+              {t("title")}
             </h2>
           </div>
           <Link
             href="/stories"
             className="hidden sm:flex items-center gap-1 text-sm font-medium text-primary hover:text-primary/80"
           >
-            {t('viewAll')}
+            {t("viewAll")}
             <ArrowRight className="h-4 w-4" />
           </Link>
         </motion.div>
 
-        {/* Cards */}
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
-        >
-          {stories.map((story) => (
-            <motion.div
-              key={story.id}
-              variants={cardVariant}
-              whileHover={{
-                y: -6,
-                boxShadow: "0 20px 40px rgba(201, 241, 78, 0.08)",
-                borderColor: "rgba(201, 241, 78, 0.3)",
-              }}
-              transition={{ duration: 0.25 }}
-              className="rounded-2xl border border-border bg-card p-5 flex flex-col gap-4 cursor-default"
-            >
-              {/* Top */}
-              <div className="flex items-center justify-between">
+        {/* Loading skeleton */}
+        {loading ? (
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {[1, 2, 3].map((i) => (
+              <div
+                key={i}
+                className="rounded-2xl border border-border bg-card p-5 h-48 animate-pulse"
+              />
+            ))}
+          </div>
+        ) : stories.length === 0 ? (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="rounded-2xl border border-border bg-card p-12 text-center"
+          >
+            <p className="text-4xl mb-4">✍️</p>
+            <p className="text-sm text-muted-foreground">{t("noStories")}</p>
+          </motion.div>
+        ) : (
+          <motion.div
+            variants={container}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+          >
+            {stories.map((story, index) => {
+              const color = COLORS[index % COLORS.length];
+              const isAnonymous = story.is_anonymous;
+              const name = story.display_name || "";
+              const initials = name
+                ? name
+                    .trim()
+                    .split(" ")
+                    .map((n: string) => n[0])
+                    .join("")
+                    .toUpperCase()
+                    .substring(0, 2)
+                : "";
+
+              return (
                 <motion.div
-                  className={`h-10 w-10 rounded-full flex items-center justify-center ${story.color}`}
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ type: "spring", stiffness: 300 }}
+                  key={story.id}
+                  variants={cardVariant}
+                  whileHover={{
+                    y: -6,
+                    boxShadow: "0 20px 40px rgba(201, 241, 78, 0.08)",
+                    borderColor: "rgba(201, 241, 78, 0.3)"
+                  }}
+                  transition={{ duration: 0.25 }}
+                  className="rounded-2xl border border-border bg-card p-5 flex flex-col gap-4 cursor-default"
                 >
-                  {story.isAnonymous
-                    ? <User className="h-5 w-5" />
-                    : <span className="text-sm font-medium">{story.initials}</span>
-                  }
-                </motion.div>
-                <span className="text-xs bg-muted text-muted-foreground px-3 py-1 rounded-full border border-border">
-                  {story.route} → BE
-                </span>
-              </div>
+                  {/* Top */}
+                  <div className="flex items-center justify-between">
+                    <motion.div
+                      className={`h-10 w-10 rounded-full flex items-center justify-center ${color}`}
+                      whileHover={{ scale: 1.1 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    >
+                      {isAnonymous ? (
+                        <User className="h-5 w-5" />
+                      ) : (
+                        <span className="text-sm font-medium">{initials}</span>
+                      )}
+                    </motion.div>
+                    {story.previous_country && (
+                      <span className="text-xs bg-muted text-muted-foreground px-3 py-1 rounded-full border border-border capitalize">
+                        {story.previous_country} → BE
+                      </span>
+                    )}
+                  </div>
 
-              {/* Content */}
-              <div className="flex flex-col gap-2 flex-1">
-                <p className="text-sm font-medium text-foreground">
-                  {story.isAnonymous ? t('anonymous') : story.name}
-                </p>
-                <p className="text-sm text-muted-foreground leading-relaxed italic">
-                  "{story.quote}"
-                </p>
-              </div>
+                  {/* Content */}
+                  <div className="flex flex-col gap-2 flex-1">
+                    <p className="text-sm font-medium text-foreground">
+                      {isAnonymous ? t("anonymous") : name}
+                    </p>
+                    <p className="text-sm text-muted-foreground leading-relaxed italic line-clamp-3">
+                      "{story.content}"
+                    </p>
+                  </div>
 
-              {/* Footer */}
-              <div className="flex items-center justify-between pt-3 border-t border-border">
-                <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                  <Clock className="h-3.5 w-3.5" />
-                  {story.years} {t('yearsInBE')}
-                </span>
-                <motion.div whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
-                  <Link
-                    href={`/stories/${story.id}`}
-                    className="flex items-center gap-1 text-xs font-medium text-primary hover:text-primary/80"
-                  >
-                    {t('readStory')}
-                    <ArrowRight className="h-3.5 w-3.5" />
-                  </Link>
+                  {/* Footer */}
+                  <div className="flex items-center justify-between pt-3 border-t border-border">
+                    <span className="flex items-center gap-1.5 text-xs text-muted-foreground flex-1">
+                      {story.years_in_belgium && (
+                        <>
+                          <Clock className="h-3.5 w-3.5" />
+                          {story.years_in_belgium} {t("yearsInBE")}
+                        </>
+                      )}
+                    </span>
+                    <motion.div
+                      whileHover={{ x: 4 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <Link
+                        href={`/stories/${story.id}`}
+                        className="flex items-center gap-1 text-xs font-medium text-primary hover:text-primary/80"
+                      >
+                        {t("readStory")}
+                        <ArrowRight className="h-3.5 w-3.5" />
+                      </Link>
+                    </motion.div>
+                  </div>
                 </motion.div>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+              );
+            })}
+          </motion.div>
+        )}
 
         {/* Mobile link */}
         <motion.div
@@ -165,12 +191,14 @@ export function LatestVoices() {
           viewport={{ once: true }}
           className="mt-6 text-center sm:hidden"
         >
-          <Link href="/stories" className="inline-flex items-center gap-1 text-sm font-medium text-primary">
-            {t('viewAll')} <ArrowRight className="h-4 w-4" />
+          <Link
+            href="/stories"
+            className="inline-flex items-center gap-1 text-sm font-medium text-primary"
+          >
+            {t("viewAll")} <ArrowRight className="h-4 w-4" />
           </Link>
         </motion.div>
-
       </div>
     </section>
-  )
+  );
 }

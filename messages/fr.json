@@ -15,7 +15,18 @@
     "signPetition": "Signer la pétition",
     "shareStory": "Partager votre histoire",
     "supportWork": "Soutenir ce travail",
-    "affected": "personnes en Belgique exigeant justice"
+    "affected": "membres dans notre communauté",
+    "countriesAffectedWars": "Les pays les plus touchés par les guerres",
+    "countries": {
+      "yemen": "🇾🇪 Yémen",
+      "syria": "🇸🇾 Syrie",
+      "afghanistan": "🇦🇫 Afghanistan",
+      "sudan": "🇸🇩 Soudan",
+      "palestine": "🇵🇸 Palestine",
+      "kurdistan": "🏳️ Kurdistan",
+      "eritrea": "🇪🇷 Érythrée",
+      "somalia": "🇸🇴 Somalie"
+    }
   },
   "impact": {
     "label": "Nombre estimé de personnes concernées",
@@ -25,7 +36,10 @@
     "goal": "Objectif : {count} voix pour un examen parlementaire",
     "yearsWait": "Années d'attente en moyenne",
     "rejectionRate": "Taux de premier rejet",
-    "countriesAffected": "pays européens concernés"
+    "countriesAffected": "pays européens concernés",
+    "signatures": "voix exigeant justice",
+    "signaturesDesc": "ont signé la pétition au CGVS — et ça continue.",
+    "signNow": "Ajoutez votre voix"
   },
   "latestVoices": {
     "label": "Dernières voix",
@@ -33,7 +47,8 @@
     "viewAll": "Voir toutes les histoires",
     "readStory": "Lire le témoignage",
     "yearsInBE": "ans en Belgique",
-    "anonymous": "Anonyme"
+    "anonymous": "Anonyme",
+    "noStories": "Soyez le premier à partager votre histoire."
   },
   "storiesPage": {
     "title": "Voyages partagés",
@@ -176,9 +191,9 @@
     "alreadySigned": "Déjà signé!",
     "alreadySignedDesc": "Vous avez déjà signé cette pétition. Merci pour votre soutien!",
     "justNow": "à l'instant",
-    "minutesAgo": "min",
-    "hoursAgo": "h",
-    "daysAgo": "j",
+"minutesAgo": "minutes",
+"hoursAgo": "heures",
+"daysAgo": "jours",
     "beFirstToSign": "Soyez le premier à signer!",
     "anonymous": "Anonyme"
   },

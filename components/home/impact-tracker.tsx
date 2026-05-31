@@ -1,10 +1,14 @@
 "use client"
 
+import Link from "next/link"
 import { useTranslations } from "next-intl"
 import { motion, useInView, useMotionValue, useSpring } from "framer-motion"
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
+import { getSignaturesCount } from "@/lib/petition"
+import { Button } from "@/components/ui/button"
+import { FileText } from "lucide-react"
 
-function AnimatedNumber({ value }: { value: number }) {
+function AnimatedNumber({ value, suffix = "+" }: { value: number, suffix?: string }) {
   const ref = useRef<HTMLSpanElement>(null)
   const motionValue = useMotionValue(0)
   const spring = useSpring(motionValue, { duration: 2000, bounce: 0 })
@@ -16,20 +20,28 @@ function AnimatedNumber({ value }: { value: number }) {
 
   useEffect(() => {
     spring.on("change", (v) => {
-      if (ref.current) ref.current.textContent = Math.floor(v).toLocaleString() + "+"
+      if (ref.current) ref.current.textContent = Math.floor(v).toLocaleString() + suffix
     })
-  }, [spring])
+  }, [spring, suffix])
 
   return <span ref={ref}>0</span>
 }
 
 export function ImpactTracker() {
   const t = useTranslations('impact')
-  const currentCount = 1248
+  const [signaturesCount, setSignaturesCount] = useState(0)
+  const [loading, setLoading] = useState(true)
   const goalCount = 10000
-  const progress = (currentCount / goalCount) * 100
   const sectionRef = useRef(null)
-  const inView = useInView(sectionRef, { once: true })
+
+  useEffect(() => {
+    getSignaturesCount().then(count => {
+      setSignaturesCount(count)
+      setLoading(false)
+    })
+  }, [])
+
+  const progress = (signaturesCount / goalCount) * 100
 
   const stats = [
     { number: "3+", label: t('yearsWait') },
@@ -61,6 +73,7 @@ export function ImpactTracker() {
                 {t('label')}
               </motion.span>
 
+              {/* العداد الحقيقي */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -68,7 +81,11 @@ export function ImpactTracker() {
                 viewport={{ once: true }}
                 className="font-serif text-6xl font-bold text-primary sm:text-7xl lg:text-8xl"
               >
-                <AnimatedNumber value={currentCount} />
+                {loading ? (
+                  <span className="text-muted-foreground/30">...</span>
+                ) : (
+                  <AnimatedNumber value={signaturesCount} />
+                )}
               </motion.div>
 
               <motion.div
@@ -78,23 +95,29 @@ export function ImpactTracker() {
                 viewport={{ once: true }}
                 className="flex flex-col gap-1"
               >
-                <span className="text-xl font-medium text-secondary-foreground">{t('people')}</span>
-                <span className="text-xl font-medium text-secondary-foreground">{t('belgium')}</span>
-                <span className="text-xl font-medium text-secondary-foreground">{t('seeking')}</span>
+                <span className="text-xl font-medium text-secondary-foreground">{t('signatures')}</span>
+                <span className="text-base text-muted-foreground">{t('signaturesDesc')}</span>
               </motion.div>
 
               {/* Progress bar */}
               <div className="w-full">
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-sm text-muted-foreground">0</span>
-                  <span className="text-sm font-medium text-primary">{Math.round(progress)}%</span>
+                  <motion.span
+                    className="text-sm font-bold text-primary"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                  >
+                    {loading ? '...' : `${Math.min(Math.round(progress), 100)}%`}
+                  </motion.span>
                   <span className="text-sm text-muted-foreground">{goalCount.toLocaleString()}</span>
                 </div>
                 <div className="h-3 overflow-hidden rounded-full bg-muted">
                   <motion.div
                     className="h-full rounded-full bg-primary"
                     initial={{ width: 0 }}
-                    whileInView={{ width: `${progress}%` }}
+                    whileInView={{ width: loading ? '0%' : `${Math.min(progress, 100)}%` }}
                     transition={{ duration: 1.5, delay: 0.5, ease: "easeOut" }}
                     viewport={{ once: true }}
                   />
@@ -103,6 +126,23 @@ export function ImpactTracker() {
                   {t('goal', { count: goalCount.toLocaleString() })}
                 </p>
               </div>
+
+              {/* CTA زر */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.6 }}
+                viewport={{ once: true }}
+              >
+                <Link href="/petitions">
+                  <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+                    <Button className="rounded-full font-bold px-6 h-12">
+                      <FileText className="mr-2 h-4 w-4" />
+                      {t('signNow')}
+                    </Button>
+                  </motion.div>
+                </Link>
+              </motion.div>
             </div>
 
             {/* Right — stats */}

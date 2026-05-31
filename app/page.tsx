@@ -3,7 +3,7 @@ import { Footer } from "@/components/layout/footer"
 import { HeroSection } from "@/components/home/hero-section"
 import { ImpactTracker } from "@/components/home/impact-tracker"
 import { LatestVoices } from "@/components/home/latest-voices"
-import { AdvocacyReport } from "@/components/home/advocacy-report"
+import { HomeCta } from "@/components/home/home-cta"
 
 export default function HomePage() {
   return (
@@ -13,7 +13,7 @@ export default function HomePage() {
         <HeroSection />
         <ImpactTracker />
         <LatestVoices />
-        <AdvocacyReport />
+        <HomeCta />
       </main>
       <Footer />
     </div>

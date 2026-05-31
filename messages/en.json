@@ -15,7 +15,18 @@
     "signPetition": "Sign the Petition",
     "shareStory": "Share Your Story",
     "supportWork": "Support This Work",
-    "affected": "people in Belgium demanding justice"
+    "affected": "members in our community",
+    "countriesAffectedWars": "The countries most affected by wars",
+    "countries": {
+      "yemen": "🇾🇪 Yemen",
+      "syria": "🇸🇾 Syria",
+      "afghanistan": "🇦🇫 Afghanistan",
+      "sudan": "🇸🇩 Sudan",
+      "palestine": "🇵🇸 Palestine",
+      "kurdistan": "🏳️ Kurdistan",
+      "eritrea": "🇪🇷 Eritrea",
+      "somalia": "🇸🇴 Somalia"
+    }
   },
   "impact": {
     "label": "Estimated number of people affected",
@@ -25,7 +36,10 @@
     "goal": "Goal: {count} voices for parliamentary review",
     "yearsWait": "Years average wait",
     "rejectionRate": "First rejection rate",
-    "countriesAffected": "EU countries affected"
+    "countriesAffected": "EU countries affected",
+    "signatures": "voices demanding justice",
+"signaturesDesc": "signed the petition to CGVS — and counting.",
+"signNow": "Add Your Voice"
   },
   "latestVoices": {
     "label": "Latest Voices",
@@ -33,7 +47,8 @@
     "viewAll": "View all stories",
     "readStory": "Read story",
     "yearsInBE": "years in BE",
-    "anonymous": "Anonymous"
+    "anonymous": "Anonymous",
+    "noStories": "Be the first to share your story."
   },
   "storiesPage": {
     "title": "Shared Journeys",
@@ -161,9 +176,9 @@
     "alreadySigned": "Already Signed!",
     "alreadySignedDesc": "You have already signed this petition. Thank you for your support!",
     "justNow": "just now",
-    "minutesAgo": "min ago",
-    "hoursAgo": "h ago",
-    "daysAgo": "d ago",
+"minutesAgo": "minutes ago",
+"hoursAgo": "hours ago",
+"daysAgo": "days ago",
     "beFirstToSign": "Be the first to sign!",
     "anonymous": "Anonymous"
   },

@@ -27,6 +27,7 @@ export async function signInWithGoogle() {
     provider: 'google',
     options: {
       redirectTo: `https://waitroom.be/auth/callback`
+      // redirectTo: `http://localhost:3000/auth/callback`
     }
   })
   return { data, error }
