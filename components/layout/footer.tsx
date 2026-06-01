@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { useTranslations } from "next-intl"
 import { motion } from "framer-motion"
-import { Heart, Github, Instagram, Mail, MessageCircle } from "lucide-react"
+import { Heart, Github, Instagram, Mail, MessageCircle, Globe } from "lucide-react"
 
 export function Footer() {
   const t = useTranslations('footer')
@@ -34,7 +34,13 @@ export function Footer() {
       icon: Mail,
       href: "mailto:alakhail755@gmail.com",
       label: "Email",
+      
     },
+     {
+    icon: Globe,
+    href: "https://www.alakhali.be/",
+    label: "Website",
+  },
   ]
 
   const container = {
